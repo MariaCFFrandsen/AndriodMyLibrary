@@ -1,4 +1,4 @@
-# AndriodMyLibrary
+# AndroidMyLibrary
 App project for AND1
 
 My project is about organizing one's home library. When I was a bit younger, I was a digilent reader and book-buyer. To such an extent that I owned so many books that I think it technically qualifies for a library. I would have loved to have an app so that I could organize my books and get a quick overview of my collection; which ones I had already read, the onces I hadn't read, what did I think about the book, for how much did I buy for and etc. 
