@@ -1,11 +1,13 @@
-package com.github.listsapp;
+package com.github.listsapp.view.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.github.listsapp.R;
+
+public class login_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
