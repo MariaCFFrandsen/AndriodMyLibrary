@@ -41,6 +41,8 @@ public class login_fragment extends Fragment {
         editText_login_username = view.findViewById(R.id.editText_login_username);
         editText_login_password = view.findViewById(R.id.editText_login_password);
         button_login = view.findViewById(R.id.button_login);
+
+
         button.setOnClickListener(v -> {
             fragment_createuser second = new fragment_createuser();
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
@@ -52,11 +54,20 @@ public class login_fragment extends Fragment {
         button_login.setOnClickListener(v -> {
             //TODO: virker ikke endnu
             //TODO: ret gui med textfields
-            User user = new User(editText_login_username.toString(), editText_login_password.toString());
+
+            String username = editText_login_username.toString();
+            String password =  editText_login_password.toString();
+
+            User user = new User(username, password);
+
+            System.out.println(username + " username");
+            System.out.println(password + " password");
             LiveData<Boolean> login = loginViewModel.login(user);
             boolean check = login.getValue();
+            System.out.println();
             if(check)
             {
+                //Navigate to activity
                 Toast.makeText(getContext(), "You have logged in!", Toast.LENGTH_SHORT).show();
             }
             else
