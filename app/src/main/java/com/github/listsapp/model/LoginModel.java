@@ -1,4 +1,4 @@
-package com.github.listsapp.model;
+package com.github.listsapp.Model;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -38,8 +38,7 @@ public class LoginModel {
     public LiveData<Boolean> login(User user)
     {
         ArrayList<User> tmp = users.getValue();
-        boolean check = false;
-        User tmp_user = new User();
+        User tmp_user;
         for (int i = 0; i < tmp.size(); i++) {
             tmp_user = tmp.get(i);
             if(tmp_user.getUsername().equals(user.getUsername()) && tmp_user.getPassword().equals(user.getPassword()))

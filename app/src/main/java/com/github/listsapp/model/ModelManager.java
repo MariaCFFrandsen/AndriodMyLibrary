@@ -1,4 +1,4 @@
-package com.github.listsapp.model;
+package com.github.listsapp.Model;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
