@@ -16,8 +16,7 @@
         android:background="@color/beige"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:context=".view.login.login_activity">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <TextView

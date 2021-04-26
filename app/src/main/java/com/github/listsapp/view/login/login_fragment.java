@@ -1,5 +1,7 @@
 package com.github.listsapp.view.login;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -15,9 +17,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.github.listsapp.MainActivity;
 import com.github.listsapp.R;
 import com.github.listsapp.fragment_createuser;
-import com.github.listsapp.model.LoginModel;
+import com.github.listsapp.model.*;
 import com.github.listsapp.util.User;
 import com.github.listsapp.viewmodel.LoginViewModel;
 
@@ -61,8 +64,13 @@ public class login_fragment extends Fragment {
             System.out.println(username + " username");
             System.out.println(password + " password");
 
-           /*
+            Context context = getActivity().getApplicationContext();
+            Class destination = MainActivity.class;
+            Intent i = new Intent(context, destination);
+            startActivity(i);
 
+
+            /*
 
             User user = new User(username, password);
 

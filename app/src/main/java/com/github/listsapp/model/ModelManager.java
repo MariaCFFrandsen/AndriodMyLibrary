@@ -1,10 +1,10 @@
-package com.github.listsapp.Model;
+package com.github.listsapp.model;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.github.listsapp.util.User;
-
+import com.github.listsapp.model.LoginModel;
 import java.util.ArrayList;
 
 public class ModelManager {
