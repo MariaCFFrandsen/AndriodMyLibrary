@@ -53,6 +53,8 @@ public class login_fragment extends Fragment {
             //TODO: virker ikke endnu
             //TODO: ret gui med textfields
             User user = new User(editText_login_username.toString(), editText_login_password.toString());
+
+           /*
             LiveData<Boolean> login = loginViewModel.login(user);
             boolean check = login.getValue();
             if(check)
@@ -61,6 +63,7 @@ public class login_fragment extends Fragment {
             }
             else
                 Toast.makeText(getContext(), "not logged in", Toast.LENGTH_SHORT).show();
+                */
         });
 
         return view;
