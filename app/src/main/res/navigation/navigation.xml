@@ -3,16 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_first">
+    app:startDestination="@+id/nav_home">
 
     <fragment
-        android:id="@+id/nav_first"
+        android:id="@+id/nav_home"
         android:name="com.github.listsapp.view2.BlankFragment"
         android:label="titel 1"
         tools:layout="@layout/fragment_blank" />
 
     <fragment
-        android:id="@+id/nav_second"
+        android:id="@+id/nav_yourlibrary"
+        android:name="com.github.listsapp.TestFragment"
+        android:label="titel 1"
+        tools:layout="@layout/fragment_test" />
+    <fragment
+        android:id="@+id/nav_addbook"
+        android:name="com.github.listsapp.TestFragment"
+        android:label="titel 1"
+        tools:layout="@layout/fragment_test" />
+    <fragment
+        android:id="@+id/nav_lookupbook"
+        android:name="com.github.listsapp.TestFragment"
+        android:label="titel 1"
+        tools:layout="@layout/fragment_test" />
+    <fragment
+        android:id="@+id/nav_profile"
         android:name="com.github.listsapp.TestFragment"
         android:label="titel 1"
         tools:layout="@layout/fragment_test" />

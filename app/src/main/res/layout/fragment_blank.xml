@@ -67,8 +67,8 @@
             android:layout_width="47dp"
             android:layout_height="19dp"
             android:layout_marginTop="16dp"
-            android:autofillHints="@string/username"
             android:inputType="number"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.601"
             app:layout_constraintStart_toStartOf="parent"
@@ -91,9 +91,9 @@
             android:layout_width="47dp"
             android:layout_height="19dp"
             android:layout_marginEnd="44dp"
-            android:autofillHints="@string/username"
-
+            android:textColor="@color/black"
             android:inputType="number"
+            android:textColorHint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewCurrently"
@@ -126,6 +126,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/home_recyclerview"
             android:layout_width="360dp"
             android:layout_height="254dp"
             android:layout_marginTop="52dp"

@@ -3,18 +3,35 @@
     tools:showIn= "navigation_view">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_first"
-            android:title="1" />
+            android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@drawable/icon_home"/>
         <item
-            android:id="@+id/nav_second"
-            android:title="3" />
+            android:id="@+id/nav_yourlibrary"
+            android:title="Your Library"
+            android:icon="@drawable/icon_library"/>
+        <item
+            android:id="@+id/nav_addbook"
+            android:icon="@drawable/ic_addbook"
+            android:title="Add Book" />
+        <item
+            android:id="@+id/nav_lookupbook"
+            android:icon="@drawable/icon_searchgoogleapi"
+            android:title="Search" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="User">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:title="2" />
+                android:id="@+id/nav_profile"
+                android:title="Edit Profile"
+                android:icon="@drawable/ic_profile"/>
+
+            <item
+                android:id="@+id/nav_settings"
+                android:title="Settings"
+                android:icon="@drawable/ic_baseline_manage_accounts_24"
+                />
         </menu>
     </item>
 </menu>
