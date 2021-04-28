@@ -47,15 +47,11 @@ public class fragment_frontpage extends Fragment implements LastestBooksAdapter.
 
     public void onListItemClick(int clickedItemIndex) {
         int number = clickedItemIndex + 1;
-        //Toast.makeText(this, "Pokemon Number: " + pokemonNumber, Toast.LENGTH_SHORT).show();
-        Toast.makeText(getContext(), "open page with book title " + number, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(), "open page with book title " + number, Toast.LENGTH_SHORT).show();
 
-        //fragment or new activity?
-//        Intent intent = new Intent();
-//        startActivity(intent);
         fragment_bookdetails book = new fragment_bookdetails();
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.drawer_layout, book);
+        transaction.replace(R.id.nav_host_fragment, book);
         transaction.addToBackStack("book");
         transaction.commit();
     }
