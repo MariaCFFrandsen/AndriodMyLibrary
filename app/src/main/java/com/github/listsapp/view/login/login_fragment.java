@@ -7,20 +7,15 @@ import android.os.Bundle;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.github.listsapp.MainActivity;
+import com.github.listsapp.view.main.activity_main;
 import com.github.listsapp.R;
-import com.github.listsapp.fragment_createuser;
-import com.github.listsapp.model.*;
 import com.github.listsapp.util.User;
 import com.github.listsapp.viewmodel.LoginViewModel;
 
@@ -65,7 +60,7 @@ public class login_fragment extends Fragment {
             System.out.println(password + " password");
 
             Context context = getActivity().getApplicationContext();
-            Class destination = MainActivity.class;
+            Class destination = activity_main.class;
             Intent i = new Intent(context, destination);
             startActivity(i);
 

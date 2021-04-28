@@ -1,4 +1,4 @@
-package com.github.listsapp;
+package com.github.listsapp.view.login;
 
 import android.os.Bundle;
 import androidx.appcompat.widget.AppCompatButton;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.github.listsapp.R;
 import com.github.listsapp.util.User;
 import com.github.listsapp.viewmodel.LoginViewModel;
 

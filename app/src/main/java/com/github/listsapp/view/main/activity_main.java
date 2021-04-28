@@ -1,0 +1,80 @@
+package com.github.listsapp.view.main;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
+
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.View;
+
+import com.github.listsapp.R;
+import com.github.listsapp.view.main.fragment_frontpage;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
+
+public class activity_main extends AppCompatActivity {
+
+    NavController navController;
+    AppBarConfiguration appBarConfiguration;
+    DrawerLayout drawerLayout;
+    NavigationView navigationDrawer;
+    Toolbar toolbar;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        initViews();
+        setupNavigation();
+    }
+
+    private void initViews() {
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationDrawer = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.toolbar);
+    }
+
+    private void setupNavigation() {
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        setSupportActionBar(toolbar);
+
+        appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home,
+                R.id.nav_yourlibrary,
+                R.id.nav_addbook,
+                R.id.nav_lookupbook)
+                .setOpenableLayout(drawerLayout)
+                .build();
+
+        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(navigationDrawer, navController);
+    }
+
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        return NavigationUI.navigateUp(navController, appBarConfiguration) || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START))
+            drawerLayout.closeDrawer(GravityCompat.START);
+        else
+            super.onBackPressed();
+    }
+
+
+
+}

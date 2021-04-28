@@ -19,31 +19,36 @@ public class LastestBooksAdapter extends RecyclerView.Adapter<LastestBooksAdapte
 
 
     private List<Book> books;
+    OnListItemClickListener listItemClickListener;
 
-    public LastestBooksAdapter(List<Book> books)
+    public LastestBooksAdapter(List<Book> books, OnListItemClickListener listener)
     {
         this.books = books;
+        listItemClickListener = listener;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.book_recyclerview, parent, false);
+        View view = inflater.inflate(R.layout.book_testview2, parent, false);
         return new ViewHolder(view);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        viewHolder.readStatus.setText(books.get(position).getReadStatus());
         viewHolder.title.setText(books.get(position).getName());
         viewHolder.bookcover.setImageResource(books.get(position).getIconId());
+        viewHolder.author.setText("Christopher Paolini");
         if(books.get(position).isOwned())
         {
-            viewHolder.owned.setImageResource(R.drawable.owned);
+           // viewHolder.bookcover.setImageResource(books.get(position).getIconId());
+         //   viewHolder.owned.setImageResource(R.drawable.owned);
         }
-        viewHolder.readStatus.setText(books.get(position).getReadStatus());
-        System.out.println("adapter title " + books.get(position).getName());
+        //viewHolder.readStatus.setText(books.get(position).getReadStatus());
+
     }
 
     @Override
@@ -51,20 +56,41 @@ public class LastestBooksAdapter extends RecyclerView.Adapter<LastestBooksAdapte
         return books.size();
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView title;
+    public interface OnListItemClickListener {
+        void onListItemClick(int clickedItemIndex);
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder {
+        /*TextView title;
         TextView readStatus;
         ImageView bookcover;
         ImageView owned;
-        ViewHolder(View viewitem)
-        {
-            super(viewitem);
-
-            title = itemView.findViewById(R.id.lastest_booktitle);
+         title = itemView.findViewById(R.id.lastest_booktitle);
             readStatus = itemView.findViewById(R.id.lastest_readstatus);
             bookcover = itemView.findViewById(R.id.lastest_bookcover);
             owned = itemView.findViewById(R.id.lastest_owned);
 
+         */
+        TextView title;
+        ImageView bookcover;
+        TextView readStatus;
+        TextView author;
+       // OnListItemClickListener listItemClickListener;
+
+        ViewHolder(View viewitem)
+        {
+            super(viewitem);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listItemClickListener.onListItemClick(getAdapterPosition());
+                }
+            });
+            readStatus = viewitem.findViewById(R.id.test_readStatus);
+            title = itemView.findViewById(R.id.test_title);
+            bookcover = viewitem.findViewById(R.id.test_bookcover);
+            author = viewitem.findViewById(R.id.test_author);
         }
     }
 }

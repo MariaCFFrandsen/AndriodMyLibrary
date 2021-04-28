@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.github.listsapp">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -16,9 +17,11 @@
         -->
 
         <activity
-            android:name=".MainActivity"
+            android:name=".view.main.activity_main"
             android:label="@string/title_activity_main"
-            android:theme="@style/Theme.ListsApp.NoActionBar">
+            android:theme="@style/Theme.ListsApp.NoActionBar"
+            android:usesCleartextTraffic="true"
+            >
 
         </activity>
         <activity

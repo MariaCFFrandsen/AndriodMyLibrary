@@ -32,9 +32,6 @@ public class Book {
         return rating;
     }
 
-    public String getmName() {
-        return title;
-    }
 
     public String getReadStatus() {
         return readStatus;

@@ -1,4 +1,4 @@
-package com.github.listsapp;
+package com.github.listsapp.view.user;
 
 import android.os.Bundle;
 
@@ -8,13 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class fragment_addbook extends Fragment {
+import com.github.listsapp.R;
+
+
+public class fragment_profile extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_addbook, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_test, container, false);
     }
 }
