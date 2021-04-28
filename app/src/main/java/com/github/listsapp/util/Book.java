@@ -1,21 +1,46 @@
 package com.github.listsapp.util;
 
+import android.widget.ImageView;
+
 public class Book {
 
-        private String mName;
-        private int mIconId;
+    private String title;
+    private int bookCover;
+    private String readStatus;
+    private boolean owned;
+    private int rating;
 
-        Book(String name, int iconId) {
-            mName = name;
-            mIconId = iconId;
-        }
 
-        public String getName() {
-            return mName;
-        }
+    public Book(String name, int bookCover, String readStatus, boolean owned, int rating) {
+        title = name;
+        this.bookCover = bookCover;
+        this.readStatus = readStatus;
+        this.owned = owned;
+        this.rating = rating;
+    }
 
-        public int getIconId() {
-            return mIconId;
-        }
+    public String getName() {
+        return title;
+    }
 
+    public int getIconId() {
+        return bookCover;
+    }
+
+
+    public int getRating() {
+        return rating;
+    }
+
+    public String getmName() {
+        return title;
+    }
+
+    public String getReadStatus() {
+        return readStatus;
+    }
+
+    public boolean isOwned() {
+        return owned;
+    }
 }

@@ -13,13 +13,14 @@ import com.github.listsapp.R;
 import com.github.listsapp.util.Book;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class LastestBooksAdapter extends RecyclerView.Adapter<LastestBooksAdapter.ViewHolder> {
 
 
-    private ArrayList<Book> books;
+    private List<Book> books;
 
-    public LastestBooksAdapter(ArrayList<Book> books)
+    public LastestBooksAdapter(List<Book> books)
     {
         this.books = books;
     }
@@ -37,6 +38,12 @@ public class LastestBooksAdapter extends RecyclerView.Adapter<LastestBooksAdapte
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         viewHolder.title.setText(books.get(position).getName());
         viewHolder.bookcover.setImageResource(books.get(position).getIconId());
+        if(books.get(position).isOwned())
+        {
+            viewHolder.owned.setImageResource(R.drawable.owned);
+        }
+        viewHolder.readStatus.setText(books.get(position).getReadStatus());
+        System.out.println("adapter title " + books.get(position).getName());
     }
 
     @Override
@@ -44,7 +51,7 @@ public class LastestBooksAdapter extends RecyclerView.Adapter<LastestBooksAdapte
         return books.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder{
         TextView title;
         TextView readStatus;
         ImageView bookcover;
@@ -53,10 +60,10 @@ public class LastestBooksAdapter extends RecyclerView.Adapter<LastestBooksAdapte
         {
             super(viewitem);
 
-            title = itemView.findViewById(R.id.booktitle);
-            readStatus = itemView.findViewById(R.id.readstatus);
-            bookcover = itemView.findViewById(R.id.bookcover);
-            owned = itemView.findViewById(R.id.owned);
+            title = itemView.findViewById(R.id.lastest_booktitle);
+            readStatus = itemView.findViewById(R.id.lastest_readstatus);
+            bookcover = itemView.findViewById(R.id.lastest_bookcover);
+            owned = itemView.findViewById(R.id.lastest_owned);
 
         }
     }

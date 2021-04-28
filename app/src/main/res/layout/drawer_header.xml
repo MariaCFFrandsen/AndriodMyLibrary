@@ -6,13 +6,13 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_marginTop="50dp"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/profile_placeholder"
-    />
+        />
+
 
     <TextView
         android:layout_width="match_parent"

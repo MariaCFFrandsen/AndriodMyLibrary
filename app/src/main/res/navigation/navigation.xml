@@ -13,19 +13,19 @@
 
     <fragment
         android:id="@+id/nav_yourlibrary"
-        android:name="com.github.listsapp.TestFragment"
+        android:name="com.github.listsapp.fragment_library"
         android:label="titel 1"
-        tools:layout="@layout/fragment_test" />
+        tools:layout="@layout/fragment_library" />
     <fragment
         android:id="@+id/nav_addbook"
-        android:name="com.github.listsapp.TestFragment"
+        android:name="com.github.listsapp.fragment_addbook"
         android:label="titel 1"
-        tools:layout="@layout/fragment_test" />
+        tools:layout="@layout/fragment_addbook" />
     <fragment
         android:id="@+id/nav_lookupbook"
-        android:name="com.github.listsapp.TestFragment"
+        android:name="com.github.listsapp.fragment_lookupbook"
         android:label="titel 1"
-        tools:layout="@layout/fragment_test" />
+        tools:layout="@layout/fragment_lookupbook" />
     <fragment
         android:id="@+id/nav_profile"
         android:name="com.github.listsapp.TestFragment"

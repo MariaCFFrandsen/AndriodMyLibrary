@@ -31,6 +31,9 @@ public class BlankFragment extends Fragment {
         lastestBooks = view.findViewById(R.id.home_recyclerview);
         lastestBooks.hasFixedSize();
         ArrayList<Book> books = new ArrayList<>();
+        books.add(new Book("Eragon", R.drawable.bogplaceholder, "Read", true, 4));
+        books.add(new Book("Eragon", R.drawable.bogplaceholder, "Read", true, 4));
+
         adapter = new LastestBooksAdapter(books);
         lastestBooks.setLayoutManager(new LinearLayoutManager(getContext()));
         lastestBooks.setAdapter(adapter);
