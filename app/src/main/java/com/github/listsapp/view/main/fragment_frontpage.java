@@ -37,6 +37,8 @@ public class fragment_frontpage extends Fragment implements LastestBooksAdapter.
         ArrayList<Book> books = new ArrayList<>();
         books.add(new Book("Eragon", R.drawable.bogplaceholder, "Read", true, 4));
         books.add(new Book("Eragon", R.drawable.bogplaceholder, "Read", true, 4));
+        books.add(new Book("Eragon", R.drawable.bogplaceholder, "Read", true, 4));
+
 
         adapter = new LastestBooksAdapter(books, this);
         lastestBooks.setLayoutManager(new LinearLayoutManager(getContext()));

@@ -11,15 +11,15 @@ public class Book {
     private int rating;
 
 
-    public Book(String name, int bookCover, String readStatus, boolean owned, int rating) {
-        title = name;
+    public Book(String title, int bookCover, String readStatus, boolean owned, int rating) {
+        this.title = title;
         this.bookCover = bookCover;
         this.readStatus = readStatus;
         this.owned = owned;
         this.rating = rating;
     }
 
-    public String getName() {
+    public String getTitle() {
         return title;
     }
 

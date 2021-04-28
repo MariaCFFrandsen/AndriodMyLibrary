@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.github.listsapp.R;
 import com.github.listsapp.util.Book;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LastestBooksAdapter extends RecyclerView.Adapter<LastestBooksAdapter.ViewHolder> {
@@ -20,6 +19,7 @@ public class LastestBooksAdapter extends RecyclerView.Adapter<LastestBooksAdapte
 
     private List<Book> books;
     OnListItemClickListener listItemClickListener;
+    String hello;
 
     public LastestBooksAdapter(List<Book> books, OnListItemClickListener listener)
     {
@@ -39,7 +39,7 @@ public class LastestBooksAdapter extends RecyclerView.Adapter<LastestBooksAdapte
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         viewHolder.readStatus.setText(books.get(position).getReadStatus());
-        viewHolder.title.setText(books.get(position).getName());
+        viewHolder.title.setText(books.get(position).getTitle());
         viewHolder.bookcover.setImageResource(books.get(position).getIconId());
         viewHolder.author.setText("Christopher Paolini");
         if(books.get(position).isOwned())

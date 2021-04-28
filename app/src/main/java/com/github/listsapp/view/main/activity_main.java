@@ -37,6 +37,7 @@ public class activity_main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initViews();
         setupNavigation();
+        toolbar.setTitle("Home Library");
     }
 
     private void initViews() {
