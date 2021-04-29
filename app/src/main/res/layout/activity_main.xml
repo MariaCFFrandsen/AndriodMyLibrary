@@ -29,6 +29,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/darkred"
                 android:popupTheme="@style/Theme.DrawerTemplate.PopupOverlay"
+                app:title="Home Library"
                 />
 
         </com.google.android.material.appbar.AppBarLayout>

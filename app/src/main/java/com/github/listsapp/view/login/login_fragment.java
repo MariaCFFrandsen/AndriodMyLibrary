@@ -36,7 +36,7 @@ public class login_fragment extends Fragment {
 
         View view = inflater.inflate(R.layout.login_fragment, container, false);
         button = view.findViewById(R.id.button_create_user);
-        editText_login_username = view.findViewById(R.id.editText_login_username);
+        editText_login_username = view.findViewById(R.id.editTextOnPage);
         editText_login_password = view.findViewById(R.id.editText_login_password);
         button_login = view.findViewById(R.id.button_login);
 

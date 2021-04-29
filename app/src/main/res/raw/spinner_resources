@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="library_filters">
+        <item>All</item>
+        <item>Owned</item>
+        <item>Read</item>
+        <item>Unread</item>
+        <item>Not owned</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+</resources>

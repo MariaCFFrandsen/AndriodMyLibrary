@@ -64,7 +64,7 @@
         android:layout_width="303dp"
         android:layout_height="42dp"
         android:layout_marginTop="20dp"
-        android:hint="@string/password"
+        android:hint="password again"
         android:inputType="textPassword"
         android:textColor="@color/beige"
         app:layout_constraintEnd_toEndOf="parent"
