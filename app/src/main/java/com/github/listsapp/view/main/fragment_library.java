@@ -27,18 +27,19 @@ import com.github.listsapp.model.LibraryBookAdapter;
 import com.github.listsapp.viewmodel.LibraryViewModel;
 import androidx.appcompat.widget.Toolbar;
 
-public class fragment_library extends Fragment implements LibraryBookAdapter.OnListItemClickListener, AdapterView.OnItemClickListener {
+public class fragment_library extends Fragment implements LibraryBookAdapter.OnListItemClickListener, AdapterView.OnItemSelectedListener {
 
 
     LibraryViewModel viewModel;
     Spinner spinner;
+    private String spinnerFilter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_library, container, false);
 
-
+        spinnerFilter = "All";
         //recyclerview setup
         RecyclerView recyclerView = view.findViewById(R.id.library_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -58,10 +59,10 @@ public class fragment_library extends Fragment implements LibraryBookAdapter.OnL
 
         //spinner setup
         spinner = view.findViewById(R.id.libary_spinner);
-//        spinner.setOnItemClickListener(this);
-       // ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this, R.array., R.id.libary_spinner);
-
-
+        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(getContext(), R.array.book_filters, android.R.layout.simple_spinner_item);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(arrayAdapter);
+        spinner.setOnItemSelectedListener(this);
         return view;
     }
 
@@ -70,7 +71,6 @@ public class fragment_library extends Fragment implements LibraryBookAdapter.OnL
 
         inflater.inflate(R.menu.search_menu, menu);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        System.out.println(searchView == null);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -79,7 +79,7 @@ public class fragment_library extends Fragment implements LibraryBookAdapter.OnL
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                viewModel.searchForBook(newText);
+                viewModel.searchForBook(newText, spinnerFilter);
                 return false;
             }
         });
@@ -98,9 +98,14 @@ public class fragment_library extends Fragment implements LibraryBookAdapter.OnL
 
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        spinnerFilter = parent.getItemAtPosition(position).toString();
+        viewModel.searchForBook("", spinnerFilter);
+    }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+    public void onNothingSelected(AdapterView<?> parent) {
+        System.out.println("first");
     }
 }

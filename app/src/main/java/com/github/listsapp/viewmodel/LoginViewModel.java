@@ -4,16 +4,22 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.firebase.ui.auth.AuthUI;
 import com.github.listsapp.repository.Repository;
+import com.github.listsapp.repository.firebase.UserLiveData;
 import com.github.listsapp.util.User;
+import com.google.firebase.auth.FirebaseUser;
 
 public class LoginViewModel extends ViewModel {
+
+    private final UserLiveData currentUser;
 
     private Repository repository;
 
     public LoginViewModel()
     {
         repository = new Repository();
+        currentUser = new UserLiveData();
     }
 
     public LiveData<Boolean> createUser(User user)
@@ -25,4 +31,10 @@ public class LoginViewModel extends ViewModel {
     {
        return repository.login(user);
     }
+
+    public LiveData<FirebaseUser> getCurrentUser() {
+     return currentUser;
+    }
+
+
 }

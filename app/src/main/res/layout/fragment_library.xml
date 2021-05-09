@@ -15,23 +15,15 @@
         android:padding="10dp"
         android:background="@color/beige">
 
+
         <Spinner
             android:id="@+id/libary_spinner"
-            android:layout_width="301dp"
-            android:layout_height="16dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="306dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="16dp"
+            android:entries="@array/book_filters"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="helooooooooooooooooooooooooooo"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

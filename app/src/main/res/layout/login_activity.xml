@@ -22,19 +22,37 @@
         app:layout_constraintVertical_bias="0.254"
         />
 
-<!--
-    <fragment
-        android:id="@+id/login_fragment"
-        android:name="com.github.listsapp.view.login.login_fragment"
-        android:layout_width="420dp"
-        android:layout_height="293dp"
-        android:layout_marginTop="128dp"
-        android:background="@android:color/transparent"
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/externallogins"
+        android:layout_width="260dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/buttondesign"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="Login with external resources"
+        android:textColor="#DFDF0D"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.031" />-->
+        app:layout_constraintHorizontal_bias="0.429"
+        app:layout_constraintStart_toStartOf="parent" />
+    <!--
+        <fragment
+            android:id="@+id/login_fragment"
+            android:name="com.github.listsapp.view.login.login_fragment"
+            android:layout_width="420dp"
+            android:layout_height="293dp"
+            android:layout_marginTop="128dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintVertical_bias="0.031" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

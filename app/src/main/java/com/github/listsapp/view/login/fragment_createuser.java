@@ -54,7 +54,9 @@ public class fragment_createuser extends Fragment {
                 LiveData<Boolean> create_check = loginViewModel.createUser(user);
                 boolean check = create_check.getValue();
                 System.out.println(check + " SE HER");
-                if(check)
+                Toast.makeText(getContext(), "Not created", Toast.LENGTH_SHORT).show();
+
+                /*if(check)
                 {
                     FragmentManager manager = getParentFragmentManager();
                     manager.popBackStack("first",
@@ -64,6 +66,9 @@ public class fragment_createuser extends Fragment {
                 {
                     Toast.makeText(getContext(), "Not created", Toast.LENGTH_SHORT).show();
                 }
+
+                 */
+
 
             }
         });

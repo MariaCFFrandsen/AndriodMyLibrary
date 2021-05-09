@@ -9,14 +9,16 @@ public class Book {
     private String readStatus;
     private boolean owned;
     private int rating;
+    private String author;
 
 
-    public Book(String title, int bookCover, String readStatus, boolean owned, int rating) {
+    public Book(String title, int bookCover, String readStatus, boolean owned, int rating, String author) {
         this.title = title;
         this.bookCover = bookCover;
         this.readStatus = readStatus;
         this.owned = owned;
         this.rating = rating;
+        this.author = author;
     }
 
     public String getTitle() {
@@ -39,5 +41,9 @@ public class Book {
 
     public boolean isOwned() {
         return owned;
+    }
+
+    public String getAuthor() {
+        return author;
     }
 }

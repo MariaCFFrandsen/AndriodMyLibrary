@@ -12,9 +12,9 @@ public class LibraryViewModel extends ViewModel {
 
     LibraryModel libraryModel = new LibraryModel();
 
-    public void searchForBook(String query)
+    public void searchForBook(String query, String spinnerFilter)
     {
-        libraryModel.searchForBook(query);
+        libraryModel.searchForBook(query, spinnerFilter);
     }
 
     public LiveData<List<Book>> getSearchedBooks()

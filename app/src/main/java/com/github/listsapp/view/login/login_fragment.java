@@ -4,20 +4,36 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.firebase.ui.auth.AuthUI;
+import com.github.listsapp.repository.firebase.Authentication;
 import com.github.listsapp.view.main.activity_main;
 import com.github.listsapp.R;
 import com.github.listsapp.util.User;
 import com.github.listsapp.viewmodel.LoginViewModel;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class login_fragment extends Fragment {
@@ -27,6 +43,7 @@ public class login_fragment extends Fragment {
     private EditText editText_login_username;
     private EditText editText_login_password;
     private AppCompatButton button_login;
+    private static final int RC_SIGN_IN = 42;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +67,22 @@ public class login_fragment extends Fragment {
         });
 
         button_login.setOnClickListener(v -> {
+            //signIn(view);
+
+            Context context = getActivity().getApplicationContext();
+            Class destination = activity_main.class;
+            Intent i = new Intent(context, destination);
+            startActivity(i);
+
+
+            /*
+
+
+
+
+
+
+
             //TODO: virker ikke endnu
             //TODO: ret gui med textfields
             String username = editText_login_username.toString();
@@ -59,13 +92,9 @@ public class login_fragment extends Fragment {
             System.out.println(username + " username");
             System.out.println(password + " password");
 
-            Context context = getActivity().getApplicationContext();
-            Class destination = activity_main.class;
-            Intent i = new Intent(context, destination);
-            startActivity(i);
 
 
-            /*
+
 
             User user = new User(username, password);
 
@@ -96,4 +125,6 @@ public class login_fragment extends Fragment {
         System.out.println("resumed");
         super.onResume();
     }
+
+
 }
