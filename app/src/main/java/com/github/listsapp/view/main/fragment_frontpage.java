@@ -45,9 +45,9 @@ public class fragment_frontpage extends Fragment implements LastestBooksAdapter.
         lastestBooks = view.findViewById(R.id.home_recyclerview);
         lastestBooks.hasFixedSize();
         ArrayList<Book> books = new ArrayList<>();
-        books.add(new Book("Eragon", R.drawable.bogplaceholder, "Read", true, 4, "Paolini"));
-        books.add(new Book("Eragon", R.drawable.bogplaceholder, "Read", true, 4, "Paolini"));
-        books.add(new Book("Eragon", R.drawable.bogplaceholder, "Read", true, 4, "Paolini"));
+        books.add(new Book(1,"Nu er det den her", R.drawable.bogplaceholder, "Read", true, 4, "Paolini"));
+        books.add(new Book(2, "Eragon", R.drawable.bogplaceholder, "Read", true, 4, "Paolini"));
+        books.add(new Book(3, "Eragon", R.drawable.bogplaceholder, "Read", true, 4, "Paolini"));
 
 
         adapter = new LastestBooksAdapter(books, this);
@@ -59,7 +59,7 @@ public class fragment_frontpage extends Fragment implements LastestBooksAdapter.
         textViewUsername = view.findViewById(R.id.textViewUsername);
         currentReadingBookCover = view.findViewById(R.id.imageView2);
         editTextOnPage = view.findViewById(R.id.editTextOnPage);
-        editTextTotalPageCount = view.findViewById(R.id.editTextTotalPageNumber);
+        editTextTotalPageCount = view.findViewById(R.id.editTextPageCount);
         buttonUpdate = view.findViewById(R.id.button_updatebookpagecount);
         buttonMore = view.findViewById(R.id.button_morecurrentbooks);
 

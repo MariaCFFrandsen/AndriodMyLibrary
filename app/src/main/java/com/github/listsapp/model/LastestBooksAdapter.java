@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.listsapp.R;
 import com.github.listsapp.util.Book;
+import com.github.listsapp.viewmodel.SelectedBookViewModel;
 
 import java.util.List;
 
@@ -81,16 +82,20 @@ public class LastestBooksAdapter extends RecyclerView.Adapter<LastestBooksAdapte
         {
             super(viewitem);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    listItemClickListener.onListItemClick(getAdapterPosition());
-                }
-            });
             readStatus = viewitem.findViewById(R.id.test_readStatus);
             title = itemView.findViewById(R.id.test_title);
             bookcover = viewitem.findViewById(R.id.test_bookcover);
             author = viewitem.findViewById(R.id.test_author);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listItemClickListener.onListItemClick(getAdapterPosition());
+                    int chosenId = Integer.parseInt("1");
+                    SelectedBookViewModel.setChosenBook(chosenId);
+                }
+            });
+
         }
     }
 }

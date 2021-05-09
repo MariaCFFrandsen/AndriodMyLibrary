@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.listsapp.R;
 import com.github.listsapp.util.Book;
+import com.github.listsapp.viewmodel.SelectedBookViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,8 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.book_testview, parent, false);
+        View view = inflater.inflate(R.layout.book_testview, parent
+                , false);
         return new LibraryBookAdapter.ViewHolder(view);
     }
 
@@ -38,7 +40,7 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(bookList.get(position).getTitle());
-        holder.id.setText(String.valueOf("1"));
+        holder.id.setText(String.valueOf(bookList.get(position).getId()));
         holder.image.setImageResource(bookList.get(position).getIconId());
     }
 
@@ -67,16 +69,19 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
         ViewHolder(View viewitem)
         {
             super(viewitem);
-
+            name = itemView.findViewById(R.id.library_title);
+            id = itemView.findViewById(R.id.library_id);
+            image = itemView.findViewById(R.id.library_bookcover);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     listItemClickListener.onListItemClick(getAdapterPosition());
+                    int chosenId = Integer.parseInt(id.getText().toString());
+                    SelectedBookViewModel.setChosenBook(chosenId);
+
                 }
             });
-            name = itemView.findViewById(R.id.library_title);
-            id = itemView.findViewById(R.id.library_id);
-            image = itemView.findViewById(R.id.library_bookcover);
+
         }
     }
 

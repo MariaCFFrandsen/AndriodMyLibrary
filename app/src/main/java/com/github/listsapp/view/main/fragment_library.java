@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,7 +25,10 @@ import android.widget.Toast;
 
 import com.github.listsapp.R;
 import com.github.listsapp.model.LibraryBookAdapter;
+import com.github.listsapp.util.Book;
 import com.github.listsapp.viewmodel.LibraryViewModel;
+import com.github.listsapp.viewmodel.SelectedBookViewModel;
+
 import androidx.appcompat.widget.Toolbar;
 
 public class fragment_library extends Fragment implements LibraryBookAdapter.OnListItemClickListener, AdapterView.OnItemSelectedListener {
@@ -33,6 +37,7 @@ public class fragment_library extends Fragment implements LibraryBookAdapter.OnL
     LibraryViewModel viewModel;
     Spinner spinner;
     private String spinnerFilter;
+    SelectedBookViewModel selectedBookViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

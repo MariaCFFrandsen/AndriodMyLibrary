@@ -4,6 +4,7 @@ import android.widget.ImageView;
 
 public class Book {
 
+    private int id;
     private String title;
     private int bookCover;
     private String readStatus;
@@ -12,7 +13,8 @@ public class Book {
     private String author;
 
 
-    public Book(String title, int bookCover, String readStatus, boolean owned, int rating, String author) {
+    public Book(int id, String title, int bookCover, String readStatus, boolean owned, int rating, String author) {
+        this.id = id;
         this.title = title;
         this.bookCover = bookCover;
         this.readStatus = readStatus;
@@ -29,6 +31,9 @@ public class Book {
         return bookCover;
     }
 
+    public int getId() {
+        return id;
+    }
 
     public int getRating() {
         return rating;

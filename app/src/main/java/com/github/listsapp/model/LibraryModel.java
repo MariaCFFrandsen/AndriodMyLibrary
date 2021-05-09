@@ -15,16 +15,18 @@ public class LibraryModel {
 
     public LibraryModel(){
         booklist = new ArrayList<>();
-        booklist.add(new Book("Eragon", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini"));
-        booklist.add(new Book("Arven", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini"));
-        booklist.add(new Book("Eragon", R.drawable.bogplaceholder, "Unread", false, 4, "Christopher Paolini"));
-        booklist.add(new Book("Arven", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini"));
-        booklist.add(new Book("Den Ældste", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini"));
-        booklist.add(new Book("Arden", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini") );
-        booklist.add(new Book("Eradon", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini"));
+        booklist.add(new Book(1,"Nu er det den her", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini"));
+        booklist.add(new Book(8,"Eragon", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini"));
+        booklist.add(new Book(9, "Arven", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini"));
+        booklist.add(new Book(10,"Jeg valgte den her", R.drawable.bogplaceholder, "Unread", false, 4, "Christopher Paolini"));
+        booklist.add(new Book(11,"Arven", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini"));
+        booklist.add(new Book(12,"Den Ældste", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini"));
+        booklist.add(new Book(13,"Arden", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini") );
+        booklist.add(new Book(14,"Eradon", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini"));
 
         searchedBook.setValue(booklist);
     }
+
 
     public void searchForBook(String query, String spinnerFilter){
 
@@ -113,6 +115,18 @@ public class LibraryModel {
 
     public LiveData<List<Book>> getSearchedBooks() {
         return searchedBook;
+    }
+
+    public Book getBookById(int id)
+    {
+        Book book = null;
+        for (Book p : booklist) {
+            if (p.getId() == id) {
+                book = p;
+                break;
+            }
+        }
+       return book;
     }
 
 
