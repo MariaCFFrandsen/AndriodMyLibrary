@@ -18,7 +18,6 @@ import java.util.List;
 
 public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.ViewHolder> {
 
-
     private List<Book> bookList = new ArrayList<>();
     LibraryBookAdapter.OnListItemClickListener listItemClickListener;
 
@@ -35,7 +34,6 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
                 , false);
         return new LibraryBookAdapter.ViewHolder(view);
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
@@ -64,8 +62,6 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
         TextView id;
         ImageView image;
 
-        // OnListItemClickListener listItemClickListener;
-
         ViewHolder(View viewitem)
         {
             super(viewitem);
@@ -84,6 +80,4 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
 
         }
     }
-
-
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class LoginModel {
 
-    private MutableLiveData<ArrayList<User>> users;
+    private final MutableLiveData<ArrayList<User>> users;
 
     public LoginModel()
     {

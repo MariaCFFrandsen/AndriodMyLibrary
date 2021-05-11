@@ -27,7 +27,6 @@ public class LibraryModel {
         searchedBook.setValue(booklist);
     }
 
-
     public void searchForBook(String query, String spinnerFilter){
 
         switch (spinnerFilter)

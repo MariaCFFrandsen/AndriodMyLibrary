@@ -6,38 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".view.main.fragment_bookdetails"
     android:background="@color/burgundy"
-    android:padding="40dp">
-
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="349dp"
-        android:layout_height="670dp"
+        android:layout_width="359dp"
+        android:layout_height="655dp"
         android:background="@color/beige"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
         <ImageView
             android:id="@+id/bookdetails_imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="40dp"
-
+            android:layout_width="304dp"
+            android:layout_height="243dp"
+            android:layout_marginTop="52dp"
+            android:background="@color/darkred"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:src="@drawable/coverplaceholder"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.12"
+            app:layout_constraintHorizontal_bias="0.47"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.009" />
-
-
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="290dp"
-            android:layout_height="340dp"
-            android:layout_margin="20dp"
+            android:layout_width="307dp"
+            android:layout_height="327dp"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,16 +44,19 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="104dp">
+
                 <LinearLayout
+                    android:id="@+id/bookdetails_titlelayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="top"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.023"
-                    tools:layout_editor_absoluteX="-16dp"
-                    android:gravity="top"
-                    android:id="@+id/bookdetails_titlelayout">
+                    app:layout_constraintVertical_bias="0.023">
 
                     <TextView
                         android:layout_width="100dp"
@@ -76,16 +76,15 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/bookdetails_authorlayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/bookdetails_titlelayout"
+                    android:layout_margin="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.023"
-                    tools:layout_editor_absoluteX="-16dp"
-                    android:id="@+id/bookdetails_authorlayout"
-                    android:layout_below="@+id/bookdetails_titlelayout"
-
-                    >
+                    tools:layout_editor_absoluteX="-16dp">
 
                     <TextView
                         android:layout_width="100dp"
@@ -105,23 +104,21 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/bookdetails_pagecountlayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/bookdetails_authorlayout"
+                    android:layout_margin="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.023"
-                    tools:layout_editor_absoluteX="-16dp"
-                    android:id="@+id/bookdetails_pagecountlayout"
-                    android:layout_below="@+id/bookdetails_authorlayout"
-
-                    >
+                    tools:layout_editor_absoluteX="-16dp">
 
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="Page Count"
-                        android:textColor="@color/black"
-                        />
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -135,16 +132,15 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/bookdetails_readlayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/bookdetails_pagecountlayout"
+                    android:layout_margin="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.023"
-                    tools:layout_editor_absoluteX="-16dp"
-                    android:id="@+id/bookdetails_readlayout"
-                    android:layout_below="@+id/bookdetails_pagecountlayout"
-
-                    >
+                    tools:layout_editor_absoluteX="-16dp">
 
                     <TextView
                         android:layout_width="100dp"
@@ -164,16 +160,15 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/bookdetails_ownedlayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/bookdetails_readlayout"
+                    android:layout_margin="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.023"
-                    tools:layout_editor_absoluteX="-16dp"
-                    android:id="@+id/bookdetails_ownedlayout"
-                    android:layout_below="@+id/bookdetails_readlayout"
-
-                    >
+                    tools:layout_editor_absoluteX="-16dp">
 
                     <TextView
                         android:layout_width="100dp"
@@ -186,22 +181,21 @@
                         android:layout_height="wrap_content"
                         android:autofillHints="title"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/black"
-                        />
+                        android:textColorHint="@color/black" />
 
                 </LinearLayout>
 
 
                 <LinearLayout
+                    android:id="@+id/bookdetails_pricelayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/bookdetails_ownedlayout"
+                    android:layout_margin="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.023"
-                    tools:layout_editor_absoluteX="-16dp"
-                    android:id="@+id/bookdetails_pricelayout"
-                    android:layout_below="@+id/bookdetails_ownedlayout"
-                    >
+                    tools:layout_editor_absoluteX="-16dp">
 
                     <TextView
                         android:layout_width="100dp"
@@ -214,28 +208,28 @@
                         android:layout_height="wrap_content"
                         android:autofillHints="title"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/black"
-                        />
+                        android:textColorHint="@color/black" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/bookdetails_ratinglayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/bookdetails_pricelayout"
+                    android:layout_margin="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.023"
-                    tools:layout_editor_absoluteX="-16dp"
-                    android:id="@+id/bookdetails_ratinglayout"
-                    android:layout_below="@+id/bookdetails_pricelayout"
-                    >
+                    tools:layout_editor_absoluteX="-16dp">
+
                     <RatingBar
                         android:id="@+id/bookdetails_ratingbaraddbook"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:stepSize="0.1"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:stepSize="0.1" />
                 </LinearLayout>
 
             </RelativeLayout>

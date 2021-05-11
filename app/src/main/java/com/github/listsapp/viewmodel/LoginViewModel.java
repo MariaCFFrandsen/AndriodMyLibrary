@@ -18,7 +18,7 @@ public class LoginViewModel extends ViewModel {
 
     public LoginViewModel()
     {
-        repository = new Repository();
+        repository = Repository.getInstance();
         currentUser = new UserLiveData();
     }
 

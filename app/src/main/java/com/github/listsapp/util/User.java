@@ -1,13 +1,17 @@
 package com.github.listsapp.util;
 
 public class User {
+
     private String username;
     private String password;
     private String passwordAgain;
+
+
     public User()
     {
 
     }
+
 
     public User(String username, String password)
     {

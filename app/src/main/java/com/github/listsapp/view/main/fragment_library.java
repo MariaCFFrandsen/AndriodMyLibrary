@@ -38,6 +38,7 @@ public class fragment_library extends Fragment implements LibraryBookAdapter.OnL
     Spinner spinner;
     private String spinnerFilter;
     SelectedBookViewModel selectedBookViewModel;
+    SearchView searchView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,7 +76,7 @@ public class fragment_library extends Fragment implements LibraryBookAdapter.OnL
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
 
         inflater.inflate(R.menu.search_menu, menu);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

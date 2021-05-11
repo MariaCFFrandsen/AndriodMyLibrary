@@ -6,45 +6,63 @@
     android:layout_height="match_parent"
     tools:context=".view.main.fragment_addbook"
     android:background="@color/burgundy"
-    android:padding="40dp">
+    >
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="40dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="349dp"
-        android:layout_height="670dp"
+        android:layout_width="375dp"
+        android:layout_height="602dp"
         android:background="@color/beige"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/appCompatButton"
+            android:layout_width="77dp"
+            android:layout_height="52dp"
+            android:layout_marginTop="36dp"
+            android:background="@drawable/icon_camera"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.421"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            android:backgroundTint="@color/darkred"
+
+            >
+
+        </androidx.appcompat.widget.AppCompatButton>
+
+        <androidx.appcompat.widget.AppCompatButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="40dp"
+            android:layout_marginTop="20dp"
+            android:text="Upload picture"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.832"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton">
 
+
+        </androidx.appcompat.widget.AppCompatButton>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="166dp"
+            android:layout_height="144dp"
             android:src="@drawable/coverplaceholder"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.12"
+            app:layout_constraintHorizontal_bias="0.052"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.009" />
-
-
+            app:layout_constraintVertical_bias="0.031" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="290dp"
-            android:layout_height="340dp"
+            android:layout_width="352dp"
+            android:layout_height="398dp"
             android:layout_margin="20dp"
             android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -54,134 +72,166 @@
             app:layout_constraintVertical_bias="0.506">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="362dp"
+                android:layout_height="397dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.023"
-                tools:layout_editor_absoluteX="-16dp"
-                android:gravity="top"
-                android:id="@+id/titlelayout">
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:text="Title"
-                    android:textColor="@color/black" />
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="title"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.023"
-                tools:layout_editor_absoluteX="-16dp"
-                android:id="@+id/authorlayout"
-                android:layout_below="@+id/titlelayout"
-
-                >
-
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:text="Author"
-                    android:textColor="@color/black" />
-
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="title"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/black"
-
-                    />
-
-            </LinearLayout>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
+                    android:id="@+id/titlelayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="top"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.023"
+                    tools:layout_editor_absoluteX="-16dp">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Title"
+                        android:layout_marginStart="5dp"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/addbook_edit_title"
+                        android:layout_width="260dp"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="title"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/authorlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/titlelayout"
+                    android:layout_margin="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.023"
                     tools:layout_editor_absoluteX="-16dp"
-                    android:id="@+id/pagecountlayout"
-                    android:layout_below="@+id/authorlayout"
 
                     >
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Author"
+                        android:layout_marginStart="5dp"
+
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/addbook_edit_author"
+                        android:layout_width="272dp"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="title"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/pagecountlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/authorlayout"
+                    android:layout_margin="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.023"
+                    tools:layout_editor_absoluteX="-16dp">
 
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="Page Count"
-                        android:textColor="@color/black"
-                        />
+                        android:layout_marginStart="5dp"
+
+                        android:textColor="@color/black" />
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:id="@+id/addbook_edit_pagecount"
+                        android:layout_width="262dp"
                         android:layout_height="wrap_content"
                         android:autofillHints="title"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/black"
-
-                        />
+                        android:textColorHint="@color/black" />
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/readlayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/pagecountlayout"
+                    android:layout_margin="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.023">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Read"
+                        android:layout_marginStart="5dp"
+
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/addbook_edit_read"
+                        android:layout_width="262dp"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="title"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ownedlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/readlayout"
+                    android:layout_margin="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.023"
-                    tools:layout_editor_absoluteX="-16dp"
-                    android:id="@+id/readlayout"
-                    android:layout_below="@+id/pagecountlayout"
+
 
                     >
 
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="Read"
+                        android:layout_marginRight="15dp"
+                        android:text="Owned Status"
+                        android:layout_marginStart="5dp"
+
                         android:textColor="@color/black" />
 
-                    <EditText
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="Not Owned"
+                        android:textColor="@color/black" />
+
+
+                    <Switch
+                        android:id="@+id/addbook_switch_owned"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:autofillHints="title"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black"
+                        tools:ignore="UseSwitchCompatOrMaterialXml">
 
-                        />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.023"
-                    tools:layout_editor_absoluteX="-16dp"
-                    android:id="@+id/ownedlayout"
-                    android:layout_below="@+id/readlayout"
-
-                    >
+                    </Switch>
 
                     <TextView
                         android:layout_width="100dp"
@@ -189,62 +239,73 @@
                         android:text="Owned"
                         android:textColor="@color/black" />
 
-                    <EditText
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:autofillHints="title"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/black"
-                        />
-
                 </LinearLayout>
 
 
                 <LinearLayout
+                    android:id="@+id/pricelayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/ownedlayout"
+                    android:layout_margin="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.023"
-                    tools:layout_editor_absoluteX="-16dp"
-                    android:id="@+id/pricelayout"
-                    android:layout_below="@+id/ownedlayout"
-                    >
+                    app:layout_constraintVertical_bias="0.023">
 
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:text="Price"
+                        android:layout_marginStart="5dp"
+
                         android:textColor="@color/black" />
 
                     <EditText
-                        android:layout_width="wrap_content"
+                        android:id="@+id/addbook_edit_price"
+                        android:layout_width="252dp"
                         android:layout_height="wrap_content"
                         android:autofillHints="title"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/black"
-                        />
+                        android:textColorHint="@color/black" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ratinglayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/pricelayout"
+                    android:layout_margin="5dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.023"
-                    tools:layout_editor_absoluteX="-16dp"
-                    android:id="@+id/ratinglayout"
-                    android:layout_below="@+id/pricelayout"
-                    >
+                    app:layout_constraintVertical_bias="0.023">
+
                     <RatingBar
                         android:id="@+id/ratingbaraddbook"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:stepSize="0.1"
-                        android:layout_gravity="center"/>
+                        android:layout_gravity="center"
+                        android:stepSize="0.1" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/button_save"
+                        android:layout_width="85dp"
+                        android:layout_height="28dp"
+                        android:layout_marginTop="28dp"
+                        android:background="@drawable/buttondesign"
+                        android:shadowColor="#A8A8A8"
+                        android:shadowDx="0"
+                        android:shadowDy="0"
+                        android:shadowRadius="5"
+                        android:text="Add"
+                        android:textColor="#DFDF0D"
+                        android:textSize="20sp"
+                        android:layout_marginStart="15dp"/>
+
+
                 </LinearLayout>
+
 
             </RelativeLayout>
 

@@ -18,7 +18,6 @@ public class ModelManager {
         libraryModel = new LibraryModel();
     }
 
-
     public LiveData<Boolean> createUser(User user)
     {
       return loginModel.createUser(user);
