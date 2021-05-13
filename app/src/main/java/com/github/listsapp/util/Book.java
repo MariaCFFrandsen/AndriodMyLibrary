@@ -3,6 +3,7 @@ package com.github.listsapp.util;
 import android.widget.ImageView;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 public class Book {
 
@@ -12,15 +13,17 @@ public class Book {
     private int bookCover;
     private String readStatus;
     private boolean owned;
-    private int rating;
+    private float rating;
     private String author;
     private double price;
-    private Timestamp timestamp;
+    private Date timestamp;
+    private int pagecount;
 
     public Book()
     {
 
     }
+
 
     public Book(int id, String title, int bookCover, String readStatus, boolean owned, int rating, String author) {
         this.id = id;
@@ -33,11 +36,19 @@ public class Book {
     }
 
 
-    public Timestamp getTimestamp() {
+    public int getPagecount() {
+        return pagecount;
+    }
+
+    public void setPagecount(int pagecount) {
+        this.pagecount = pagecount;
+    }
+
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -53,7 +64,7 @@ public class Book {
         return title;
     }
 
-    public int getIconId() {
+    public int getBookCover() {
         return bookCover;
     }
 
@@ -61,10 +72,37 @@ public class Book {
         return id;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setBookCover(int bookCover) {
+        this.bookCover = bookCover;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setOwned(boolean owned) {
+        this.owned = owned;
+    }
+
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+
+    public void setReadStatus(String readStatus) {
+        this.readStatus = readStatus;
+    }
 
     public String getReadStatus() {
         return readStatus;
@@ -78,15 +116,28 @@ public class Book {
         return author;
     }
 
-    public int getBookCover() {
-        return bookCover;
-    }
-
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "username='" + username + '\'' +
+                ", id=" + id +
+                ", title='" + title + '\'' +
+                ", bookCover=" + bookCover +
+                ", readStatus='" + readStatus + '\'' +
+                ", owned=" + owned +
+                ", rating=" + rating +
+                ", author='" + author + '\'' +
+                ", price=" + price +
+                ", timestamp=" + timestamp +
+                ", pagecount=" + pagecount +
+                '}';
     }
 }

@@ -11,8 +11,13 @@ import java.util.List;
 
 public class LibraryViewModel extends ViewModel {
 
-    LibraryModel libraryModel = new LibraryModel();
+    LibraryModel libraryModel;
     MutableLiveData<Book> chosenBook;
+
+    public LibraryViewModel()
+    {
+        libraryModel = LibraryModel.getInstance();
+    }
 
     public void searchForBook(String query, String spinnerFilter)
     {
@@ -31,5 +36,15 @@ public class LibraryViewModel extends ViewModel {
 
     public void setChosenBook(MutableLiveData<Book> chosenBook) {
         this.chosenBook = chosenBook;
+    }
+
+    public LiveData<List<Book>> getLibrary(String user)
+    {
+        return libraryModel.getLibrary(user);
+    }
+
+    public void addBook(Book book, String displayName)
+    {
+        libraryModel.addBook(book, displayName);
     }
 }

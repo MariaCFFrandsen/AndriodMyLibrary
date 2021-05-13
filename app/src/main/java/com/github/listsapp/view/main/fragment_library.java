@@ -1,14 +1,12 @@
 package com.github.listsapp.view.main;
 
+import android.app.Application;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,13 +19,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.github.listsapp.R;
-import com.github.listsapp.model.LibraryBookAdapter;
-import com.github.listsapp.util.Book;
+import com.github.listsapp.view.main.adapters.LibraryBookAdapter;
 import com.github.listsapp.viewmodel.LibraryViewModel;
-import com.github.listsapp.viewmodel.SelectedBookViewModel;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -37,7 +32,6 @@ public class fragment_library extends Fragment implements LibraryBookAdapter.OnL
     LibraryViewModel viewModel;
     Spinner spinner;
     private String spinnerFilter;
-    SelectedBookViewModel selectedBookViewModel;
     SearchView searchView;
 
     @Override
@@ -62,7 +56,6 @@ public class fragment_library extends Fragment implements LibraryBookAdapter.OnL
         toolbar.setTitle("Home Library");
         setHasOptionsMenu(true);
 
-
         //spinner setup
         spinner = view.findViewById(R.id.libary_spinner);
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(getContext(), R.array.book_filters, android.R.layout.simple_spinner_item);
@@ -71,6 +64,7 @@ public class fragment_library extends Fragment implements LibraryBookAdapter.OnL
         spinner.setOnItemSelectedListener(this);
         return view;
     }
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {

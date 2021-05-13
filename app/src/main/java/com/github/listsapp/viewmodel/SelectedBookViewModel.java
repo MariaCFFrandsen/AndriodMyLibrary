@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.github.listsapp.model.LibraryModel;
-import com.github.listsapp.model.ModelManager;
 import com.github.listsapp.util.Book;
 
 public class SelectedBookViewModel extends ViewModel {
@@ -15,9 +14,11 @@ public class SelectedBookViewModel extends ViewModel {
     public static MutableLiveData<Book> chosenBook;
     public static MutableLiveData<Integer> chosenBookId = new MutableLiveData<>();
     private static  Book chosen = null;
+    private static LibraryModel libraryModel;
 
     public void init()
     {
+        libraryModel = LibraryModel.getInstance();
         chosenBook = new MutableLiveData<>();
         chosenBook.setValue(new Book(0,"", 1, "", false, 1, ""));
     }
@@ -27,8 +28,9 @@ public class SelectedBookViewModel extends ViewModel {
     }
 
     public static void setChosenBook(int id) {
-        ModelManager modelManager = new ModelManager();
-        Book book = modelManager.getBookById(id);
+        libraryModel = LibraryModel.getInstance();
+
+        Book book = libraryModel.getBookById(id);
         MutableLiveData here = new MutableLiveData<>();
         here.setValue(book);
         SelectedBookViewModel.chosenBook = here ;

@@ -51,9 +51,7 @@ public class fragment_createuser extends Fragment {
 
                 User user = new User(username, password);
                 user.setPasswordAgain(password_again);
-                LiveData<Boolean> create_check = loginViewModel.createUser(user);
-                boolean check = create_check.getValue();
-                System.out.println(check + " SE HER");
+
                 Toast.makeText(getContext(), "Not created", Toast.LENGTH_SHORT).show();
 
                 /*if(check)

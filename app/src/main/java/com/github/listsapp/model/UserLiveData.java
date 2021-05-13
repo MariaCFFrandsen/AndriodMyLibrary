@@ -1,4 +1,4 @@
-package com.github.listsapp.repository.firebase;
+package com.github.listsapp.model;
 
 import androidx.lifecycle.LiveData;
 

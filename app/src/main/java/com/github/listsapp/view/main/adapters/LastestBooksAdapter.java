@@ -1,4 +1,4 @@
-package com.github.listsapp.model;
+package com.github.listsapp.view.main.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +41,7 @@ public class LastestBooksAdapter extends RecyclerView.Adapter<LastestBooksAdapte
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         viewHolder.readStatus.setText(books.get(position).getReadStatus());
         viewHolder.title.setText(books.get(position).getTitle());
-        viewHolder.bookcover.setImageResource(books.get(position).getIconId());
+        viewHolder.bookcover.setImageResource(books.get(position).getBookCover());
         viewHolder.author.setText("Christopher Paolini");
         if(books.get(position).isOwned())
         {

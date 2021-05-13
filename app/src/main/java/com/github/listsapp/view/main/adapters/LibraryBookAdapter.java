@@ -1,4 +1,4 @@
-package com.github.listsapp.model;
+package com.github.listsapp.view.main.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +39,7 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(bookList.get(position).getTitle());
         holder.id.setText(String.valueOf(bookList.get(position).getId()));
-        holder.image.setImageResource(bookList.get(position).getIconId());
+        holder.image.setImageResource(bookList.get(position).getBookCover());
     }
 
     public void updateList(List<Book> list)

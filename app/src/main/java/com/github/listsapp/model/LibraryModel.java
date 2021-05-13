@@ -1,21 +1,52 @@
 package com.github.listsapp.model;
 
+import android.app.Application;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.solver.ArrayLinkedVariables;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.github.listsapp.R;
+import com.github.listsapp.repository.Repository;
 import com.github.listsapp.util.Book;
+import com.github.listsapp.viewmodel.LibraryViewModel;
+import com.google.android.gms.common.util.JsonUtils;
+import com.google.firebase.database.core.Repo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LibraryModel {
-    private final List<Book> booklist;
+public class LibraryModel extends AppCompatActivity {
+    private static List<Book> booklist;
     private final MutableLiveData<List<Book>> searchedBook = new MutableLiveData<>();
+    private Repository repository;
+    private static String  username;
 
-    public LibraryModel(){
+    private static LibraryModel libraryModel;
+
+    private LibraryModel()
+    {
+
         booklist = new ArrayList<>();
+        repository = Repository.getInstance();
+        //getBooks();
+    }
+
+    public void getBooks(String username) {
+
+        repository.getLibrary(username).observe(this, new Observer<List<Book>>() {
+            @Override
+            public void onChanged(List<Book> books) {
+                booklist = books;
+                System.out.println("\t\t\t\tGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG");
+            }
+        });
         booklist.add(new Book(1,"Nu er det den her", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini"));
+
+/*
+        booklist = new ArrayList<>();
         booklist.add(new Book(8,"Eragon", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini"));
         booklist.add(new Book(9, "Arven", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini"));
         booklist.add(new Book(10,"Jeg valgte den her", R.drawable.bogplaceholder, "Unread", false, 4, "Christopher Paolini"));
@@ -24,7 +55,16 @@ public class LibraryModel {
         booklist.add(new Book(13,"Arden", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini") );
         booklist.add(new Book(14,"Eradon", R.drawable.bogplaceholder, "Read", true, 4, "Christopher Paolini"));
 
+ */
         searchedBook.setValue(booklist);
+
+    }
+
+    public static LibraryModel getInstance(){
+        if(libraryModel == null)
+            libraryModel = new LibraryModel();
+
+        return libraryModel;
     }
 
     public void searchForBook(String query, String spinnerFilter){
@@ -113,6 +153,7 @@ public class LibraryModel {
     }
 
     public LiveData<List<Book>> getSearchedBooks() {
+
         return searchedBook;
     }
 
@@ -128,5 +169,27 @@ public class LibraryModel {
        return book;
     }
 
+    public LiveData<List<Book>> getLastestBooks() {
+        return null;
+    }
 
+
+    public LiveData<List<Book>> getLibrary(String user)
+    {
+        return repository.getLibrary(user);
+    }
+
+    public void addBook(Book book, String displayName)
+    {
+        repository.addBook(book, displayName);
+    }
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        LibraryModel.username = username;
+    }
 }

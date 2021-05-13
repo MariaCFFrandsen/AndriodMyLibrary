@@ -158,12 +158,13 @@
                         android:textColor="@color/black" />
 
                     <EditText
-                        android:id="@+id/addbook_edit_pagecount"
+                        android:id="@+id/addbook_edit_pageCount"
                         android:layout_width="262dp"
                         android:layout_height="wrap_content"
                         android:autofillHints="title"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/black" />
+                        android:textColorHint="@color/black"
+                        android:inputType="number"/>
 
                 </LinearLayout>
 
@@ -266,7 +267,8 @@
                         android:layout_height="wrap_content"
                         android:autofillHints="title"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/black" />
+                        android:textColorHint="@color/black"
+                        android:inputType="number"/>
 
 
                 </LinearLayout>

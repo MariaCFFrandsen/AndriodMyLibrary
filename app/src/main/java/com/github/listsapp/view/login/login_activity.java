@@ -2,19 +2,18 @@ package com.github.listsapp.view.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.github.listsapp.R;
+import com.github.listsapp.model.LibraryModel;
+import com.github.listsapp.repository.Repository;
+import com.github.listsapp.util.Library;
 import com.github.listsapp.view.main.activity_main;
 import com.github.listsapp.viewmodel.LoginViewModel;
 import com.google.firebase.FirebaseApp;
@@ -31,12 +30,10 @@ public class login_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
-        login_fragment first = new login_fragment();
-        FragmentManager manager = getSupportFragmentManager();
-
-        manager.beginTransaction().add(R.id.loginActivityLayout, first).commit();
+        setFragmentLogin();
         FirebaseApp.initializeApp(this);
-        viewModel = new LoginViewModel();
+
+        viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         checkIfSignedIn();
 
         button = findViewById(R.id.externallogins);
@@ -45,6 +42,12 @@ public class login_activity extends AppCompatActivity {
             signIn();
         });
 
+    }
+
+    private void setFragmentLogin() {
+        login_fragment first = new login_fragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().add(R.id.loginActivityLayout, first).commit();
     }
 
 
@@ -63,10 +66,7 @@ public class login_activity extends AppCompatActivity {
 
 
     private void checkIfSignedIn() {
-        viewModel.getCurrentUser().observe(this, user -> {
-            if (user != null)
-                goToMainActivity();
-        });
+     setUsernameAndGoMainActivity();
     }
 
     private void goToMainActivity() {
@@ -85,10 +85,29 @@ public class login_activity extends AppCompatActivity {
 
     private void handleSignInRequest(int resultCode) {
         if (resultCode == RESULT_OK)
-            Toast.makeText(this, "SUCCESS", Toast.LENGTH_SHORT).show();
+        {
+            setUsernameAndGoMainActivity();
+        }
         else
             Toast.makeText(this, "SIGN IN CANCELLED", Toast.LENGTH_SHORT).show();
     }
 
+    private void setUsernameAndGoMainActivity() {
+        viewModel.getCurrentUser().observe(this, user -> {
+            if (user != null) {
+                goToMainActivity();
+                viewModel.setDisplayName(user.getDisplayName());
+                LibraryModel.getInstance().getBooks(user.getDisplayName());
+                //Repository.getInstance().init(user.getDisplayName());
+                //LibraryModel.getInstance().getBooks();
+            }
 
+        });
+    }
+
+    public void signOut() {
+        AuthUI.getInstance()
+                .signOut(this);
+    }
 }
+
