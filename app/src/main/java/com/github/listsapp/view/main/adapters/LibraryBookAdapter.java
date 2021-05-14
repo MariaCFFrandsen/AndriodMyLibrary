@@ -1,5 +1,6 @@
 package com.github.listsapp.view.main.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,10 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import com.github.listsapp.R;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.viewmodel.SelectedBookViewModel;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +27,16 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
 
     private List<Book> bookList = new ArrayList<>();
     LibraryBookAdapter.OnListItemClickListener listItemClickListener;
+    private StorageReference storageReference = FirebaseStorage.getInstance("gs://homelibrary-c0594.appspot.com").getReference("images").child("Maria Frandsen").child("1620986096124.jpg");
 
-    public LibraryBookAdapter(OnListItemClickListener listener)
+
+    private Context context;
+
+    public LibraryBookAdapter(OnListItemClickListener listener, Context context)
     {
+        this.context = context;
         listItemClickListener = listener;
+
     }
 
     @NonNull
@@ -39,7 +52,8 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(bookList.get(position).getTitle());
         holder.id.setText(String.valueOf(bookList.get(position).getId()));
-        holder.image.setImageResource(bookList.get(position).getBookCover());
+        System.out.println(bookList.get(position).getImageUrl());
+        Glide.with(context).load(storageReference.getDownloadUrl()).into(holder.image);
     }
 
     public void updateList(List<Book> list)
@@ -80,4 +94,9 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
 
         }
     }
+
+
+
 }
+
+

@@ -1,11 +1,14 @@
 package com.github.listsapp.viewmodel;
 
+import android.net.Uri;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.github.listsapp.model.LibraryModel;
 import com.github.listsapp.util.Book;
+import com.google.firebase.storage.StorageTask;
 
 import java.util.List;
 
@@ -47,4 +50,15 @@ public class LibraryViewModel extends ViewModel {
     {
         libraryModel.addBook(book, displayName);
     }
+
+    public void uploadFile(String imagename, Uri imageUri)
+    {
+        libraryModel.uploadFile(imagename, imageUri);
+    }
+
+    public StorageTask getStorageTask()
+    {
+        return libraryModel.getStorageTask();
+    }
+
 }

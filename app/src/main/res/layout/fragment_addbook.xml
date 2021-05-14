@@ -20,14 +20,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/appCompatButton"
+            android:id="@+id/button_uploadFromCamera"
             android:layout_width="77dp"
             android:layout_height="52dp"
             android:layout_marginTop="36dp"
             android:background="@drawable/icon_camera"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.421"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/addbook_imageView"
             app:layout_constraintTop_toTopOf="parent"
             android:backgroundTint="@color/darkred"
 
@@ -36,20 +36,21 @@
         </androidx.appcompat.widget.AppCompatButton>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_uploadPicture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Upload picture"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.832"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatButton">
+            app:layout_constraintStart_toStartOf="@+id/addbook_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/button_uploadFromCamera">
 
 
         </androidx.appcompat.widget.AppCompatButton>
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/addbook_imageView"
             android:layout_width="166dp"
             android:layout_height="144dp"
             android:src="@drawable/coverplaceholder"
@@ -68,7 +69,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/addbook_imageView"
             app:layout_constraintVertical_bias="0.506">
 
             <RelativeLayout

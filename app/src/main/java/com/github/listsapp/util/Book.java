@@ -18,12 +18,12 @@ public class Book {
     private double price;
     private Date timestamp;
     private int pagecount;
-
+    private String name;
+    private String imageUrl;
     public Book()
     {
 
     }
-
 
     public Book(int id, String title, int bookCover, String readStatus, boolean owned, int rating, String author) {
         this.id = id;
@@ -124,6 +124,22 @@ public class Book {
         this.username = username;
     }
 
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
@@ -138,6 +154,8 @@ public class Book {
                 ", price=" + price +
                 ", timestamp=" + timestamp +
                 ", pagecount=" + pagecount +
+                ", name='" + name + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }

@@ -44,7 +44,7 @@ public class fragment_library extends Fragment implements LibraryBookAdapter.OnL
         RecyclerView recyclerView = view.findViewById(R.id.library_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        LibraryBookAdapter adapter = new LibraryBookAdapter(this);
+        LibraryBookAdapter adapter = new LibraryBookAdapter(this, getContext());
         recyclerView.setAdapter(adapter);
 
         //viewmodel setup

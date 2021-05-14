@@ -1,21 +1,29 @@
 package com.github.listsapp.repository.dao;
 
+import android.net.Uri;
+import android.os.Handler;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.github.listsapp.R;
-import com.github.listsapp.model.LibraryModel;
-import com.github.listsapp.repository.Repository;
 import com.github.listsapp.util.Book;
-import com.github.listsapp.util.User;
+import com.github.listsapp.util.UploadedImage;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,15 +32,20 @@ public class LibraryDAO {
 
     private static LibraryDAO libraryDAO;
     private FirebaseDatabase database;
-    private DatabaseReference reference;
+    private DatabaseReference databaseReference;
     private MutableLiveData<List<Book>> library;
     private final String data = "library";
+    private StorageReference storageReference;
+    private StorageTask storageTask;
+
 
     private LibraryDAO()
     {
         library = new MutableLiveData<>(new ArrayList<>());
         database = FirebaseDatabase.getInstance("https://homelibrary-c0594-default-rtdb.europe-west1.firebasedatabase.app/");
-        reference = database.getReference().child("users");
+        databaseReference = database.getReference().child("users");
+        storageReference = FirebaseStorage.getInstance("gs://homelibrary-c0594.appspot.com").getReference("images");
+        //storageReference = FirebaseStorage.getInstance().getReference();
     }
 
     public static LibraryDAO getInstance(){
@@ -47,7 +60,7 @@ public class LibraryDAO {
         List<Book> books = new ArrayList<>();
         if(username != null)
         {
-            DatabaseReference refDB = reference.child(username).child(data);
+            DatabaseReference refDB = databaseReference.child(username).child(data);
 
             refDB.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -56,8 +69,8 @@ public class LibraryDAO {
                     for (DataSnapshot s: snapshot.getChildren()) {
                         Book value = s.getValue(Book.class);
                         books.add(value);
-                        System.out.println("fra firebase  " + books.size());
-                        System.out.println(books.get(0).toString());
+                        System.out.println(value.toString());
+                        System.out.println("LLLLLLLLLLLLLLLLLLLLLLLLLLLL");
 
                     }
                     library.setValue(books);
@@ -68,7 +81,47 @@ public class LibraryDAO {
                 public void onCancelled(@NonNull DatabaseError error) {
 
                 }
+
+
             });
+
+            refDB.addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    library.getValue().add(snapshot.getValue(Book.class));
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    for (Book b: library.getValue())
+                    {
+                        if(b.getTitle().equals(previousChildName))
+                        {
+                            library.getValue().remove(b);
+                            library.getValue().add(snapshot.getValue(Book.class));
+                        }
+
+                    }
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
         }
         return library;
     }
@@ -78,56 +131,48 @@ public class LibraryDAO {
         return library;
     }
 
-
     public void addBook(Book book, String displayName)
     {
-        reference.child(displayName.toLowerCase()).child(data).child(book.getTitle()).setValue(book);
+        databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book);
+
     }
 
-
-    public void firebaseHelloWorld()
+    public void removeBook(Book book, String displayName)
     {
+        databaseReference.child(displayName).child(data).child(book.getTitle()).removeValue();
+    }
 
-        List<Book> books = new ArrayList<>();
-        DatabaseReference refDB = reference.child("maria").child(data);
+    public void editBook(Book book, String displayName)
+    {
+        databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book);
+    }
 
-        refDB.addValueEventListener(new ValueEventListener() {
+    public void uploadFile(String username, String imagename, Uri imageUri) {
+        StorageReference reference = storageReference.child(username + "/" + imagename);
+        storageTask = reference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot s: snapshot.getChildren()) {
-                    Book value = s.getValue(Book.class);
-                    books.add(value);
-                    System.out.println(value.getTitle() + " nnnnnnnnnnnnnnnnnnnnnnnnn");
-                }
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                UploadedImage image = new UploadedImage(imagename.trim(), taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+
+                databaseReference.child(username).child(data).child("titel231").child("name").setValue(imagename);
+                databaseReference.child(username).child(data).child("titel231").child("imageUrl").setValue(taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
 
             }
 
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                //Toast.makeText(getContext(), "cancelled", Toast.LENGTH_SHORT).show();
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+
             }
         });
-        library.setValue(books);
-        //return library;
     }
 
-
-    public void firebasetest()
-    {
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://homelibrary-c0594-default-rtdb.europe-west1.firebasedatabase.app/");
-        DatabaseReference myRef = database.getReference();
-
-        myRef.child("users").child("maria").child("userdetails").setValue(new User("maria", "password"));
-        Book book = new Book();
-        book.setAuthor("christopher");
-        book.setTitle("eragon 1");
-
-        myRef.child("users").child("maria").child("books").child("book1").setValue(book);
-        Book book2 = new Book();
-        book2.setAuthor("christopher");
-        book2.setTitle("eragon 2");
-
-        myRef.child("users").child("maria").child("books").child("book2").setValue(book2);
-
+    public StorageTask getStorageTask() {
+        return storageTask;
     }
 }

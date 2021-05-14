@@ -1,30 +1,45 @@
 package com.github.listsapp.view.main;
 
+import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.Intent;
 import android.media.Rating;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Switch;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
 import com.github.listsapp.model.LibraryModel;
 import com.github.listsapp.util.Book;
+import com.github.listsapp.viewmodel.AddBookViewModel;
 import com.github.listsapp.viewmodel.LibraryViewModel;
 import com.github.listsapp.viewmodel.LoginViewModel;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 
 import java.sql.Time;
 import java.sql.Timestamp;
 
 public class fragment_addbook extends Fragment {
 
+    private static final int GALLERY_REQUEST_CODE = 100;
     RatingBar ratingBar;
     private AppCompatButton button_save;
     private EditText editText_title;
@@ -34,6 +49,11 @@ public class fragment_addbook extends Fragment {
     private EditText editText_readstatus;
     private EditText editText_price;
     private LibraryViewModel libraryViewModel;
+    private AppCompatButton button_uploadPictureGallery;
+    private AppCompatButton button_uploadPictureCamera;
+    private Uri imageUri;
+    private ImageView imageView_bookcover;
+    private AddBookViewModel addBookViewModel;
 
     public fragment_addbook() {
     }
@@ -52,28 +72,96 @@ public class fragment_addbook extends Fragment {
         switch_owned = view.findViewById(R.id.addbook_switch_owned);
         editText_pagecount = view.findViewById(R.id.addbook_edit_pageCount);
         ratingBar = view.findViewById(R.id.ratingbaraddbook);
+        imageView_bookcover = view.findViewById(R.id.addbook_imageView);
         button_save = view.findViewById(R.id.button_save);
+        button_uploadPictureCamera = view.findViewById(R.id.button_uploadFromCamera);
+        button_uploadPictureGallery = view.findViewById(R.id.button_uploadPicture);
 
         button_save.setOnClickListener(v -> {
             saveAddedBook();
         });
 
+        button_uploadPictureGallery.setOnClickListener(v -> {
+
+            Intent intent = new Intent();
+            intent.setType("image/");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent, "pick an image"), GALLERY_REQUEST_CODE);
+        });
+
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
+            imageUri = data.getData();
+            Glide.with(getContext()).load(imageUri).into(imageView_bookcover);
+
+        }
+    }
+
+    private String getFileExtension(Uri uri)
+    {
+        ContentResolver cr = getActivity().getContentResolver();
+        MimeTypeMap map = MimeTypeMap.getSingleton();
+        return map.getExtensionFromMimeType(cr.getType(uri));
+    }
+
+    private void uploadFile(String title)
+    {
+        if(imageUri != null)
+        {
+            String imagename = title + System.currentTimeMillis() + "." + getFileExtension(imageUri);
+            libraryViewModel.uploadFile(imagename, imageUri);
+        }
+        else
+        {
+            Toast.makeText(getContext(), "No file selected", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void saveAddedBook() {
 
         Book book = new Book();
+        if(editText_title.getText() != null)
         book.setTitle(editText_title.getText().toString());
+        if(editText_author.getText() != null)
         book.setAuthor(editText_author.getText().toString());
-        book.setReadStatus(editText_readstatus.getText().toString());
-        book.setOwned(switch_owned.isChecked());
-        book.setPrice(Integer.parseInt(editText_price.getText().toString()));
-        book.setPagecount(Integer.parseInt(editText_pagecount.getText().toString()));
+        if(editText_readstatus.getText() != null)
+            book.setReadStatus(editText_readstatus.getText().toString());
+            book.setOwned(switch_owned.isChecked());
+            try {
+                book.setPrice(Integer.parseInt(editText_price.getText().toString()));
+            }
+            catch (NumberFormatException e)
+            {
+                book.setPrice(0);
+            }
+        try {
+            book.setPagecount(Integer.parseInt(editText_pagecount.getText().toString()));
+        }
+        catch (NumberFormatException e)
+        {
+            book.setPagecount(0);
+        }
+
         book.setRating(ratingBar.getRating());
         String username = LibraryModel.getUsername();
 
-        libraryViewModel.addBook(book, username);
+        StorageTask storageTask = libraryViewModel.getStorageTask();
+        if(storageTask != null && storageTask.isInProgress())
+        {
+            Toast.makeText(getContext(), "Upload in progress", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            libraryViewModel.addBook(book, username);
+            uploadFile(editText_title.getText().toString());
+
+        }
 
 
     }

@@ -1,5 +1,7 @@
 package com.github.listsapp.repository;
 
+import android.net.Uri;
+
 import androidx.lifecycle.LiveData;
 
 import com.github.listsapp.model.*;
@@ -7,6 +9,7 @@ import com.github.listsapp.repository.dao.LibraryDAO;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.util.Library;
 import com.github.listsapp.util.User;
+import com.google.firebase.storage.StorageTask;
 
 import java.util.List;
 
@@ -62,4 +65,12 @@ public class Repository {
        // libraryLiveData = new LibraryLiveData(username);
     }
 
+    public void uploadFile(String username, String imagename, Uri imageUri) {
+        libraryDAO.uploadFile(username, imagename, imageUri);
+    }
+
+    public StorageTask getStorageTask()
+    {
+        return libraryDAO.getStorageTask();
+    }
 }
