@@ -1,11 +1,13 @@
 package com.github.listsapp.view.main.adapters;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.viewmodel.SelectedBookViewModel;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
@@ -52,8 +55,8 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(bookList.get(position).getTitle());
         holder.id.setText(String.valueOf(bookList.get(position).getId()));
-        System.out.println(bookList.get(position).getImageUrl());
-        Glide.with(context).load(storageReference.getDownloadUrl()).into(holder.image);
+        Glide.with(context).load(bookList.get(position).getImageUrl()).into(holder.image);
+
     }
 
     public void updateList(List<Book> list)

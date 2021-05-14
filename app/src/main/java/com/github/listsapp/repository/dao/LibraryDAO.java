@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.bumptech.glide.Glide;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.util.UploadedImage;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -154,8 +155,17 @@ public class LibraryDAO {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 UploadedImage image = new UploadedImage(imagename.trim(), taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
 
-                databaseReference.child(username).child(data).child("titel231").child("name").setValue(imagename);
-                databaseReference.child(username).child(data).child("titel231").child("imageUrl").setValue(taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+
+                taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+
+                        System.out.println(uri + " hehehehehehehehehehehehehehehehe");
+                        databaseReference.child(username).child(data).child("titel231").child("name").setValue(imagename);
+                        databaseReference.child(username).child(data).child("titel231").child("imageUrl").setValue(uri.toString());
+
+                    }
+                });
 
             }
 
