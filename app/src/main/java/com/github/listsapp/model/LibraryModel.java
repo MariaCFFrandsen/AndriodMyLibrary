@@ -42,7 +42,6 @@ public class LibraryModel {
             @Override
             public void onChanged(List<Book> books) {
                 booklist = books;
-                System.out.println("\t\t\t\tGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG");
             }
         });
 
@@ -171,15 +170,7 @@ public class LibraryModel {
 
     public void addBook(Book book, String displayName)
     {
-        Book book1 = new Book();
-        book1.setPagecount(123);
-        book1.setPrice(1234);
-        book1.setOwned(false);
-        book1.setId(123);
-        book1.setTitle("titel231");
-        book1.setAuthor("forfatter");
-
-        repository.addBook(book1, displayName);
+        repository.addBook(book, displayName);
     }
 
     public static String getUsername() {
@@ -191,8 +182,8 @@ public class LibraryModel {
         LibraryModel.username = username;
     }
 
-    public void uploadFile(String imagename, Uri imageUri) {
-        repository.uploadFile(username, imagename, imageUri);
+    public void uploadFile(String title, String imagename, Uri imageUri) {
+        repository.uploadFile(title, username, imagename, imageUri);
     }
 
     public StorageTask getStorageTask()

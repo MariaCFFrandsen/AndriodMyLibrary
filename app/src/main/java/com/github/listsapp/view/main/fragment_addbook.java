@@ -115,7 +115,7 @@ public class fragment_addbook extends Fragment {
         if(imageUri != null)
         {
             String imagename = title + System.currentTimeMillis() + "." + getFileExtension(imageUri);
-            libraryViewModel.uploadFile(imagename, imageUri);
+            libraryViewModel.uploadFile(title, imagename, imageUri);
         }
         else
         {

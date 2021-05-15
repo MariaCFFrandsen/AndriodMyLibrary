@@ -65,8 +65,8 @@ public class Repository {
        // libraryLiveData = new LibraryLiveData(username);
     }
 
-    public void uploadFile(String username, String imagename, Uri imageUri) {
-        libraryDAO.uploadFile(username, imagename, imageUri);
+    public void uploadFile(String title, String username, String imagename, Uri imageUri) {
+        libraryDAO.uploadFile(title, username, imagename, imageUri);
     }
 
     public StorageTask getStorageTask()

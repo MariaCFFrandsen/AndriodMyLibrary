@@ -51,9 +51,9 @@ public class LibraryViewModel extends ViewModel {
         libraryModel.addBook(book, displayName);
     }
 
-    public void uploadFile(String imagename, Uri imageUri)
+    public void uploadFile(String title, String imagename, Uri imageUri)
     {
-        libraryModel.uploadFile(imagename, imageUri);
+        libraryModel.uploadFile(title, imagename, imageUri);
     }
 
     public StorageTask getStorageTask()

@@ -53,6 +53,7 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.name.setText(bookList.get(position).getTitle());
         holder.id.setText(String.valueOf(bookList.get(position).getId()));
+        System.out.println(bookList.get(position).getImageUrl());
         Glide.with(context).load(bookList.get(position).getImageUrl()).into(holder.image);
 
     }

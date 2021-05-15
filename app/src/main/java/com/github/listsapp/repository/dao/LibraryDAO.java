@@ -92,15 +92,19 @@ public class LibraryDAO {
                 @Override
                 public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                     Book book = snapshot.getValue(Book.class);
-                    for (Book b: library.getValue())
+                    List<Book> value = library.getValue();
+
+                    /*
+                    for (Book b: value)
                     {
                         if(b.getTitle().equals(book.getTitle()))
                         {
                             library.getValue().remove(b);
                             library.getValue().add(book);
                         }
-
                     }
+
+                     */
 
                 }
 
@@ -135,6 +139,7 @@ public class LibraryDAO {
 
     public void addBook(Book book, String displayName)
     {
+        //databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book);
         databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book);
     }
 
@@ -148,7 +153,7 @@ public class LibraryDAO {
         databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book);
     }
 
-    public void uploadFile(String username, String imagename, Uri imageUri) {
+    public void uploadFile(String title, String username, String imagename, Uri imageUri) {
         StorageReference reference = storageReference.child(username + "/" + imagename);
         storageTask = reference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -157,8 +162,8 @@ public class LibraryDAO {
                 taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        databaseReference.child(username).child(data).child("titel231").child("name").setValue(imagename);
-                        databaseReference.child(username).child(data).child("titel231").child("imageUrl").setValue(uri.toString());
+                        databaseReference.child(username).child(data).child(title).child("name").setValue(imagename);
+                        databaseReference.child(username).child(data).child(title).child("imageUrl").setValue(uri.toString());
                     }
                 });
 
