@@ -33,7 +33,7 @@ public class LibraryModel {
 
         booklist = new ArrayList<>();
         repository = Repository.getInstance();
-        //getBooks();
+
     }
 
     public void getBooks(String username) {
@@ -146,11 +146,12 @@ public class LibraryModel {
         return searchedBook;
     }
 
-    public Book getBookById(int id)
+    public Book getBookByTitle(String id)
     {
         Book book = null;
         for (Book p : booklist) {
-            if (p.getId() == id) {
+            System.out.println(p.getImageUrl());
+            if (p.getTitle().equals(id)) {
                 book = p;
                 break;
             }
@@ -161,7 +162,6 @@ public class LibraryModel {
     public LiveData<List<Book>> getLastestBooks() {
         return null;
     }
-
 
     public LiveData<List<Book>> getLibrary(String user)
     {

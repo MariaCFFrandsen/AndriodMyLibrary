@@ -94,7 +94,7 @@ public class LibraryDAO {
                     Book book = snapshot.getValue(Book.class);
                     List<Book> value = library.getValue();
 
-                    /*
+
                     for (Book b: value)
                     {
                         if(b.getTitle().equals(book.getTitle()))
@@ -104,7 +104,7 @@ public class LibraryDAO {
                         }
                     }
 
-                     */
+
 
                 }
 

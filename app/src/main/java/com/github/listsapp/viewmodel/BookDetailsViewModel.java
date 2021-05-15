@@ -21,8 +21,8 @@ public class BookDetailsViewModel extends ViewModel {
         repository.deleteBook(book, LibraryModel.getUsername());
     }
 
-    public Book find(int id)
+    public Book find(String id)
     {
-        return LibraryModel.getInstance().getBookById(id);
+        return LibraryModel.getInstance().getBookByTitle(id);
     }
 }

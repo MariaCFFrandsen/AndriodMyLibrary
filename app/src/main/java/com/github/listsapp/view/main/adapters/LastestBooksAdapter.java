@@ -91,8 +91,7 @@ public class LastestBooksAdapter extends RecyclerView.Adapter<LastestBooksAdapte
                 @Override
                 public void onClick(View v) {
                     listItemClickListener.onListItemClick(getAdapterPosition());
-                    int chosenId = Integer.parseInt("1");
-                    SelectedBookViewModel.setChosenBook(chosenId);
+                    SelectedBookViewModel.setChosenBook(title.getText().toString());
                 }
             });
 

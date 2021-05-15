@@ -27,9 +27,9 @@ public class SelectedBookViewModel extends ViewModel {
         return chosenBook.getValue();
     }
 
-    public static void setChosenBook(int id) {
+    public static void setChosenBook(String id) {
         libraryModel = LibraryModel.getInstance();
-        Book book = libraryModel.getBookById(id);
+        Book book = libraryModel.getBookByTitle(id);
         MutableLiveData here = new MutableLiveData<>();
         here.setValue(book);
         SelectedBookViewModel.chosenBook = here ;

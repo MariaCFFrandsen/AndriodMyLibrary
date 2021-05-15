@@ -57,7 +57,7 @@ public class fragment_bookdetails extends Fragment {
         selectedBookViewModel.init();
         SelectedBookViewModel.chosenBook.observe(getViewLifecycleOwner(), Observer-> {
             book = SelectedBookViewModel.getChosen();
-            test = viewModel.find(book.getId());
+            test = viewModel.find(book.getTitle());
             title.setText(book.getTitle());
             author.setText(book.getAuthor());
             if (book.isOwned()) {
@@ -69,10 +69,8 @@ public class fragment_bookdetails extends Fragment {
             read.setText(book.getReadStatus());
             price.setText(String.valueOf(book.getPrice()));
             pagecount.setText(String.valueOf(book.getPagecount()));
-            System.out.println(book.getRating());
-            System.out.println(book.getReadStatus());
-            System.out.println("hhhhhhhhhhhhhhhhhhhhhhhhhhhh");
             bar.setRating(book.getRating());
+            System.out.println(book.getImageUrl());
             Glide.with(getContext()).load(book.getImageUrl()).into(imageView);
 
         });
