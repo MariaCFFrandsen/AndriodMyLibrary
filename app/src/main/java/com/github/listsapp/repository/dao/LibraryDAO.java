@@ -46,7 +46,6 @@ public class LibraryDAO {
         database = FirebaseDatabase.getInstance("https://homelibrary-c0594-default-rtdb.europe-west1.firebasedatabase.app/");
         databaseReference = database.getReference().child("users");
         storageReference = FirebaseStorage.getInstance("gs://homelibrary-c0594.appspot.com").getReference("images");
-        //storageReference = FirebaseStorage.getInstance().getReference();
     }
 
     public static LibraryDAO getInstance(){
@@ -70,8 +69,6 @@ public class LibraryDAO {
                     for (DataSnapshot s: snapshot.getChildren()) {
                         Book value = s.getValue(Book.class);
                         books.add(value);
-                        System.out.println(value.toString());
-                        System.out.println("LLLLLLLLLLLLLLLLLLLLLLLLLLLL");
 
                     }
                     library.setValue(books);
@@ -94,12 +91,13 @@ public class LibraryDAO {
 
                 @Override
                 public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    Book book = snapshot.getValue(Book.class);
                     for (Book b: library.getValue())
                     {
-                        if(b.getTitle().equals(previousChildName))
+                        if(b.getTitle().equals(book.getTitle()))
                         {
                             library.getValue().remove(b);
-                            library.getValue().add(snapshot.getValue(Book.class));
+                            library.getValue().add(book);
                         }
 
                     }
@@ -108,7 +106,15 @@ public class LibraryDAO {
 
                 @Override
                 public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                    Book book = snapshot.getValue(Book.class);
+                    for (Book b: library.getValue())
+                    {
+                        if(b.getTitle().equals(book.getTitle()))
+                        {
+                            library.getValue().remove(b);
+                        }
 
+                    }
                 }
 
                 @Override
@@ -127,15 +133,9 @@ public class LibraryDAO {
         return library;
     }
 
-    public LiveData<List<Book>> getLibraryTest()
-    {
-        return library;
-    }
-
     public void addBook(Book book, String displayName)
     {
         databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book);
-
     }
 
     public void removeBook(Book book, String displayName)
@@ -153,17 +153,12 @@ public class LibraryDAO {
         storageTask = reference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                UploadedImage image = new UploadedImage(imagename.trim(), taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
-
 
                 taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-
-                        System.out.println(uri + " hehehehehehehehehehehehehehehehe");
                         databaseReference.child(username).child(data).child("titel231").child("name").setValue(imagename);
                         databaseReference.child(username).child(data).child("titel231").child("imageUrl").setValue(uri.toString());
-
                     }
                 });
 
@@ -174,6 +169,7 @@ public class LibraryDAO {
             public void onFailure(@NonNull Exception e) {
 
             }
+
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {

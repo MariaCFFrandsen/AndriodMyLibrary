@@ -73,4 +73,12 @@ public class Repository {
     {
         return libraryDAO.getStorageTask();
     }
+
+    public void editBook(Book book, String username) {
+        libraryDAO.editBook(book, username);
+    }
+
+    public void deleteBook(Book book, String username) {
+        libraryDAO.removeBook(book, username);
+    }
 }

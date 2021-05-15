@@ -20,6 +20,9 @@ public class Book {
     private int pagecount;
     private String name;
     private String imageUrl;
+    private int onPage;
+
+
     public Book()
     {
 
@@ -35,6 +38,14 @@ public class Book {
         this.author = author;
     }
 
+
+    public void setOnPage(int onPage) {
+        this.onPage = onPage;
+    }
+
+    public int getOnPage() {
+        return onPage;
+    }
 
     public int getPagecount() {
         return pagecount;
