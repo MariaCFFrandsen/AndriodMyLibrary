@@ -13,6 +13,7 @@ public class GBookDetailsViewModel extends ViewModel {
     private static MutableLiveData<GBook> gBookMutableLiveData;
 
 
+
     public static void setChosenGBook(GBook gBook) {
         if(gBookMutableLiveData == null)
             gBookMutableLiveData = new MutableLiveData<>(new GBook());

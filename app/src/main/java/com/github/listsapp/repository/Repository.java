@@ -5,6 +5,7 @@ import android.net.Uri;
 import androidx.lifecycle.LiveData;
 
 import com.github.listsapp.model.*;
+import com.github.listsapp.repository.dao.CurrentlyReadingDAO;
 import com.github.listsapp.repository.dao.LibraryDAO;
 import com.github.listsapp.repository.network.NetworkImpl;
 import com.github.listsapp.util.Book;
@@ -20,11 +21,12 @@ public class Repository {
 
     private static Repository instance;
     private LibraryDAO libraryDAO;
-    private LibraryLiveData libraryLiveData;
+    private CurrentlyReadingDAO currentlyReadingDAO;
     private NetworkImpl network;
 
     private Repository(){
         libraryDAO = LibraryDAO.getInstance();
+        currentlyReadingDAO = CurrentlyReadingDAO.getInstance();
         network = NetworkImpl.getInstance();
     }
 
@@ -59,15 +61,6 @@ public class Repository {
         libraryDAO.addBook(book, displayName);
     }
 
-    public LiveData<Library> getLiveDataBooks()
-    {
-        return libraryLiveData;
-    }
-
-    public void init(String username)
-    {
-       // libraryLiveData = new LibraryLiveData(username);
-    }
 
     public void uploadFile(String title, String username, String imagename, Uri imageUri) {
         libraryDAO.uploadFile(title, username, imagename, imageUri);
@@ -94,4 +87,11 @@ public class Repository {
     {
         return network.getSearchedBooks();
     }
+
+    public LiveData<List<Book>> getCurrentlyReadingBooks(String username)
+    {
+        return currentlyReadingDAO.getCurrentlyReadingBooks(username);
+    }
+
+
 }

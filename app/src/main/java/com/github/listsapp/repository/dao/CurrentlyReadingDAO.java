@@ -50,7 +50,7 @@ public class CurrentlyReadingDAO {
     }
 
 
-    public static LiveData<List<Book>> getCurrentlyReadingBooks(String username)
+    public LiveData<List<Book>> getCurrentlyReadingBooks(String username)
     {
         List<Book> books = new ArrayList<>();
         if(username != null)
@@ -127,8 +127,6 @@ public class CurrentlyReadingDAO {
 
                 }
             });
-
-
 
 
         }

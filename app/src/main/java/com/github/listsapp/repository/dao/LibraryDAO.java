@@ -66,7 +66,7 @@ public class LibraryDAO {
         {
             DatabaseReference refDB = databaseReference.child(username).child(data);
 
-            refDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            refDB.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -87,6 +87,7 @@ public class LibraryDAO {
 
             });
 
+            /*
             refDB.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -135,6 +136,8 @@ public class LibraryDAO {
 
                 }
             });
+
+             */
 
 
         }

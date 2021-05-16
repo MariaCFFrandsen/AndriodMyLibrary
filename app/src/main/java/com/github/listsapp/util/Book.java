@@ -2,7 +2,6 @@ package com.github.listsapp.util;
 
 import android.widget.ImageView;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 public class Book {
