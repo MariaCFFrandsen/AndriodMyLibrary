@@ -12,6 +12,11 @@ public class VolumeInfo {
     private int pageCount;
     private List<String> authors;
     private List<String> categories;
+    /*
+    private String infoLink;
+    private String previewLink;
+
+     */
 
     public List<String> getCategories() {
         return categories;
@@ -83,5 +88,22 @@ public class VolumeInfo {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getListToString(List<String> list)
+    {
+        StringBuilder sbString = new StringBuilder("");
+
+        for(String item : list){
+
+            sbString.append(item).append(", ");
+        }
+
+        String strList = sbString.toString();
+
+        if( strList.length() > 0 )
+            strList = strList.substring(0, strList.length() - 1);
+
+        return strList;
     }
 }

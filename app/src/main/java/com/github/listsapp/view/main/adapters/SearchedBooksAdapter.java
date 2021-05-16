@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
 import com.github.listsapp.util.api.GBook;
 import com.github.listsapp.util.api.GBookList;
+import com.github.listsapp.viewmodel.GBookDetailsViewModel;
 import com.github.listsapp.viewmodel.SelectedBookViewModel;
 
 import org.w3c.dom.Text;
@@ -112,7 +113,9 @@ public class SearchedBooksAdapter extends RecyclerView.Adapter<SearchedBooksAdap
                 @Override
                 public void onClick(View v) {
                     listItemClickListener.onListItemClick(getAdapterPosition());
-                    System.out.println("klik");
+                    GBook gBook = gBookList.getItems().get(getAdapterPosition());
+                    GBookDetailsViewModel.setChosenGBook(gBook);
+
                 }
             });
 

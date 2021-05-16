@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.listsapp.R;
+import com.github.listsapp.model.LibraryModel;
+import com.github.listsapp.repository.dao.CurrentlyReadingDAO;
 import com.github.listsapp.view.main.adapters.LastestBooksAdapter;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.viewmodel.LoginViewModel;
@@ -30,7 +32,7 @@ public class fragment_frontpage extends Fragment implements LastestBooksAdapter.
     TextView textViewUsername;
     ImageView currentReadingBookCover;
     EditText editTextOnPage;
-    EditText editTextTotalPageCount;
+    TextView editTextTotalPageCount;
     AppCompatButton buttonUpdate;
     AppCompatButton buttonMore;
     @Override
@@ -60,7 +62,8 @@ public class fragment_frontpage extends Fragment implements LastestBooksAdapter.
         buttonUpdate = view.findViewById(R.id.button_updatebookpagecount);
         buttonMore = view.findViewById(R.id.button_morecurrentbooks);
         buttonMore.setOnClickListener(v -> {
-
+            CurrentlyReadingDAO.getInstance();
+            CurrentlyReadingDAO.getCurrentlyReadingBooks(LibraryModel.getUsername());
         });
 
         return view;

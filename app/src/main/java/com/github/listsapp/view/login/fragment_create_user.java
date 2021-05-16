@@ -19,7 +19,7 @@ import com.github.listsapp.viewmodel.LoginViewModel;
 
 import static androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
-public class GBook_details_fragment extends Fragment {
+public class fragment_create_user extends Fragment {
     private AppCompatButton button;
     private LoginViewModel loginViewModel;
     private EditText editText_username;
@@ -31,8 +31,6 @@ public class GBook_details_fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.createuser_fragment, container, false);
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
-
-
 
         button = view.findViewById(R.id.button_signup);
         editText_username = view.findViewById(R.id.editText_createusername);

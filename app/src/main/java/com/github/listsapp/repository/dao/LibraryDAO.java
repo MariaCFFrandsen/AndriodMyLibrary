@@ -38,11 +38,15 @@ public class LibraryDAO {
     private final String data = "library";
     private StorageReference storageReference;
     private StorageTask storageTask;
+    private MutableLiveData<List<Book>> currentlyReading;
+
 
 
     private LibraryDAO()
     {
         library = new MutableLiveData<>(new ArrayList<>());
+        currentlyReading = new MutableLiveData<>(new ArrayList<>());
+
         database = FirebaseDatabase.getInstance("https://homelibrary-c0594-default-rtdb.europe-west1.firebasedatabase.app/");
         databaseReference = database.getReference().child("users");
         storageReference = FirebaseStorage.getInstance("gs://homelibrary-c0594.appspot.com").getReference("images");
@@ -186,4 +190,7 @@ public class LibraryDAO {
     public StorageTask getStorageTask() {
         return storageTask;
     }
+
+
+
 }

@@ -21,6 +21,7 @@ public class Book {
     private String name;
     private String imageUrl;
     private int onPage;
+    private String lastUpdated;
 
 
     public Book()
@@ -149,6 +150,14 @@ public class Book {
 
     public String getName() {
         return name;
+    }
+
+    public String getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(String lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 
     @Override

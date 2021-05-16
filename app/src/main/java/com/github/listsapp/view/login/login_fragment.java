@@ -42,7 +42,7 @@ public class login_fragment extends Fragment {
 
 
         button.setOnClickListener(v -> {
-            GBook_details_fragment second = new GBook_details_fragment();
+            fragment_create_user second = new fragment_create_user();
             FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
             transaction.replace(R.id.loginActivityLayout, second);
             transaction.addToBackStack("first");

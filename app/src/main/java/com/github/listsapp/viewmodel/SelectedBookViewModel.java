@@ -34,8 +34,6 @@ public class SelectedBookViewModel extends ViewModel {
         here.setValue(book);
         SelectedBookViewModel.chosenBook = here ;
         chosen = book;
-        System.out.println("hello" + chosen.getTitle());
-
     }
 
     public static Book getChosen() {

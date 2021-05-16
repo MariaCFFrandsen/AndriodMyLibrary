@@ -15,13 +15,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.github.listsapp.GBook_details_fragment;
 import com.github.listsapp.R;
-import com.github.listsapp.view.login.GBook_details_fragment;
+import com.github.listsapp.view.login.fragment_create_user;
 import com.github.listsapp.view.main.adapters.SearchedBooksAdapter;
 import com.github.listsapp.viewmodel.SearchViewModel;
 
 public class fragment_lookupbook extends Fragment implements SearchedBooksAdapter.OnListItemClickListener {
-
 
     private SearchViewModel searchViewModel;
     private AppCompatButton search;
@@ -45,7 +45,7 @@ public class fragment_lookupbook extends Fragment implements SearchedBooksAdapte
             }
             else
             {
-                Toast.makeText(getContext(), "Please enter search word", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Please enter search word(s)", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -66,7 +66,7 @@ public class fragment_lookupbook extends Fragment implements SearchedBooksAdapte
     public void onListItemClick(int clickedItemIndex) {
         GBook_details_fragment second = new GBook_details_fragment();
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.gbook_layout, second);
+        transaction.replace(R.id.nav_host_fragment, second);
         transaction.addToBackStack(null);
         transaction.commit();
     }
