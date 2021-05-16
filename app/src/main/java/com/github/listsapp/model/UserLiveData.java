@@ -19,4 +19,5 @@ public class UserLiveData extends LiveData<FirebaseUser> {
         super.onInactive();
         FirebaseAuth.getInstance().removeAuthStateListener(listener);
     }
+
 }

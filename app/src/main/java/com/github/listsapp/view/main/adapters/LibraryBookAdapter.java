@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 
 import com.github.listsapp.R;
 import com.github.listsapp.util.Book;
+import com.github.listsapp.util.api.GBookList;
 import com.github.listsapp.viewmodel.SelectedBookViewModel;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -28,8 +29,6 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
 
     private List<Book> bookList = new ArrayList<>();
     LibraryBookAdapter.OnListItemClickListener listItemClickListener;
-    private StorageReference storageReference = FirebaseStorage.getInstance("gs://homelibrary-c0594.appspot.com").getReference("images").child("Maria Frandsen").child("1620986096124.jpg");
-
 
     private Context context;
 

@@ -19,7 +19,7 @@ import com.github.listsapp.viewmodel.LoginViewModel;
 
 import static androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
-public class fragment_createuser extends Fragment {
+public class GBook_details_fragment extends Fragment {
     private AppCompatButton button;
     private LoginViewModel loginViewModel;
     private EditText editText_username;

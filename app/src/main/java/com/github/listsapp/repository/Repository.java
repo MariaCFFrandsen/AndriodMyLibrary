@@ -6,9 +6,11 @@ import androidx.lifecycle.LiveData;
 
 import com.github.listsapp.model.*;
 import com.github.listsapp.repository.dao.LibraryDAO;
+import com.github.listsapp.repository.network.NetworkImpl;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.util.Library;
 import com.github.listsapp.util.User;
+import com.github.listsapp.util.api.GBookList;
 import com.google.firebase.storage.StorageTask;
 
 import java.util.List;
@@ -19,9 +21,11 @@ public class Repository {
     private static Repository instance;
     private LibraryDAO libraryDAO;
     private LibraryLiveData libraryLiveData;
+    private NetworkImpl network;
 
     private Repository(){
         libraryDAO = LibraryDAO.getInstance();
+        network = NetworkImpl.getInstance();
     }
 
     public static Repository getInstance(){
@@ -80,5 +84,14 @@ public class Repository {
 
     public void deleteBook(Book book, String username) {
         libraryDAO.removeBook(book, username);
+    }
+
+    public void search(String keyword) {
+        network.searchForBooks(keyword);
+    }
+
+    public LiveData<GBookList> getSearchedBooks()
+    {
+        return network.getSearchedBooks();
     }
 }

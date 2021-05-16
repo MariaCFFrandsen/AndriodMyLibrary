@@ -1,14 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.main.fragment_lookupbook">
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <EditText
+            android:id="@+id/search_box"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:hint="hint" />
+
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_search"
+            android:layout_width="105dp"
+            android:layout_height="35dp"
+            android:layout_margin="15dp"
+            android:background="@drawable/buttondesign"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Search"
+            android:textColor="#DFDF0D"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/message_display"
+            android:visibility="invisible"
+            android:layout_centerHorizontal="true"
+            tools:text="Failed to get Data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lookup_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
+            />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

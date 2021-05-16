@@ -16,6 +16,7 @@
     values-round/strings.xml for round devices.
     -->
     <string name="klik_her">klik her</string>
+    <string name="thumbnail">thumbnail</string>
 
     <string-array name="book_filters">
         <item>All</item>

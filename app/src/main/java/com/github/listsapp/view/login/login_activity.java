@@ -98,8 +98,6 @@ public class login_activity extends AppCompatActivity {
                 goToMainActivity();
                 viewModel.setDisplayName(user.getDisplayName());
                 LibraryModel.getInstance().getBooks(user.getDisplayName());
-                //Repository.getInstance().init(user.getDisplayName());
-                //LibraryModel.getInstance().getBooks();
             }
 
         });
