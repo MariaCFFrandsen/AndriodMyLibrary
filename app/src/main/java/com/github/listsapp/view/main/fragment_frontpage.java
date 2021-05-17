@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.firebase.ui.auth.AuthUI;
 import com.github.listsapp.R;
 import com.github.listsapp.model.LibraryModel;
 import com.github.listsapp.repository.dao.CurrentlyReadingDAO;

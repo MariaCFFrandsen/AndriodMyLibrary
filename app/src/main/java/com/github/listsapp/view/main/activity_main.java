@@ -16,8 +16,10 @@ import androidx.navigation.ui.NavigationUI;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
+import com.firebase.ui.auth.AuthUI;
 import com.github.listsapp.R;
 import com.github.listsapp.view.main.fragment_frontpage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -76,6 +78,15 @@ public class activity_main extends AppCompatActivity {
             super.onBackPressed();
     }
 
+    public void signOut(MenuItem item) {
+        AuthUI.getInstance()
+                .signOut(this);
+        goToLogin();
+    }
+
+    private void goToLogin() {
+
+    }
 
 
 }

@@ -20,4 +20,6 @@ public class UserLiveData extends LiveData<FirebaseUser> {
         FirebaseAuth.getInstance().removeAuthStateListener(listener);
     }
 
+
+
 }

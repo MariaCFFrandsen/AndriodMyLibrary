@@ -61,10 +61,10 @@ public class CurrentlyReadingDAO {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                    books.clear();
                     for (DataSnapshot s: snapshot.getChildren()) {
                         Book value = s.getValue(Book.class);
                         books.add(value);
-                        System.out.println(value.toString());
 
                     }
                     currentlyReading.setValue(books);
@@ -77,57 +77,6 @@ public class CurrentlyReadingDAO {
 
 
             });
-
-
-            query.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    currentlyReading.getValue().add(snapshot.getValue(Book.class));
-                }
-
-                @Override
-                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    Book book = snapshot.getValue(Book.class);
-                    List<Book> value = currentlyReading.getValue();
-
-
-                    for (Book b: value)
-                    {
-                        if(b.getTitle().equals(book.getTitle()))
-                        {
-                            currentlyReading.getValue().remove(b);
-                            currentlyReading.getValue().add(book);
-                        }
-                    }
-
-
-
-                }
-
-                @Override
-                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                    Book book = snapshot.getValue(Book.class);
-                    for (Book b: currentlyReading.getValue())
-                    {
-                        if(b.getTitle().equals(book.getTitle()))
-                        {
-                            currentlyReading.getValue().remove(b);
-                        }
-
-                    }
-                }
-
-                @Override
-                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-
 
         }
         return currentlyReading;

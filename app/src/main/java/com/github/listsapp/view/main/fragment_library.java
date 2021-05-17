@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -106,6 +107,7 @@ public class fragment_library extends Fragment implements LibraryBookAdapter.OnL
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
         System.out.println("first");
     }
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
@@ -103,9 +104,6 @@ public class login_activity extends AppCompatActivity {
         });
     }
 
-    public void signOut() {
-        AuthUI.getInstance()
-                .signOut(this);
-    }
+
 }
 

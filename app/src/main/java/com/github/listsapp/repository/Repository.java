@@ -4,6 +4,7 @@ import android.net.Uri;
 
 import androidx.lifecycle.LiveData;
 
+import com.firebase.ui.auth.AuthUI;
 import com.github.listsapp.model.*;
 import com.github.listsapp.repository.dao.CurrentlyReadingDAO;
 import com.github.listsapp.repository.dao.LibraryDAO;
@@ -92,6 +93,8 @@ public class Repository {
     {
         return currentlyReadingDAO.getCurrentlyReadingBooks(username);
     }
+
+
 
 
 }

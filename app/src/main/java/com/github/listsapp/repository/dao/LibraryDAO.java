@@ -40,8 +40,6 @@ public class LibraryDAO {
     private StorageTask storageTask;
     private MutableLiveData<List<Book>> currentlyReading;
 
-
-
     private LibraryDAO()
     {
         library = new MutableLiveData<>(new ArrayList<>());
@@ -70,6 +68,7 @@ public class LibraryDAO {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                    books.clear();
                     for (DataSnapshot s: snapshot.getChildren()) {
                         Book value = s.getValue(Book.class);
                         books.add(value);
