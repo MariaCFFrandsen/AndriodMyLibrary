@@ -5,12 +5,10 @@ import android.net.Uri;
 
 import androidx.lifecycle.LiveData;
 
-import com.firebase.ui.auth.AuthUI;
-import com.github.listsapp.model.*;
 import com.github.listsapp.repository.dao.CurrentlyReadingDAO;
 import com.github.listsapp.repository.dao.LibraryDAO;
 import com.github.listsapp.repository.dao.LoginDAO;
-import com.github.listsapp.repository.network.NetworkImpl;
+import com.github.listsapp.repository.remotedata.NetworkImpl;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.util.User;
 import com.github.listsapp.util.api.GBookList;
@@ -97,13 +95,11 @@ public class Repository {
         return currentlyReadingDAO.getCurrentlyReadingBooks(username);
     }
 
-
     public void signOut() {
         loginDAO.signOut();
     }
 
     public void setApplication(Application app) {
         loginDAO.setApp(app);
-        System.out.println("vvvvvvvvvvvvvvvvvvvvvvvvvvvv");
     }
 }

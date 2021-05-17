@@ -23,7 +23,7 @@
         -->
 
         <activity
-            android:name=".view.main.activity_main"
+            android:name=".view.home.activity_main"
             android:label="@string/title_activity_main"
             android:theme="@style/Theme.ListsApp.NoActionBar"
             android:usesCleartextTraffic="true"

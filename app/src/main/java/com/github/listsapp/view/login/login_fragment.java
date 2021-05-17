@@ -14,9 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.github.listsapp.view.main.activity_main;
+import com.github.listsapp.view.home.activity_main;
 import com.github.listsapp.R;
-import com.github.listsapp.viewmodel.LoginViewModel;
 
 
 public class login_fragment extends Fragment {

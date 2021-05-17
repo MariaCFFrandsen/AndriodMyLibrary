@@ -5,19 +5,14 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.github.listsapp.R;
-import com.github.listsapp.model.LibraryModel;
-import com.github.listsapp.repository.Repository;
-import com.github.listsapp.view.main.activity_main;
-import com.github.listsapp.viewmodel.LoginViewModel;
+import com.github.listsapp.view.library.LibrarySearchAdapter;
+import com.github.listsapp.view.home.activity_main;
 import com.google.firebase.FirebaseApp;
 
 import java.util.Arrays;
@@ -101,7 +96,7 @@ public class login_activity extends AppCompatActivity {
             if (user != null) {
                 goToMainActivity();
                 viewModel.setDisplayName(user.getDisplayName());
-                LibraryModel.getInstance().getBooks(user.getDisplayName());
+                LibrarySearchAdapter.getInstance().getBooks(user.getDisplayName());
             }
 
 

@@ -3,8 +3,6 @@ package com.github.listsapp.view.login;
 import android.os.Bundle;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -15,9 +13,6 @@ import android.widget.Toast;
 
 import com.github.listsapp.R;
 import com.github.listsapp.util.User;
-import com.github.listsapp.viewmodel.LoginViewModel;
-
-import static androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
 public class fragment_create_user extends Fragment {
     private AppCompatButton button;

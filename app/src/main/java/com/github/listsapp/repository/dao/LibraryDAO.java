@@ -2,6 +2,7 @@ package com.github.listsapp.repository.dao;
 
 import android.net.Uri;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.github.listsapp.util.Book;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -79,6 +81,7 @@ public class LibraryDAO {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
+                    Log.i("Firebase", "failure on retrieving books");
 
                 }
 
@@ -156,6 +159,23 @@ public class LibraryDAO {
     public void editBook(Book book, String displayName)
     {
         databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book);
+        /*StorageReference ref = storageReference.child(displayName).child(book.getName());
+        Task<Void> delete = ref.delete();
+        delete.addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                // File deleted successfully
+                Log.d("storage", "onSuccess: deleted image");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Uh-oh, an error occurred!
+                Log.d("storage", "onFailure: did not delete file");
+            }
+        });
+
+         */
     }
 
     public void uploadFile(String title, String username, String imagename, Uri imageUri) {
@@ -177,7 +197,7 @@ public class LibraryDAO {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-
+                Log.i("Firebase storage", "failure on retrieving images");
             }
 
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {

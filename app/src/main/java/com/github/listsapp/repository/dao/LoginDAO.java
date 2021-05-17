@@ -3,8 +3,6 @@ package com.github.listsapp.repository.dao;
 import android.app.Application;
 
 import com.firebase.ui.auth.AuthUI;
-import com.github.listsapp.model.LibraryModel;
-import com.google.android.gms.auth.api.Auth;
 
 public class LoginDAO {
 
@@ -44,8 +42,6 @@ public class LoginDAO {
 
         AuthUI.getInstance()
                 .signOut(app.getApplicationContext());
-
-
 
     }
 }
