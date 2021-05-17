@@ -21,5 +21,4 @@ public class UserLiveData extends LiveData<FirebaseUser> {
     }
 
 
-
 }

@@ -12,10 +12,12 @@
         android:layout_height="100dp"
         android:src="@drawable/profile_placeholder"
         android:layout_gravity="center"
+        android:id="@+id/nav_drawer_profileimage"
         />
 
 
     <TextView
+        android:id="@+id/nav_drawer_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/beige"

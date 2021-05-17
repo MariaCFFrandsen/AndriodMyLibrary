@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.github.listsapp.repository.dao.LibraryDAO;
 import com.github.listsapp.util.Book;
-import com.github.listsapp.util.BookResponse;
 import com.github.listsapp.util.api.GBook;
 import com.github.listsapp.util.api.GBookList;
 

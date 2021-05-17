@@ -11,7 +11,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.bumptech.glide.Glide;
 import com.github.listsapp.util.Book;
-import com.github.listsapp.util.UploadedImage;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.ChildEventListener;

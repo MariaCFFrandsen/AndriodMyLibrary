@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:text="title"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.034"
@@ -70,7 +70,7 @@
             android:layout_height="37dp"
             android:layout_marginTop="12dp"
             android:inputType="number"
-            android:textSize="15dp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.434"
             app:layout_constraintStart_toEndOf="@+id/textViewPage"
@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="164dp"
             android:text="out of"
-            android:textSize="15dp"
+            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewCurrently"
@@ -90,14 +90,13 @@
 
         <TextView
             android:id="@+id/frontpage_viewTotalpagecount"
-            android:layout_width="131dp"
-            android:layout_height="27dp"
+            android:layout_width="116dp"
+            android:layout_height="23dp"
             android:layout_marginTop="4dp"
 
             android:inputType="number"
-            android:textSize="15dp"
+            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.52"
             app:layout_constraintStart_toEndOf="@+id/textViewOutOf"
             app:layout_constraintTop_toBottomOf="@+id/frontpage_editOnPage" />
 

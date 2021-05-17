@@ -10,7 +10,6 @@ import com.github.listsapp.repository.dao.CurrentlyReadingDAO;
 import com.github.listsapp.repository.dao.LibraryDAO;
 import com.github.listsapp.repository.network.NetworkImpl;
 import com.github.listsapp.util.Book;
-import com.github.listsapp.util.Library;
 import com.github.listsapp.util.User;
 import com.github.listsapp.util.api.GBookList;
 import com.google.firebase.storage.StorageTask;

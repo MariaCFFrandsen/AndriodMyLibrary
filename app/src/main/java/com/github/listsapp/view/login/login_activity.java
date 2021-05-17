@@ -8,13 +8,13 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.github.listsapp.R;
 import com.github.listsapp.model.LibraryModel;
 import com.github.listsapp.repository.Repository;
-import com.github.listsapp.util.Library;
 import com.github.listsapp.view.main.activity_main;
 import com.github.listsapp.viewmodel.LoginViewModel;
 import com.google.firebase.FirebaseApp;
@@ -26,10 +26,12 @@ public class login_activity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 42;
     private AppCompatButton button;
     private LoginViewModel viewModel;
+    private TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
+
 
         setFragmentLogin();
         FirebaseApp.initializeApp(this);

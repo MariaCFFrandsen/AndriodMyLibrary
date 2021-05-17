@@ -47,6 +47,7 @@ public class fragment_frontpage extends Fragment implements LastestBooksAdapter.
     //private LiveData<List<Book>> currentlyReadingBooks;
     private CurrentlyReadingViewModel viewModel;
     private static Book item;
+    private TextView nav_drawer_username;
 
 
     @Override
@@ -63,6 +64,8 @@ public class fragment_frontpage extends Fragment implements LastestBooksAdapter.
 
         buttonUpdate = view.findViewById(R.id.button_updatebookpagecount);
         buttonMore = view.findViewById(R.id.button_morecurrentbooks);
+
+
 
         viewModel = new ViewModelProvider(this).get(CurrentlyReadingViewModel.class);
         lastestBooks = view.findViewById(R.id.home_recyclerview);

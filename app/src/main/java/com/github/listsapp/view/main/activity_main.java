@@ -13,14 +13,18 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.github.listsapp.R;
+import com.github.listsapp.model.LibraryModel;
+import com.github.listsapp.view.login.login_activity;
 import com.github.listsapp.view.main.fragment_frontpage;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -40,6 +44,10 @@ public class activity_main extends AppCompatActivity {
         initViews();
         setupNavigation();
         toolbar.setTitle("Home Library");
+
+
+
+
     }
 
     private void initViews() {
@@ -62,6 +70,10 @@ public class activity_main extends AppCompatActivity {
 
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navigationDrawer, navController);
+
+        TextView viewById = navigationDrawer.getHeaderView(0).findViewById(R.id.nav_drawer_username);
+        viewById.setText(LibraryModel.getUsername());
+
     }
 
 
@@ -85,7 +97,8 @@ public class activity_main extends AppCompatActivity {
     }
 
     private void goToLogin() {
-
+        startActivity(new Intent(this, login_activity.class));
+        finish();
     }
 
 

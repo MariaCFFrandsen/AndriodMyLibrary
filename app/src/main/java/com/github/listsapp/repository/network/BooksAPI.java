@@ -1,7 +1,6 @@
 package com.github.listsapp.repository.network;
 
 import com.github.listsapp.util.Book;
-import com.github.listsapp.util.BookResponse;
 import com.github.listsapp.util.api.GBookList;
 
 import retrofit2.Call;
