@@ -5,7 +5,8 @@
     android:layout_marginTop="5dp"
     android:background="#fff"
     android:padding="8dp"
-    android:id="@+id/container">
+    android:id="@+id/container"
+    android:backgroundTint="@color/beige">
 
     <ImageView
         android:id="@+id/gbook_thumbnail"
