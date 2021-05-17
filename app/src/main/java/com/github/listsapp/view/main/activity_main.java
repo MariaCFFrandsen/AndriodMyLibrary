@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -26,6 +27,7 @@ import com.github.listsapp.R;
 import com.github.listsapp.model.LibraryModel;
 import com.github.listsapp.view.login.login_activity;
 import com.github.listsapp.view.main.fragment_frontpage;
+import com.github.listsapp.viewmodel.LoginViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -36,6 +38,7 @@ public class activity_main extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationDrawer;
     Toolbar toolbar;
+    private LoginViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +47,7 @@ public class activity_main extends AppCompatActivity {
         initViews();
         setupNavigation();
         toolbar.setTitle("Home Library");
-
-
-
-
+        viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
     }
 
     private void initViews() {
@@ -91,15 +91,11 @@ public class activity_main extends AppCompatActivity {
     }
 
     public void signOut(MenuItem item) {
-        AuthUI.getInstance()
-                .signOut(this);
-        goToLogin();
+        viewModel.signOut();
     }
 
-    private void goToLogin() {
-        startActivity(new Intent(this, login_activity.class));
-        finish();
-    }
+
+
 
 
 }

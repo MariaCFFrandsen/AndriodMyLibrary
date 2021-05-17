@@ -1,5 +1,6 @@
 package com.github.listsapp.repository;
 
+import android.app.Application;
 import android.net.Uri;
 
 import androidx.lifecycle.LiveData;
@@ -8,6 +9,7 @@ import com.firebase.ui.auth.AuthUI;
 import com.github.listsapp.model.*;
 import com.github.listsapp.repository.dao.CurrentlyReadingDAO;
 import com.github.listsapp.repository.dao.LibraryDAO;
+import com.github.listsapp.repository.dao.LoginDAO;
 import com.github.listsapp.repository.network.NetworkImpl;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.util.User;
@@ -23,11 +25,13 @@ public class Repository {
     private LibraryDAO libraryDAO;
     private CurrentlyReadingDAO currentlyReadingDAO;
     private NetworkImpl network;
+    private LoginDAO loginDAO;
 
     private Repository(){
         libraryDAO = LibraryDAO.getInstance();
         currentlyReadingDAO = CurrentlyReadingDAO.getInstance();
         network = NetworkImpl.getInstance();
+        loginDAO = LoginDAO.getInstance();
     }
 
     public static Repository getInstance(){
@@ -94,6 +98,12 @@ public class Repository {
     }
 
 
+    public void signOut() {
+        loginDAO.signOut();
+    }
 
-
+    public void setApplication(Application app) {
+        loginDAO.setApp(app);
+        System.out.println("vvvvvvvvvvvvvvvvvvvvvvvvvvvv");
+    }
 }

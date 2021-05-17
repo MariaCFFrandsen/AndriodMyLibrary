@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.Application;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -26,7 +27,7 @@ public class login_activity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 42;
     private AppCompatButton button;
     private LoginViewModel viewModel;
-    private TextView textView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,8 +104,10 @@ public class login_activity extends AppCompatActivity {
                 LibraryModel.getInstance().getBooks(user.getDisplayName());
             }
 
+
         });
     }
+
 
 
 }
