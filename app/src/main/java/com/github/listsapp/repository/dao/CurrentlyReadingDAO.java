@@ -29,14 +29,15 @@ public class CurrentlyReadingDAO {
     private static final String data = "library";
     private StorageReference storageReference;
     private StorageTask storageTask;
-    private static MutableLiveData<List<Book>> currentlyReading;
+    private List<Book> currently_books = new ArrayList<>();
+    private static MutableLiveData<List<Book>> currentlyReading = new MutableLiveData<>();
+
 
 
 
     private CurrentlyReadingDAO()
     {
-        currentlyReading = new MutableLiveData<>(new ArrayList<>());
-
+        currentlyReading.setValue(currently_books);
         database = FirebaseDatabase.getInstance("https://homelibrary-c0594-default-rtdb.europe-west1.firebasedatabase.app/");
         databaseReference = database.getReference().child("users");
         storageReference = FirebaseStorage.getInstance("gs://homelibrary-c0594.appspot.com").getReference("images");
@@ -52,7 +53,7 @@ public class CurrentlyReadingDAO {
 
     public LiveData<List<Book>> getCurrentlyReadingBooks(String username)
     {
-        List<Book> books = new ArrayList<>();
+
         if(username != null)
         {
             Query query = databaseReference.child(username).child(data).orderByChild("readStatus").equalTo("currently");
@@ -61,20 +62,19 @@ public class CurrentlyReadingDAO {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                    books.clear();
+                    currently_books.clear();
                     for (DataSnapshot s: snapshot.getChildren()) {
                         Book value = s.getValue(Book.class);
-                        books.add(value);
+                        currently_books.add(value);
 
                     }
-                    currentlyReading.setValue(books);
+                    currentlyReading.setValue(currently_books);
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
                 }
-
 
             });
 

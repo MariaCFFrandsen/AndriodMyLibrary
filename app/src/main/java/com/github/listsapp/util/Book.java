@@ -1,6 +1,9 @@
 package com.github.listsapp.util;
 
+import android.net.Uri;
 import android.widget.ImageView;
+
+import com.github.listsapp.util.api.GBook;
 
 import java.util.Date;
 
@@ -36,6 +39,17 @@ public class Book {
         this.owned = owned;
         this.rating = rating;
         this.author = author;
+    }
+
+    public static Book CreateBookFromGBook(GBook gBook) {
+
+        Book book = new Book();
+        book.setTitle(gBook.getVolumeInfo().getTitle());
+        book.setAuthor(gBook.getVolumeInfo().getListToString(gBook.getVolumeInfo().getAuthors()));
+        book.setPagecount(gBook.getVolumeInfo().getPageCount());
+        book.setImageUrl(gBook.getVolumeInfo().getImageLinks().getThumbnail());
+        return book;
+
     }
 
 

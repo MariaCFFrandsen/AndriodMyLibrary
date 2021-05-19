@@ -15,9 +15,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
+import com.github.listsapp.util.callbackinterfaces.CallBack;
 import com.github.listsapp.view.library.LibrarySearchAdapter;
 import com.github.listsapp.util.Book;
 
@@ -31,11 +33,12 @@ public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadi
     EditText editTextOnPage;
     TextView editTextTotalPageCount;
     AppCompatButton buttonUpdate;
-    AppCompatButton buttonMore;
+    AppCompatButton buttonDelete;
     //private LiveData<List<Book>> currentlyReadingBooks;
     private CurrentlyReadingViewModel viewModel;
     private static Book item;
     private TextView nav_drawer_username;
+    private int index = 0;
 
 
     @Override
@@ -51,7 +54,7 @@ public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadi
         currentReadingBookCover = view.findViewById(R.id.imageView2);
 
         buttonUpdate = view.findViewById(R.id.button_updatebookpagecount);
-        buttonMore = view.findViewById(R.id.button_morecurrentbooks);
+        buttonDelete = view.findViewById(R.id.button_morecurrentbooks);
 
 
 
@@ -79,11 +82,24 @@ public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadi
 
         });
 
-        buttonUpdate.setOnClickListener(v -> {
+        buttonDelete.setOnClickListener(v -> {
             //abandon book
             item.setReadStatus("unread");
-            viewModel.editBook(item);
+            viewModel.editBook(item, new CallBack() {
+                @Override
+                public void makeToast(String message) {
+                    Toast.makeText(getContext(), item.getTitle() + " has been set to unread", Toast.LENGTH_SHORT).show();
+                }
+            });
 
+            editTextOnPage.setText("");
+            editTextTotalPageCount.setText("");
+
+            textViewUsername.setText("");
+            currentReadingBookCover.setImageResource(R.drawable.coverplaceholder);
+
+            adapter.getBooks().remove(index);
+            adapter.notifyDataSetChanged();
         });
 
 
@@ -95,8 +111,12 @@ public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadi
                     item.setReadStatus("read");
                 } else
                     item.setOnPage(onPage);
-                viewModel.editBook(item);
-
+                viewModel.editBook(item, new CallBack() {
+                    @Override
+                    public void makeToast(String message) {
+                        Toast.makeText(getContext(), item.getTitle() + " has been updated", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
 
         });
@@ -105,7 +125,7 @@ public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadi
     }
 
     public void onListItemClick(int clickedItemIndex) {
-
+        index = clickedItemIndex;
     }
 
     public static void setBook(Book book) {

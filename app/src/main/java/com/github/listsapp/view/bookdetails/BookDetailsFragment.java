@@ -3,7 +3,9 @@ package com.github.listsapp.view.bookdetails;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -14,11 +16,13 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
 import com.github.listsapp.util.Book;
-import com.github.listsapp.util.api.GBook;
+import com.github.listsapp.util.callbackinterfaces.CallBack;
+import com.github.listsapp.view.home.CurrentlyReadingFragment;
 
 
 public class BookDetailsFragment extends Fragment {
@@ -51,9 +55,9 @@ public class BookDetailsFragment extends Fragment {
         AppCompatButton edit = view.findViewById(R.id.button_editBook);
         AppCompatButton delete = view.findViewById(R.id.button_deleteBook);
         viewModel = new ViewModelProvider(this).get(BookDetailsViewModel.class);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle("Home Library");
 
-        //selectedBookViewModel = new ViewModelProvider(this).get(SelectedBookViewModel.class);
-        //selectedBookViewModel.init();
         BookDetailsViewModel.getChosenBook().observe(getViewLifecycleOwner(), new Observer<Book>() {
             @Override
             public void onChanged(Book book) {
@@ -70,7 +74,7 @@ public class BookDetailsFragment extends Fragment {
                 price.setText(String.valueOf(book.getPrice()));
                 pagecount.setText(String.valueOf(book.getPagecount()));
                 bar.setRating(book.getRating());
-                System.out.println(book.getImageUrl());
+                if(book.getImageUrl() != null)
                 Glide.with(getContext()).load(book.getImageUrl()).into(imageView);
 
             }
@@ -88,8 +92,13 @@ public class BookDetailsFragment extends Fragment {
             book.setPrice(Double.parseDouble(price.getText().toString()));
             book.setName(this.book.getName());
             book.setImageUrl(this.book.getImageUrl());
-
-            viewModel.editBook(book);
+            viewModel.editBook(book, new CallBack() {
+                @Override
+                public void makeToast(String message) {
+                    Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+                }
+            });
+            goToHome();
         });
 
         delete.setOnClickListener(v -> {
@@ -103,7 +112,13 @@ public class BookDetailsFragment extends Fragment {
             book.setPrice(Double.parseDouble(price.getText().toString()));
             book.setName(this.book.getName());
             book.setImageUrl(this.book.getImageUrl());
-            viewModel.deleteBook(book);
+            viewModel.deleteBook(book, new CallBack() {
+                @Override
+                public void makeToast(String message) {
+                    Toast.makeText(getContext(), message + book.getTitle(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            goToHome();
         });
 
         return view;
@@ -113,6 +128,16 @@ public class BookDetailsFragment extends Fragment {
 
     private void setBook(Book book) {
         this.book = book;
+    }
+
+    public void goToHome()
+    {
+        System.out.println("hello");
+        CurrentlyReadingFragment book = new CurrentlyReadingFragment();
+        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+        transaction.replace(R.id.nav_host_fragment, book);
+        transaction.addToBackStack("bookdetails");
+        transaction.commit();
     }
 
 }

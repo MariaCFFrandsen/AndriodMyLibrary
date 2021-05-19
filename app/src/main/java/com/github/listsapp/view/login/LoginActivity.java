@@ -18,7 +18,7 @@ import com.google.firebase.FirebaseApp;
 import java.util.Arrays;
 import java.util.List;
 
-public class login_activity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 42;
     private AppCompatButton button;
     private LoginViewModel viewModel;
@@ -28,8 +28,6 @@ public class login_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
-
-        setFragmentLogin();
         FirebaseApp.initializeApp(this);
 
         viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
@@ -41,12 +39,6 @@ public class login_activity extends AppCompatActivity {
             signIn();
         });
 
-    }
-
-    private void setFragmentLogin() {
-        login_fragment first = new login_fragment();
-        FragmentManager manager = getSupportFragmentManager();
-        manager.beginTransaction().add(R.id.loginActivityLayout, first).commit();
     }
 
 
@@ -92,13 +84,12 @@ public class login_activity extends AppCompatActivity {
     }
 
     private void setUsernameAndGoMainActivity() {
-        viewModel.getCurrentUser().observe(this, user -> {
+        LoginViewModel.getCurrentUser().observe(this, user -> {
             if (user != null) {
                 goToMainActivity();
                 viewModel.setDisplayName(user.getDisplayName());
                 LibrarySearchAdapter.getInstance().getBooks(user.getDisplayName());
             }
-
 
         });
     }

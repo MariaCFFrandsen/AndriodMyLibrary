@@ -1,12 +1,22 @@
 package com.github.listsapp.repository.dao;
 
+import android.app.Application;
+
 import androidx.lifecycle.LiveData;
 
+import com.firebase.ui.auth.AuthUI;
+import com.github.listsapp.util.callbackinterfaces.CallBackForSignOut;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class UserLiveData extends LiveData<FirebaseUser> {
+public class UserDAO extends LiveData<FirebaseUser> {
     private final FirebaseAuth.AuthStateListener listener = firebaseAuth -> setValue(firebaseAuth.getCurrentUser());
+    private static Application app;
+
+    public void setApplication(Application app)
+    {
+        this.app = app;
+    }
 
     @Override
     protected void onActive() {
@@ -18,6 +28,17 @@ public class UserLiveData extends LiveData<FirebaseUser> {
     protected void onInactive() {
         super.onInactive();
         FirebaseAuth.getInstance().removeAuthStateListener(listener);
+    }
+
+
+    public static void signOut(CallBackForSignOut callBackForSignOut) {
+        AuthUI.getInstance()
+                .signOut(app.getApplicationContext()).addOnCompleteListener( v -> {
+
+                    callBackForSignOut.signOut_CallBack(true);
+
+        });
+
     }
 
 

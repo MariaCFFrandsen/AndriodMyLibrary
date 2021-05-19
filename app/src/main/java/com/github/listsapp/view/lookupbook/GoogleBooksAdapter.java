@@ -42,8 +42,6 @@ public class GoogleBooksAdapter extends RecyclerView.Adapter<GoogleBooksAdapter.
         View view = inflater.inflate(R.layout.gbooklist_item, parent
                 , false);
 
-
-
         return new GoogleBooksAdapter.ViewHolder(view);
     }
 
@@ -59,7 +57,7 @@ public class GoogleBooksAdapter extends RecyclerView.Adapter<GoogleBooksAdapter.
         holder.category.setText(gBook.getVolumeInfo().getCategories().get(0));
         holder.price.setText(getRating(gBook.getVolumeInfo().getAverageRating()));
         if(gBook.getVolumeInfo().getImageLinks() != null && gBook.getVolumeInfo().getImageLinks().getSmallThumbnail() != null)
-        Glide.with(context).load(gBook.getVolumeInfo().getImageLinks().getSmallThumbnail()).into(holder.thumbnail);
+        Glide.with(context).load(gBook.getVolumeInfo().getImageLinks().getSmallThumbnail()).placeholder(R.drawable.coverplaceholder).into(holder.thumbnail);
     }
 
     private String getRating(double averageRating) {

@@ -1,7 +1,11 @@
 package com.github.listsapp.view.gbook_details;
 
+import android.content.ContentResolver;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -9,12 +13,16 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
+import com.github.listsapp.util.Book;
 import com.github.listsapp.util.api.GBook;
+import com.github.listsapp.util.callbackinterfaces.CallBackForAddGBook;
 import com.github.listsapp.view.gbook_details.GBookDetailsViewModel;
 
 public class GBookDetailsFragment extends Fragment {
@@ -29,6 +37,8 @@ public class GBookDetailsFragment extends Fragment {
     private ImageView thumbnail;
     private TextView preview;
     private TextView info;
+    private AppCompatButton add_gbook;
+    private GBook gBook;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,38 +53,39 @@ public class GBookDetailsFragment extends Fragment {
         publishDate = view.findViewById(R.id.gbook_details_publishdate);
         description = view.findViewById(R.id.gbook_details_description);
         thumbnail = view.findViewById(R.id.gbook_details_thumbnail);
-
-        preview = view.findViewById(R.id.gbook_details_preview);
-        info = view.findViewById(R.id.gbook_detials_info);
+        add_gbook = view.findViewById(R.id.button_addgbook);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle("Home Library");
 
         viewModel = new ViewModelProvider(this).get(GBookDetailsViewModel.class);
 
+
+        add_gbook.setOnClickListener( v -> {
+                    Book book = Book.CreateBookFromGBook(gBook);
+                    String imagename = book.getTitle() + System.currentTimeMillis() + "." + getFileExtension(Uri.parse(gBook.getVolumeInfo().getImageLinks().getThumbnail()));
+                    viewModel.addGBookToLibrary(book, gBook.getVolumeInfo().getImageLinks().getThumbnail(), imagename, new CallBackForAddGBook() {
+                        @Override
+                        public void callBack_AddGBook() {
+                            Toast.makeText(getContext(), "You have added a book from Google Books!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                });
 
         GBookDetailsViewModel.getgBookMutableLiveData().observe(getViewLifecycleOwner(), new Observer<GBook>() {
             @Override
             public void onChanged(GBook gBook) {
                 if(gBook.getVolumeInfo() != null)
                 {
+                    System.out.println(gBook.getVolumeInfo().getTitle());
+                    setGBook(gBook);
                     booktitle.setText(gBook.getVolumeInfo().getTitle());
-                    categories.setText(gBook.getVolumeInfo().getListToString(gBook.getVolumeInfo().getAuthors()));
+                    author.setText(gBook.getVolumeInfo().getListToString(gBook.getVolumeInfo().getAuthors()));
                     averageRating.setText("Rating: " + gBook.getVolumeInfo().getAverageRating());
                     publishDate.setText(gBook.getVolumeInfo().getPublisher());
+                    categories.setText(gBook.getVolumeInfo().getListToString(gBook.getVolumeInfo().getCategories()));
                     description.setText(gBook.getVolumeInfo().getDescription());
-                    if(getContext() != null && gBook.getVolumeInfo().getImageLinks() != null && gBook.getVolumeInfo().getImageLinks().getThumbnail() != null)
+                    if(gBook.getVolumeInfo().getImageLinks() != null && gBook.getVolumeInfo().getImageLinks().getThumbnail() != null)
                     Glide.with(getContext()).load(gBook.getVolumeInfo().getImageLinks().getThumbnail()).placeholder(R.drawable.coverplaceholder).into(thumbnail);
-
-
-                    /*
-                    preview.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(""));
-                            startActivity(i);
-                        }
-                    });
-
-                     */
-
                 }
 
             }
@@ -84,4 +95,19 @@ public class GBookDetailsFragment extends Fragment {
 
         return view;
     }
+
+    public void setGBook(GBook gBook)
+    {
+        this.gBook = gBook;
+    }
+
+
+    private String getFileExtension(Uri uri)
+    {
+        ContentResolver cr = getActivity().getContentResolver();
+        MimeTypeMap map = MimeTypeMap.getSingleton();
+        return map.getExtensionFromMimeType(cr.getType(uri));
+    }
+
+
 }

@@ -1,21 +1,18 @@
 package com.github.listsapp.repository.dao;
 
 import android.net.Uri;
-import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.bumptech.glide.Glide;
 import com.github.listsapp.util.Book;
+import com.github.listsapp.util.callbackinterfaces.CallBack;
+import com.github.listsapp.util.callbackinterfaces.CallBackForAddGBook;
+import com.github.listsapp.util.callbackinterfaces.CallBack_AddBook;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -145,20 +142,35 @@ public class LibraryDAO {
         return library;
     }
 
-    public void addBook(Book book, String displayName)
+    public void addBook(Book book, String displayName, CallBack_AddBook callBack_addBook)
     {
         //databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book);
-        databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book);
+        databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book).addOnCompleteListener(v -> {
+            callBack_addBook.callBack_AddBook();
+        });
     }
 
-    public void removeBook(Book book, String displayName)
+
+    public void addBook(Book book, String displayName, CallBackForAddGBook gBook)
     {
-        databaseReference.child(displayName).child(data).child(book.getTitle()).removeValue();
+        //databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book);
+        databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book).addOnCompleteListener(v -> {
+           gBook.callBack_AddGBook();
+        });
     }
 
-    public void editBook(Book book, String displayName)
+    public void removeBook(Book book, String displayName, CallBack callBack)
     {
-        databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book);
+        databaseReference.child(displayName).child(data).child(book.getTitle()).removeValue().addOnCompleteListener(v -> {
+            callBack.makeToast("You have deleted ");
+        });
+    }
+
+    public void editBook(Book book, String displayName, CallBack callBack)
+    {
+        databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book).addOnCompleteListener(v -> {
+            callBack.makeToast("You have edited your book!");
+        });
         /*StorageReference ref = storageReference.child(displayName).child(book.getName());
         Task<Void> delete = ref.delete();
         delete.addOnSuccessListener(new OnSuccessListener<Void>() {

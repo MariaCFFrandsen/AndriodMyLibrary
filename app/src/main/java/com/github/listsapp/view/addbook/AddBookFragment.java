@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -23,6 +24,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
+import com.github.listsapp.util.callbackinterfaces.CallBack_AddBook;
 import com.github.listsapp.view.library.LibrarySearchAdapter;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.view.library.LibraryViewModel;
@@ -67,6 +69,9 @@ public class AddBookFragment extends Fragment {
         button_save = view.findViewById(R.id.button_save);
         button_uploadPictureCamera = view.findViewById(R.id.button_uploadFromCamera);
         button_uploadPictureGallery = view.findViewById(R.id.button_uploadPicture);
+
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle("Home Library");
 
         button_save.setOnClickListener(v -> {
             saveAddedBook();
@@ -149,7 +154,12 @@ public class AddBookFragment extends Fragment {
         }
         else
         {
-            libraryViewModel.addBook(book, username);
+            libraryViewModel.addBook(book, username, new CallBack_AddBook() {
+                @Override
+                public void callBack_AddBook() {
+                    Toast.makeText(getContext(), "You have added a book!", Toast.LENGTH_SHORT).show();
+                }
+            });
             uploadFile(editText_title.getText().toString());
 
         }

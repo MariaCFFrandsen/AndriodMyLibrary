@@ -14,12 +14,13 @@ import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
 import com.github.listsapp.util.Book;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CurrentlyReadingAdapter extends RecyclerView.Adapter<CurrentlyReadingAdapter.ViewHolder> {
 
 
-    private List<Book> books;
+    private List<Book> books = new ArrayList<>();
     private Context context;
     OnListItemClickListener listItemClickListener;
 
@@ -42,8 +43,9 @@ public class CurrentlyReadingAdapter extends RecyclerView.Adapter<CurrentlyReadi
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
         viewHolder.readStatus.setText(books.get(position).getReadStatus());
         viewHolder.title.setText(books.get(position).getTitle());
-        Glide.with(context).load(books.get(position).getImageUrl()).into(viewHolder.bookcover);
-        viewHolder.author.setText("Christopher Paolini");
+        //if(books.get(position).getImageUrl() != null)
+        Glide.with(context).load(books.get(position).getImageUrl()).placeholder(R.drawable.coverplaceholder).into(viewHolder.bookcover);
+        viewHolder.author.setText(books.get(position).getAuthor());
         if(books.get(position).isOwned())
         {
            // viewHolder.bookcover.setImageResource(books.get(position).getIconId());
@@ -104,5 +106,9 @@ public class CurrentlyReadingAdapter extends RecyclerView.Adapter<CurrentlyReadi
             });
 
         }
+    }
+
+    public List<Book> getBooks() {
+        return books;
     }
 }

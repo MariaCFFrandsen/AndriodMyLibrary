@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.github.listsapp.util.callbackinterfaces.CallBack;
 import com.github.listsapp.view.library.LibrarySearchAdapter;
 import com.github.listsapp.repository.Repository;
 import com.github.listsapp.util.Book;
@@ -36,7 +37,7 @@ public class CurrentlyReadingViewModel extends ViewModel {
         return bookMutableLiveData;
     }
 
-    public void editBook(Book item) {
-        repository.editBook(item, LibrarySearchAdapter.getUsername());
+    public void editBook(Book item, CallBack editBook) {
+        repository.editBook(item, LibrarySearchAdapter.getUsername(), editBook);
     }
 }

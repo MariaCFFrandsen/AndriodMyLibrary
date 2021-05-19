@@ -3,6 +3,7 @@ package com.github.listsapp.view.lookupbook;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
@@ -33,6 +34,8 @@ public class GoogleBooksFragment extends Fragment implements GoogleBooksAdapter.
         search = view.findViewById(R.id.button_search);
         search_box = view.findViewById(R.id.search_box);
         searchViewModel = new ViewModelProvider(this).get(GoogleBooksViewModel.class);
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle("Home Library");
 
         search.setOnClickListener(v -> {
             String keyword = search_box.getText().toString();

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.github.listsapp.util.api.GBook;
+import com.github.listsapp.util.callbackinterfaces.CallBack;
 import com.github.listsapp.view.library.LibrarySearchAdapter;
 import com.github.listsapp.repository.Repository;
 import com.github.listsapp.util.Book;
@@ -20,14 +20,14 @@ public class BookDetailsViewModel extends ViewModel {
     }
 
 
-    public void editBook(Book book)
+    public void editBook(Book book, CallBack callBack)
     {
-        repository.editBook(book, LibrarySearchAdapter.getUsername());
+        repository.editBook(book, LibrarySearchAdapter.getUsername(), callBack);
     }
 
 
-    public void deleteBook(Book book) {
-        repository.deleteBook(book, LibrarySearchAdapter.getUsername());
+    public void deleteBook(Book book, CallBack callBack) {
+        repository.deleteBook(book, LibrarySearchAdapter.getUsername(), callBack);
     }
 
     public static void setChosenBook(Book book) {

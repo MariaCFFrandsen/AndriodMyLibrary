@@ -4,18 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.listsapp.R;
+import com.github.listsapp.repository.dao.UserDAO;
+import com.github.listsapp.util.callbackinterfaces.CallBackForSignOut;
 import com.github.listsapp.view.library.LibrarySearchAdapter;
+import com.github.listsapp.view.login.LoginActivity;
 import com.github.listsapp.view.login.LoginViewModel;
 import com.google.android.material.navigation.NavigationView;
 
@@ -26,7 +30,6 @@ public class activity_main extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationDrawer;
     Toolbar toolbar;
-    private LoginViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +38,7 @@ public class activity_main extends AppCompatActivity {
         initViews();
         setupNavigation();
         toolbar.setTitle("Home Library");
-        viewModel = new ViewModelProvider(this).get(LoginViewModel.class);
+        checkIfSignedIn();
     }
 
     private void initViews() {
@@ -79,11 +82,31 @@ public class activity_main extends AppCompatActivity {
     }
 
     public void signOut(MenuItem item) {
-        viewModel.signOut();
+        UserDAO.signOut(new CallBackForSignOut() {
+            @Override
+            public void signOut_CallBack(boolean b) {
+                Toast.makeText(getApplicationContext(), "You have signed out", Toast.LENGTH_SHORT).show();
+                startLoginActivity();
+            }
+        });
     }
 
 
+    private void checkIfSignedIn() {
+        LoginViewModel.getCurrentUser().observe(this, user -> {
+            if (user != null) {
+                String message = "Welcome " + user.getDisplayName();
+                Toast.makeText(this, message, Toast.LENGTH_SHORT ).show();
 
+            } else
+                startLoginActivity();
+        });
+    }
+
+    private void startLoginActivity() {
+        startActivity(new Intent(this, LoginActivity.class));
+        finish();
+    }
 
 
 }

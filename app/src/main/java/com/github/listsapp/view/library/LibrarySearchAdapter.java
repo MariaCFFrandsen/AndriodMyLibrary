@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer;
 
 import com.github.listsapp.repository.Repository;
 import com.github.listsapp.util.Book;
+import com.github.listsapp.util.callbackinterfaces.CallBack_AddBook;
 import com.google.firebase.storage.StorageTask;
 
 import java.util.ArrayList;
@@ -79,7 +80,7 @@ public class LibrarySearchAdapter {
             {
                 List<Book> result = new ArrayList<>();
                 for (Book p : booklist) {
-                    if (p.getTitle().toLowerCase().contains(query.toLowerCase()) && p.getReadStatus().equals("Read")) {
+                    if (p.getTitle().toLowerCase().contains(query.toLowerCase()) && p.getReadStatus().equals("read")) {
                         result.add(p);
                     }
                 }
@@ -91,7 +92,7 @@ public class LibrarySearchAdapter {
             {
                 List<Book> result = new ArrayList<>();
                 for (Book p : booklist) {
-                    if (p.getTitle().toLowerCase().contains(query.toLowerCase()) && (p.getReadStatus().equals("Unread") || p.getReadStatus().equals("Current"))) {
+                    if (p.getTitle().toLowerCase().contains(query.toLowerCase()) && (p.getReadStatus().equals("unread") || p.getReadStatus().equals("Current"))) {
                         result.add(p);
                     }
                 }
@@ -134,36 +135,16 @@ public class LibrarySearchAdapter {
 
     }
 
-    public LiveData<List<Book>> getSearchedBooks() {
-
-        return searchedBook;
-    }
-
-    public Book getBookByTitle(String id)
-    {
-        Book book = null;
-        for (Book p : booklist) {
-            System.out.println(p.getImageUrl());
-            if (p.getTitle().equals(id)) {
-                book = p;
-                break;
-            }
-        }
-       return book;
-    }
-
-    public LiveData<List<Book>> getLastestBooks() {
-        return null;
-    }
+    public LiveData<List<Book>> getSearchedBooks() { return searchedBook; }
 
     public LiveData<List<Book>> getLibrary(String user)
     {
         return repository.getLibrary(user);
     }
 
-    public void addBook(Book book, String displayName)
+    public void addBook(Book book, String displayName, CallBack_AddBook addBook)
     {
-        repository.addBook(book, displayName);
+        repository.addBook(book, displayName, addBook);
     }
 
     public static String getUsername() {

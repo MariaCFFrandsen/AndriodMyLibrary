@@ -7,6 +7,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.github.listsapp.util.Book;
+import com.github.listsapp.util.callbackinterfaces.CallBackForSignOut;
+import com.github.listsapp.util.callbackinterfaces.CallBack_AddBook;
 import com.google.firebase.storage.StorageTask;
 
 import java.util.List;
@@ -45,9 +47,9 @@ public class LibraryViewModel extends ViewModel {
         return librarySearchAdapter.getLibrary(user);
     }
 
-    public void addBook(Book book, String displayName)
+    public void addBook(Book book, String displayName, CallBack_AddBook addBook)
     {
-        librarySearchAdapter.addBook(book, displayName);
+        librarySearchAdapter.addBook(book, displayName, addBook);
     }
 
     public void uploadFile(String title, String imagename, Uri imageUri)

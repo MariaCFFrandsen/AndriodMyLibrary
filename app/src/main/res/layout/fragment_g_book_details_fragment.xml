@@ -12,14 +12,16 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="wrap_content"
         android:background="@color/darkred"
         android:orientation="horizontal"
         android:padding="10dp">
 
+
+
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="200dp"
+            android:layout_height="135dp"
             android:orientation="vertical">
 
             <ImageView
@@ -29,39 +31,13 @@
                 android:background="@drawable/loading_shape"
                 android:scaleType="centerCrop" />
 
-            <TextView
-                android:id="@+id/gbook_detials_info"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="info"
-                android:textColor="#fff"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/gbook_details_preview"
-                android:layout_width="70dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="Preview"
-                android:textColor="#fff"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
 
         </LinearLayout>
 
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:orientation="vertical">
 
@@ -87,7 +63,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="author" />
+                android:text="rating" />
 
             <TextView
                 android:id="@+id/gbook_details_author"
@@ -106,16 +82,30 @@
 
         </LinearLayout>
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginTop="10dp"
+            android:id="@+id/button_addgbook"
+            android:layout_width="85dp"
+            android:layout_height="45dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/buttonshape2"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Add Book to Library"
+            android:textColor="#DFDF0D"
+            android:textSize="10sp" />
 
     </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="511dp"
+        android:layout_height="573dp"
+        android:layout_marginTop="160dp"
         android:padding="16dp"
         app:layout_anchor="@+id/linearLayout"
         app:layout_anchorGravity="end|center"
-        android:layout_marginTop="240dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <TextView

@@ -96,7 +96,7 @@
 
                     <EditText
                         android:id="@+id/booksdetails_author"
-                        android:layout_width="wrap_content"
+                        android:layout_width="203dp"
                         android:layout_height="wrap_content"
                         android:autofillHints="title"
                         android:inputType="text"
@@ -124,7 +124,7 @@
 
                     <EditText
                         android:id="@+id/booksdetais_pagecount"
-                        android:layout_width="wrap_content"
+                        android:layout_width="203dp"
                         android:layout_height="wrap_content"
                         android:autofillHints="title"
                         android:inputType="number"
@@ -152,7 +152,7 @@
 
                     <EditText
                         android:id="@+id/booksdetails_read"
-                        android:layout_width="wrap_content"
+                        android:layout_width="203dp"
                         android:layout_height="wrap_content"
                         android:autofillHints="title"
                         android:inputType="text"
@@ -181,7 +181,7 @@
 
                     <EditText
                         android:id="@+id/booksdetails_owned"
-                        android:layout_width="wrap_content"
+                        android:layout_width="205dp"
                         android:layout_height="wrap_content"
                         android:autofillHints="title"
                         android:inputType="text"
@@ -211,7 +211,7 @@
                     <EditText
                         android:id="@+id/booksdetails_price"
 
-                        android:layout_width="wrap_content"
+                        android:layout_width="206dp"
                         android:layout_height="wrap_content"
                         android:autofillHints="title"
                         android:inputType="number"

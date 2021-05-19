@@ -14,7 +14,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.internal.EverythingIsNonNull;
 
-public class NetworkImpl implements Network{
+public class NetworkImpl{
 
 
     private final MutableLiveData<GBookList> searchedBooks;
@@ -52,7 +52,7 @@ public class NetworkImpl implements Network{
             @EverythingIsNonNull
             @Override
             public void onFailure(Call<GBookList> call, Throwable t) {
-                Log.i("Retrofit", "Something went wrong :(");
+                Log.i("Retrofit ", "Retrieving from google.books.com failed");
             }
         });
     }
