@@ -37,6 +37,6 @@ Very low(Wont have)
 2. (10.) | Not Implemented | As a user, I want to be able see my friends libraries because I can see what they have and how they have rated.                                     
 
 # References:
-Firebase Authentication is heavily inspired by https://github.com/KasperKnop/GoogleServicesExample
-GUI to Google Books API inspired by https://www.youtube.com/watch?v=vUMvWYzlgOs&feature=youtu.be
-Storing and retrieving images from fire storage inspired by https://www.youtube.com/playlist?list=PLrnPJCHvNZuB_7nB5QD-4bNg6tpdEUImQ
+1. Firebase Authentication is heavily inspired by https://github.com/KasperKnop/GoogleServicesExample
+2. GUI to Google Books API inspired by https://www.youtube.com/watch?v=vUMvWYzlgOs&feature=youtu.be
+3. Storing and retrieving images from fire storage inspired by https://www.youtube.com/playlist?list=PLrnPJCHvNZuB_7nB5QD-4bNg6tpdEUImQ
