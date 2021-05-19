@@ -16,26 +16,25 @@ https://www.youtube.com/watch?v=44q2MWVbdEY
 # Requirements:
 
 High(Must have):
-1. As a user, I want to able to sign up, sign in and sign out because this allows my library to be private.                                               | Implemented
-2. As a user, I want to be able to add, see, edit and delete a book to my library with the following information: 
+| Implemented | 1. As a user, I want to able to sign up, sign in and sign out because this allows my library to be private.                                               
+| Implemented | 2. As a user, I want to be able to add, see, edit and delete a book to my library with the following information: 
 title, bookcover, author, price, read status, owned status, rating, pagecount because I want to store relevant information about my books.                | Implemented
-3. As a user, I want to be able to filter through my library based on the following information(title, author, read status, owned status, rating)         | Implemented
+| Implemented | 3. As a user, I want to be able to filter through my library based on the following information(title, author, read status, owned status, rating)         | Implemented
 because I want to be able to find specific books.
 
 Medium(Should have): 
-1. (4.) As a user, I want to be able track which books I am currently reading and what page I am because that is more convenient than remembering it myself.   | Implemented
-2. (5.) As a user, I want to be able to upload a picture from my phone as bookcover because I want identify my books by their cover.                           | Implemented
-3. (6.) As a user, I want to be able to search after new books and read the following information(title, bookcover, author, pagecount, genre, summary, price) 
+| Implemented | 1. (4.) As a user, I want to be able track which books I am currently reading and what page I am because that is more convenient than remembering it myself. 
+| Implemented | 2. (5.) As a user, I want to be able to upload a picture from my phone as bookcover because I want identify my books by their cover.                         
+| Implemented | 3. (6.) As a user, I want to be able to search after new books and read the following information(title, bookcover, author, pagecount, genre, summary, price) 
 because I want inspiration to expand my library through Google Books API.                                                                                 | Implemented
 
 Low(Could have): 
-1. (7.) As a user, I want to be able to add a book from Google Books API to my library so I want can spare some time.                                          | Implemented 
-2. (8.) As a user, I want to be able to upload a profile picture and change my username because I want to be control how my profile comes across to the users. | Not Implemented
+| Implemented |    1. (7.) As a user, I want to be able to add a book from Google Books API to my library so I want can spare some time.                                         
+| Not Implemented |2. (8.) As a user, I want to be able to upload a profile picture and change my username because I want to be control how my profile comes across to the users. 
 
 Very low(Wont have)
-1. (9.) As a user, I want to be to befriend, unfriend and see other users' profiles because I want to be able to meet likeminded people.                       | Not Implemented
-2. (10.) As a user, I want to be able see my friends libraries because I can see what they have and how they have rated.                                       | Not Implemented
-
+| Not Implemented | 1. (9.) As a user, I want to be to befriend, unfriend and see other users' profiles because I want to be able to meet likeminded people.                     
+| Not Implemented |2. (10.) As a user, I want to be able see my friends libraries because I can see what they have and how they have rated.                                     
 
 # References:
 Firebase Authentication is heavily inspired by https://github.com/KasperKnop/GoogleServicesExample
