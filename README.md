@@ -39,4 +39,3 @@ Very low(Wont have)
 # References:
 1. Firebase Authentication is heavily inspired by https://github.com/KasperKnop/GoogleServicesExample
 2. GUI to Google Books API inspired by https://www.youtube.com/watch?v=vUMvWYzlgOs&feature=youtu.be
-3. Storing and retrieving images from fire storage inspired by https://www.youtube.com/playlist?list=PLrnPJCHvNZuB_7nB5QD-4bNg6tpdEUImQ
