@@ -1,4 +1,4 @@
-# AndriodMyLibrary
+# AndroidMomeLibrary
 App project for AND1
 
 Description:
