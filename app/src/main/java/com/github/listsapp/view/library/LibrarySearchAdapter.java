@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LibrarySearchAdapter {
+    //adapter for updating recyclerview with the books matching search criteria or word
     private static List<Book> booklist;
     private final MutableLiveData<List<Book>> searchedBook = new MutableLiveData<>();
     private Repository repository;
@@ -50,6 +51,10 @@ public class LibrarySearchAdapter {
     }
 
     public void searchForBook(String query, String spinnerFilter){
+
+        //the user can filter both on criteria (unread, read, wanted, owned)
+        //if the users have selected a criteria, the search word is matched to the title
+        //if the user filter on title, author then the search word is matched to title/author
 
         switch (spinnerFilter)
         {
@@ -94,6 +99,7 @@ public class LibrarySearchAdapter {
             {
                 List<Book> result = new ArrayList<>();
                 for (Book p : booklist) {
+                    //the book is added from google.books.com then readstatus can be null
                     if (p.getTitle().toLowerCase().contains(query.toLowerCase()) && p.getReadStatus() != null && (p.getReadStatus().equals("unread"))) {
                         result.add(p);
                     }
@@ -141,20 +147,6 @@ public class LibrarySearchAdapter {
 
     public LiveData<List<Book>> getSearchedBooks() { return searchedBook; }
 
-    public LiveData<List<Book>> getLibrary(String user)
-    {
-        return repository.getLibrary(user);
-    }
-
-
-    public void uploadFile(String title, String imagename, Uri imageUri) {
-        repository.uploadFile(title, imagename, imageUri);
-    }
-
-    public void addBook(Book book, CallBack addBook)
-    {
-        repository.addBook(book, addBook);
-    }
 
     public StorageTask getStorageTask()
     {

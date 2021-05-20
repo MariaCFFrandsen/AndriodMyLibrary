@@ -64,6 +64,7 @@ public class GoogleBooksFragment extends Fragment implements GoogleBooksAdapter.
 
     @Override
     public void onListItemClick(int clickedItemIndex) {
+        //method used to switch between fragments in a onclicklistener
         GBookDetailsFragment second = new GBookDetailsFragment();
         FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
         transaction.replace(R.id.nav_host_fragment, second);

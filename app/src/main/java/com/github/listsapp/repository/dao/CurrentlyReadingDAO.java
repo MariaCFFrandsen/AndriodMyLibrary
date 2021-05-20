@@ -1,5 +1,7 @@
 package com.github.listsapp.repository.dao;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,9 +12,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.StorageTask;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,20 +23,15 @@ public class CurrentlyReadingDAO {
     private static DatabaseReference databaseReference;
 
     private static final String data = "library";
-    private StorageReference storageReference;
-    private StorageTask storageTask;
     private List<Book> currently_books = new ArrayList<>();
     private static MutableLiveData<List<Book>> currentlyReading = new MutableLiveData<>();
 
-
-
-
     private CurrentlyReadingDAO()
     {
+        //initializing variables
         currentlyReading.setValue(currently_books);
         database = FirebaseDatabase.getInstance("https://homelibrary-c0594-default-rtdb.europe-west1.firebasedatabase.app/");
         databaseReference = database.getReference().child("users");
-        storageReference = FirebaseStorage.getInstance("gs://homelibrary-c0594.appspot.com").getReference("images");
     }
 
     public static CurrentlyReadingDAO getInstance(){
@@ -51,8 +45,12 @@ public class CurrentlyReadingDAO {
     public LiveData<List<Book>> getCurrentlyReadingBooks(String username)
     {
 
+
         if(username != null)
         {
+            //querying firebase database for what books the user is currently reading
+            //checking for when the variable readStatus is set to currently
+
             Query query = databaseReference.child(username).child(data).orderByChild("readStatus").equalTo("currently");
 
             query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -70,7 +68,7 @@ public class CurrentlyReadingDAO {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-
+                    Log.i("Firebase", "failure on retrieving currently books");
                 }
 
             });

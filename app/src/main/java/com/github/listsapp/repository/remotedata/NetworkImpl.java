@@ -17,6 +17,8 @@ public class NetworkImpl{
     private static NetworkImpl network;
 
     private NetworkImpl() {
+        //initialize variable
+        //mutablelivedata's value is set to an empty ararylist
         GBookList bookList = new GBookList();
         bookList.setItems(new ArrayList<>());
         searchedBooks = new MutableLiveData<>(bookList);
@@ -34,6 +36,11 @@ public class NetworkImpl{
     }
 
     public void searchForBooks(String query) {
+        //retrofit build
+        //get request with query
+        //result for query
+
+
         BooksAPI booksAPI = ServiceGenerator.getBooksAPI();
         Call<GBookList> call = booksAPI.getBook(query);
         call.enqueue(new Callback<GBookList>() {
@@ -41,6 +48,8 @@ public class NetworkImpl{
             @Override
             public void onResponse(Call<GBookList> call, Response<GBookList> response) {
                 if (response.isSuccessful()) {
+                    //response.body() returns GBookList
+                    //from json format to object
                     searchedBooks.setValue(response.body());
 
                 }

@@ -44,7 +44,6 @@ public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadi
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_currentlyreading, container, false);
-
         editTextOnPage = view.findViewById(R.id.frontpage_editOnPage);
         editTextTotalPageCount = view.findViewById(R.id.frontpage_viewTotalpagecount);
 
@@ -53,18 +52,21 @@ public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadi
 
         buttonUpdate = view.findViewById(R.id.button_updatebookpagecount);
         buttonDelete = view.findViewById(R.id.button_morecurrentbooks);
-
-
-
-        viewModel = new ViewModelProvider(this).get(CurrentlyReadingViewModel.class);
         lastestBooks = view.findViewById(R.id.home_recyclerview);
         lastestBooks.hasFixedSize();
 
+        //initialize viewmodel
+        viewModel = new ViewModelProvider(this).get(CurrentlyReadingViewModel.class);
+
+        //adapter for recyclerview
         adapter = new CurrentlyReadingAdapter(getContext(), this);
         lastestBooks.setLayoutManager(new LinearLayoutManager(getContext()));
         lastestBooks.setAdapter(adapter);
+
+        //retrieving user's library
         viewModel.getCurrentlyReadingList(Repository.getUsername()).observe(getViewLifecycleOwner(), adapter::updateCurrentlyReadingBookList);
 
+        //observe on the livedata containing user's library
         viewModel.getBookMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Book>() {
             @Override
             public void onChanged(Book book) {
@@ -80,6 +82,7 @@ public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadi
 
         });
 
+        //set onClickListeners for buttons
         buttonDelete.setOnClickListener(v -> {
             //abandon book
             item.setReadStatus("unread");
@@ -90,11 +93,7 @@ public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadi
                 }
             });
 
-            editTextOnPage.setText("");
-            editTextTotalPageCount.setText("");
-
-            textViewUsername.setText("");
-            currentReadingBookCover.setImageResource(R.drawable.coverplaceholder);
+            clearFields();
 
             adapter.getBooks().remove(index);
             adapter.notifyDataSetChanged();
@@ -102,15 +101,14 @@ public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadi
 
 
         buttonUpdate.setOnClickListener(v -> {
+            //updated
             if (item != null) {
                 int onPage = Integer.parseInt(editTextOnPage.getText().toString());
                 if (onPage == item.getPagecount()) {
+                    //if they finish the book
                     item.setOnPage(0);
                     item.setReadStatus("read");
-                    editTextOnPage.setText("");
-                    editTextTotalPageCount.setText("");
-                    textViewUsername.setText("");
-                    currentReadingBookCover.setImageResource(R.drawable.coverplaceholder);
+                    clearFields();
                     adapter.getBooks().remove(index);
                     adapter.notifyDataSetChanged();
                     Toast.makeText(getContext(), "Congratulations on finishing " + item.getTitle(), Toast.LENGTH_SHORT).show();
@@ -139,4 +137,12 @@ public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadi
     }
 
 
+    public void clearFields()
+    {
+        editTextOnPage.setText("");
+        editTextTotalPageCount.setText("");
+
+        textViewUsername.setText("");
+        currentReadingBookCover.setImageResource(R.drawable.coverplaceholder);
+    }
 }

@@ -88,17 +88,19 @@ public class LibraryDAO {
     }
 
     public void addBook(Book book, String displayName, CallBack callBack_addBook) {
-        //databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book);
+        //adding book under root book.getTitle()
         databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book).addOnCompleteListener(v -> {
             callBack_addBook.makeToast("You have added " + book.getTitle() + " to your library!");
         });
     }
 
     public void removeBook(Book book, String displayName, CallBack callBack) {
+        //deleting the book from firebase database
         databaseReference.child(displayName).child(data).child(book.getTitle()).removeValue().addOnCompleteListener(v -> {
             callBack.makeToast("You have deleted ");
         });
 
+        //deleting images from firebase storage
         if (book.getImageUrl() != null) {
             StorageReference ref = storageReference.child(displayName + "/" + book.getName());
             Task<Void> delete = ref.delete();
@@ -106,13 +108,13 @@ public class LibraryDAO {
                 @Override
                 public void onSuccess(Void aVoid) {
                     System.out.println("hhehhehehehehehehe");
-                    // File deleted successfully
+                    // file deleted successfully
                     Log.d("storage", "onSuccess: deleted image");
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception exception) {
-                    // Uh-oh, an error occurred!
+                    // error
                     Log.d("storage", "onFailure: did not delete file");
                 }
             });
@@ -122,6 +124,8 @@ public class LibraryDAO {
     }
 
     public void editBook(Book book, String displayName, CallBack callBack) {
+        //overwriting the variables for root book.getTitle()
+
         databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book).addOnCompleteListener(v -> {
             callBack.makeToast("You have edited your book!");
         });
@@ -129,6 +133,7 @@ public class LibraryDAO {
     }
 
     public void uploadFile(String title, String username, String imagename, Uri imageUri) {
+        //uploading file to storage using uri
         StorageReference reference = storageReference.child(username + "/" + imagename);
         storageTask = reference.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
@@ -159,6 +164,9 @@ public class LibraryDAO {
 
 
     public void checkTitle(CallBackCheckTitle callBack, String title, String username) {
+        //books are stored under their title
+        //this method is used to make sure the user does not overwrite a book
+
         if (username != null) {
             Query query = FirebaseDatabase.getInstance("https://homelibrary-c0594-default-rtdb.europe-west1.firebasedatabase.app/").getReference().child("users").child(username).child("library").orderByChild("title").equalTo(title);
 

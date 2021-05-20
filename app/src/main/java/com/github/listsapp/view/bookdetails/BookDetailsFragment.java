@@ -37,6 +37,7 @@ public class BookDetailsFragment extends Fragment {
     private EditText pagecount;
     private RatingBar bar;
     private Book book;
+    private ImageView imageView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +51,7 @@ public class BookDetailsFragment extends Fragment {
         read = view.findViewById(R.id.booksdetails_read);
         pagecount = view.findViewById(R.id.booksdetais_pagecount);
         bar = view.findViewById(R.id.bookdetails_rating);
-        ImageView imageView = view.findViewById(R.id.bookdetails_imageView);
+        imageView = view.findViewById(R.id.bookdetails_imageView);
         AppCompatButton edit = view.findViewById(R.id.button_editBook);
         AppCompatButton delete = view.findViewById(R.id.button_deleteBook);
         viewModel = new ViewModelProvider(this).get(BookDetailsViewModel.class);
@@ -138,5 +139,6 @@ public class BookDetailsFragment extends Fragment {
         transaction.addToBackStack("bookdetails");
         transaction.commit();
     }
+
 
 }

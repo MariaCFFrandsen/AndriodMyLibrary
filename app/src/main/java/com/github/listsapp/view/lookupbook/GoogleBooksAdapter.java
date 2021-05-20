@@ -17,8 +17,6 @@ import com.github.listsapp.util.api.GBookList;
 import com.github.listsapp.view.gbook_details.GBookDetailsViewModel;
 
 import java.util.List;
-import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.module.AppGlideModule;
 
 public class GoogleBooksAdapter extends RecyclerView.Adapter<GoogleBooksAdapter.ViewHolder> {
 
@@ -30,8 +28,6 @@ public class GoogleBooksAdapter extends RecyclerView.Adapter<GoogleBooksAdapter.
         this.context = context;
         gBookList = new GBookList();
         this.listItemClickListener = listItemClickListener;
-
-
 
     }
 
@@ -116,9 +112,5 @@ public class GoogleBooksAdapter extends RecyclerView.Adapter<GoogleBooksAdapter.
     }
 
 
-    @GlideModule
-    public class GlideApp extends AppGlideModule {
-
-    }
 
 }

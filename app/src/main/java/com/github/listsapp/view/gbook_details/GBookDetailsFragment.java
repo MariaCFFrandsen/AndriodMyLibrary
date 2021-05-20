@@ -75,7 +75,6 @@ public class GBookDetailsFragment extends Fragment {
             public void onChanged(GBook gBook) {
                 if(gBook.getVolumeInfo() != null)
                 {
-                    System.out.println(gBook.getVolumeInfo().getTitle());
                     setGBook(gBook);
                     booktitle.setText(gBook.getVolumeInfo().getTitle());
                     author.setText(gBook.getVolumeInfo().getListToString(gBook.getVolumeInfo().getAuthors()));

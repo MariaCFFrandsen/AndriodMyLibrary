@@ -5,6 +5,10 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
+//POJO to map the json format for get request to google.books.com
+//includes a list of GBook which includes a VolumeInfo which includes ImageLinks
+//only the information used is stored
+
 public class GBookList extends GBook implements Serializable {
 
     @SerializedName("items")

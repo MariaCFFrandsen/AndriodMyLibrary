@@ -33,6 +33,8 @@ import com.google.firebase.storage.StorageTask;
 
 public class AddBookFragment extends Fragment {
 
+    //this code is used to identify the intent, needs to be specific
+
     private static final int GALLERY_REQUEST_CODE = 100;
     RatingBar ratingBar;
     private AppCompatButton button_save;
@@ -44,7 +46,6 @@ public class AddBookFragment extends Fragment {
     private EditText editText_price;
     private LibraryViewModel libraryViewModel;
     private AppCompatButton button_uploadPictureGallery;
-    private AppCompatButton button_uploadPictureCamera;
     private Uri imageUri;
     private ImageView imageView_bookcover;
     private AddBookViewModel addBookViewModel;
@@ -68,19 +69,19 @@ public class AddBookFragment extends Fragment {
         ratingBar = view.findViewById(R.id.ratingbaraddbook);
         imageView_bookcover = view.findViewById(R.id.addbook_imageView);
         button_save = view.findViewById(R.id.button_save);
-        button_uploadPictureCamera = view.findViewById(R.id.button_uploadFromCamera);
         button_uploadPictureGallery = view.findViewById(R.id.button_uploadPicture);
         addBookViewModel = new ViewModelProvider(this).get(AddBookViewModel.class);
 
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle("Home Library");
 
+        //onClickListeners for buttons
         button_save.setOnClickListener(v -> {
             saveAddedBook();
         });
 
         button_uploadPictureGallery.setOnClickListener(v -> {
-
+            //starting an intent to choose an image from downloads
             Intent intent = new Intent();
             intent.setType("image/");
             intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -97,7 +98,6 @@ public class AddBookFragment extends Fragment {
         if (requestCode == GALLERY_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
             imageUri = data.getData();
             Glide.with(getContext()).load(imageUri).into(imageView_bookcover);
-
         }
     }
 
@@ -117,23 +117,30 @@ public class AddBookFragment extends Fragment {
     }
 
     private void saveAddedBook() {
-        if (editText_title.getText() != null) {
+        if (editText_title.getText() == null || editText_title.getText().equals("")) {
+            Toast.makeText(getContext(), "Enter a title", Toast.LENGTH_SHORT).show();
+        }
+        else {
+
+            addBookViewModel.checkTitle(new CallBackCheckTitle() {
+                @Override
+                public void checkTitle(boolean check) {
+                    //if both return true then book is saved otherwise an error message is shown through a toast
+                    if (check && checkReadStatus(editText_readstatus.getText().toString()))
+                    {
+                        saveAddBook();
+                        clearFields();
+                    } else if(!check)
+                        Toast.makeText(getContext(), "Enter a different title", Toast.LENGTH_SHORT).show();
+                    else if(!checkReadStatus(editText_readstatus.getText().toString()))
+                        Toast.makeText(getContext(), "Enter read, unread or currently for status", Toast.LENGTH_SHORT).show();
+
+                }
+            }, editText_title.getText().toString(), Repository.getUsername());
+
         }
 
-        addBookViewModel.checkTitle(new CallBackCheckTitle() {
-            @Override
-            public void checkTitle(boolean check) {
-                if (check && checkReadStatus(editText_readstatus.getText().toString()))
-                {
-                    saveAddBook();
-                    clearFields();
-                } else if(!check)
-                    Toast.makeText(getContext(), "Enter a different title", Toast.LENGTH_SHORT).show();
-                else if(!checkReadStatus(editText_readstatus.getText().toString()))
-                    Toast.makeText(getContext(), "Enter read, unread or currently for status", Toast.LENGTH_SHORT).show();
 
-            }
-        }, editText_title.getText().toString(), Repository.getUsername());
 
     }
 
@@ -161,6 +168,9 @@ public class AddBookFragment extends Fragment {
 
     private void saveAddBook()
     {
+        //method for saving books
+        //checks for null values
+
         Book book = new Book();
         book.setTitle(editText_title.getText().toString());
 

@@ -22,7 +22,7 @@ public class CurrentlyReadingAdapter extends RecyclerView.Adapter<CurrentlyReadi
 
     private List<Book> books = new ArrayList<>();
     private Context context;
-    OnListItemClickListener listItemClickListener;
+    private OnListItemClickListener listItemClickListener;
 
     public CurrentlyReadingAdapter(Context context, OnListItemClickListener listener)
     {
@@ -41,9 +41,10 @@ public class CurrentlyReadingAdapter extends RecyclerView.Adapter<CurrentlyReadi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        //populate views in the recyclerview
+        //called when getItemCounts > 0
         viewHolder.readStatus.setText(books.get(position).getReadStatus());
         viewHolder.title.setText(books.get(position).getTitle());
-        //if(books.get(position).getImageUrl() != null)
         Glide.with(context).load(books.get(position).getImageUrl()).placeholder(R.drawable.coverplaceholder).into(viewHolder.bookcover);
         viewHolder.author.setText(books.get(position).getAuthor());
 
@@ -60,12 +61,14 @@ public class CurrentlyReadingAdapter extends RecyclerView.Adapter<CurrentlyReadi
         notifyDataSetChanged();
     }
 
+    //this interface is used for callback when you click on a view in the recyclerview
     public interface OnListItemClickListener {
         void onListItemClick(int clickedItemIndex);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
+        //inner class for holding references for views in the recyclerview
         TextView title;
         ImageView bookcover;
         TextView readStatus;
@@ -74,7 +77,7 @@ public class CurrentlyReadingAdapter extends RecyclerView.Adapter<CurrentlyReadi
         ViewHolder(View viewitem)
         {
             super(viewitem);
-
+            //references for views
             readStatus = viewitem.findViewById(R.id.test_readStatus);
             title = itemView.findViewById(R.id.test_title);
             bookcover = viewitem.findViewById(R.id.test_bookcover);
@@ -83,6 +86,7 @@ public class CurrentlyReadingAdapter extends RecyclerView.Adapter<CurrentlyReadi
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    //when you click on the selected item is set to the viewmodel
                     listItemClickListener.onListItemClick(getAdapterPosition());
                     Book book = books.get(getAdapterPosition());
                     CurrentlyReadingViewModel.setChosenGBook(book);

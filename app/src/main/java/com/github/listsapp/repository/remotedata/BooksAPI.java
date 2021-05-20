@@ -8,6 +8,8 @@ import retrofit2.http.Query;
 
 public interface BooksAPI {
 
+    //get request with query ?q=q
+
     @GET("/books/v1/volumes")
     Call<GBookList> getBook(@Query("q") String q);
 }
