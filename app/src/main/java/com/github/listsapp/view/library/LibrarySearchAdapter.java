@@ -110,9 +110,9 @@ public class LibrarySearchAdapter {
 
             case "Owned":
             {
+                searchedBook.getValue().clear();
                 List<Book> result = new ArrayList<>();
                 for (Book p : booklist) {
-                    System.out.println(p.toString());
                     if (p.getTitle().toLowerCase().contains(query.toLowerCase()) && p.isOwned())
                     {
                         result.add(p);
@@ -122,8 +122,10 @@ public class LibrarySearchAdapter {
                 break;
             }
 
-            case "Not owned":
+            case "Wanted":
             {
+                searchedBook.getValue().clear();
+
                 List<Book> result = new ArrayList<>();
                 for (Book p : booklist) {
                     if (p.getTitle().toLowerCase().contains(query.toLowerCase()) && !p.isOwned()) {

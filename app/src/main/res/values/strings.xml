@@ -22,7 +22,8 @@
         <item>All</item>
         <item>Author</item>
         <item>Title</item>
-
+        <item>Read</item>
+        <item>Unread</item>
         <item>Owned</item>
         <item>Wanted</item>
     </string-array>

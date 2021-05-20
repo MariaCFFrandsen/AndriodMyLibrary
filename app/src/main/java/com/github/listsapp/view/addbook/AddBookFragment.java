@@ -163,6 +163,7 @@ public class AddBookFragment extends Fragment {
         editText_readstatus.setText("");
         switch_owned.setChecked(false);
         imageView_bookcover.setImageResource(R.drawable.coverplaceholder);
+        ratingBar.setRating(0);
 
     }
 
