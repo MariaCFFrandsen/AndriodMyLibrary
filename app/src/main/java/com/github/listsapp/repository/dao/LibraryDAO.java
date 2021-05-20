@@ -11,6 +11,7 @@ import com.github.listsapp.util.Book;
 import com.github.listsapp.util.callback.CallBack;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -103,23 +104,27 @@ public class LibraryDAO {
             callBack.makeToast("You have deleted ");
         });
 
-        /*StorageReference ref = storageReference.child(displayName).child(book.getName());
-        Task<Void> delete = ref.delete();
-        delete.addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                // File deleted successfully
-                Log.d("storage", "onSuccess: deleted image");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Uh-oh, an error occurred!
-                Log.d("storage", "onFailure: did not delete file");
-            }
-        });
+        if(book.getImageUrl() != null)
+        {
+            StorageReference ref = storageReference.child(displayName+ "/" + book.getName());
+            Task<Void> delete = ref.delete();
+            delete.addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    System.out.println("hhehhehehehehehehe");
+                    // File deleted successfully
+                    Log.d("storage", "onSuccess: deleted image");
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Uh-oh, an error occurred!
+                    Log.d("storage", "onFailure: did not delete file");
+                }
+            });
+        }
 
-         */
+
     }
 
     public void editBook(Book book, String displayName, CallBack callBack)
@@ -152,11 +157,6 @@ public class LibraryDAO {
                 Log.i("Firebase storage", "failure on retrieving images");
             }
 
-        }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-
-            }
         });
     }
 
