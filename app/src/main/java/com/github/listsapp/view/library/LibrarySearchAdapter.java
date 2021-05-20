@@ -77,12 +77,15 @@ public class LibrarySearchAdapter {
             }
             case "Read":
             {
+
                 List<Book> result = new ArrayList<>();
+
                 for (Book p : booklist) {
-                    if (p.getTitle().toLowerCase().contains(query.toLowerCase()) && p.getReadStatus().equals("read")) {
+                    if (p.getTitle().toLowerCase().contains(query.toLowerCase()) && p.getReadStatus() != null && p.getReadStatus().equals("read")) {
                         result.add(p);
                     }
                 }
+
                 searchedBook.setValue(result);
                 break;
             }
@@ -91,7 +94,7 @@ public class LibrarySearchAdapter {
             {
                 List<Book> result = new ArrayList<>();
                 for (Book p : booklist) {
-                    if (p.getTitle().toLowerCase().contains(query.toLowerCase()) && (p.getReadStatus().equals("unread") || p.getReadStatus().equals("Current"))) {
+                    if (p.getTitle().toLowerCase().contains(query.toLowerCase()) && p.getReadStatus() != null && (p.getReadStatus().equals("unread"))) {
                         result.add(p);
                     }
                 }
@@ -103,7 +106,9 @@ public class LibrarySearchAdapter {
             {
                 List<Book> result = new ArrayList<>();
                 for (Book p : booklist) {
-                    if (p.getTitle().toLowerCase().contains(query.toLowerCase()) && p.isOwned()) {
+                    System.out.println(p.toString());
+                    if (p.getTitle().toLowerCase().contains(query.toLowerCase()) && p.isOwned())
+                    {
                         result.add(p);
                     }
                 }

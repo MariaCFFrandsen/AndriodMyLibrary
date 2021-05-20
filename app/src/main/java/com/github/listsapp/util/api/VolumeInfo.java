@@ -12,11 +12,7 @@ public class VolumeInfo {
     private int pageCount;
     private List<String> authors;
     private List<String> categories;
-    /*
-    private String infoLink;
-    private String previewLink;
 
-     */
 
     public List<String> getCategories() {
         return categories;

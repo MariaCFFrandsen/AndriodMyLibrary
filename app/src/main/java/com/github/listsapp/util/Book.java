@@ -9,15 +9,20 @@ import java.util.Date;
 
 public class Book {
 
+
+    //bruges ikke
     private String username;
+    //bruges ikke
     private int id;
     private String title;
+    //bruges ikke
     private int bookCover;
     private String readStatus;
     private boolean owned;
     private float rating;
     private String author;
     private double price;
+    //bruges ikke
     private Date timestamp;
     private int pagecount;
     private String name;
