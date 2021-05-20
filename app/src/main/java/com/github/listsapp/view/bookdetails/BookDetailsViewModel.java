@@ -22,12 +22,12 @@ public class BookDetailsViewModel extends ViewModel {
 
     public void editBook(Book book, CallBack callBack)
     {
-        repository.editBook(book, LibrarySearchAdapter.getUsername(), callBack);
+        repository.editBook(book, callBack);
     }
 
 
     public void deleteBook(Book book, CallBack callBack) {
-        repository.deleteBook(book, LibrarySearchAdapter.getUsername(), callBack);
+        repository.deleteBook(book, callBack);
     }
 
     public static void setChosenBook(Book book) {

@@ -9,8 +9,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.github.listsapp.util.Book;
 import com.github.listsapp.util.callbackinterfaces.CallBack;
-import com.github.listsapp.util.callbackinterfaces.CallBackForAddGBook;
-import com.github.listsapp.util.callbackinterfaces.CallBack_AddBook;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -85,77 +83,17 @@ public class LibraryDAO {
 
             });
 
-            /*
-            refDB.addChildEventListener(new ChildEventListener() {
-                @Override
-                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    library.getValue().add(snapshot.getValue(Book.class));
-                }
-
-                @Override
-                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                    Book book = snapshot.getValue(Book.class);
-                    List<Book> value = library.getValue();
-
-
-                    for (Book b: value)
-                    {
-                        if(b.getTitle().equals(book.getTitle()))
-                        {
-                            library.getValue().remove(b);
-                            library.getValue().add(book);
-                        }
-                    }
-
-
-
-                }
-
-                @Override
-                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                    Book book = snapshot.getValue(Book.class);
-                    for (Book b: library.getValue())
-                    {
-                        if(b.getTitle().equals(book.getTitle()))
-                        {
-                            library.getValue().remove(b);
-                        }
-
-                    }
-                }
-
-                @Override
-                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });
-
-             */
 
 
         }
         return library;
     }
 
-    public void addBook(Book book, String displayName, CallBack_AddBook callBack_addBook)
+    public void addBook(Book book, String displayName, CallBack callBack_addBook)
     {
         //databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book);
         databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book).addOnCompleteListener(v -> {
-            callBack_addBook.callBack_AddBook();
-        });
-    }
-
-
-    public void addBook(Book book, String displayName, CallBackForAddGBook gBook)
-    {
-        //databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book);
-        databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book).addOnCompleteListener(v -> {
-           gBook.callBack_AddGBook();
+            callBack_addBook.makeToast("You have added " + book.getTitle() + " to your library!");
         });
     }
 
@@ -164,13 +102,7 @@ public class LibraryDAO {
         databaseReference.child(displayName).child(data).child(book.getTitle()).removeValue().addOnCompleteListener(v -> {
             callBack.makeToast("You have deleted ");
         });
-    }
 
-    public void editBook(Book book, String displayName, CallBack callBack)
-    {
-        databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book).addOnCompleteListener(v -> {
-            callBack.makeToast("You have edited your book!");
-        });
         /*StorageReference ref = storageReference.child(displayName).child(book.getName());
         Task<Void> delete = ref.delete();
         delete.addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -188,6 +120,14 @@ public class LibraryDAO {
         });
 
          */
+    }
+
+    public void editBook(Book book, String displayName, CallBack callBack)
+    {
+        databaseReference.child(displayName).child(data).child(book.getTitle()).setValue(book).addOnCompleteListener(v -> {
+            callBack.makeToast("You have edited your book!");
+        });
+
     }
 
     public void uploadFile(String title, String username, String imagename, Uri imageUri) {

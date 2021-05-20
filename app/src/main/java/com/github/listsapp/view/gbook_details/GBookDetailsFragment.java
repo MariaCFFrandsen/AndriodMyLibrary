@@ -22,7 +22,7 @@ import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.util.api.GBook;
-import com.github.listsapp.util.callbackinterfaces.CallBackForAddGBook;
+import com.github.listsapp.util.callbackinterfaces.CallBack;
 import com.github.listsapp.view.gbook_details.GBookDetailsViewModel;
 
 public class GBookDetailsFragment extends Fragment {
@@ -63,10 +63,10 @@ public class GBookDetailsFragment extends Fragment {
         add_gbook.setOnClickListener( v -> {
                     Book book = Book.CreateBookFromGBook(gBook);
                     String imagename = book.getTitle() + System.currentTimeMillis() + "." + getFileExtension(Uri.parse(gBook.getVolumeInfo().getImageLinks().getThumbnail()));
-                    viewModel.addGBookToLibrary(book, gBook.getVolumeInfo().getImageLinks().getThumbnail(), imagename, new CallBackForAddGBook() {
+                    viewModel.addGBookToLibrary(book, gBook.getVolumeInfo().getImageLinks().getThumbnail(), imagename, new CallBack() {
                         @Override
-                        public void callBack_AddGBook() {
-                            Toast.makeText(getContext(), "You have added a book from Google Books!", Toast.LENGTH_SHORT).show();
+                        public void makeToast(String message) {
+                            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
                         }
                     });
                 });

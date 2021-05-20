@@ -24,7 +24,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
-import com.github.listsapp.util.callbackinterfaces.CallBack_AddBook;
+import com.github.listsapp.util.callbackinterfaces.CallBack;
 import com.github.listsapp.view.library.LibrarySearchAdapter;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.view.library.LibraryViewModel;
@@ -69,6 +69,7 @@ public class AddBookFragment extends Fragment {
         button_save = view.findViewById(R.id.button_save);
         button_uploadPictureCamera = view.findViewById(R.id.button_uploadFromCamera);
         button_uploadPictureGallery = view.findViewById(R.id.button_uploadPicture);
+        addBookViewModel = new ViewModelProvider(this).get(AddBookViewModel.class);
 
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle("Home Library");
@@ -111,7 +112,7 @@ public class AddBookFragment extends Fragment {
         if(imageUri != null)
         {
             String imagename = title + System.currentTimeMillis() + "." + getFileExtension(imageUri);
-            libraryViewModel.uploadFile(title, imagename, imageUri);
+            addBookViewModel.uploadFile(title, imagename, imageUri);
         }
         else
         {
@@ -145,7 +146,6 @@ public class AddBookFragment extends Fragment {
         }
 
         book.setRating(ratingBar.getRating());
-        String username = LibrarySearchAdapter.getUsername();
 
         StorageTask storageTask = libraryViewModel.getStorageTask();
         if(storageTask != null && storageTask.isInProgress())
@@ -154,10 +154,11 @@ public class AddBookFragment extends Fragment {
         }
         else
         {
-            libraryViewModel.addBook(book, username, new CallBack_AddBook() {
+            addBookViewModel.addBook(book, new CallBack() {
                 @Override
-                public void callBack_AddBook() {
+                public void makeToast(String message) {
                     Toast.makeText(getContext(), "You have added a book!", Toast.LENGTH_SHORT).show();
+
                 }
             });
             uploadFile(editText_title.getText().toString());

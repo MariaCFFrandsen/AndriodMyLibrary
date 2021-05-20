@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModel;
 import com.github.listsapp.repository.Repository;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.util.api.GBook;
-import com.github.listsapp.util.callbackinterfaces.CallBackForAddGBook;
+import com.github.listsapp.util.callbackinterfaces.CallBack;
 import com.github.listsapp.view.library.LibraryBookAdapter;
 import com.github.listsapp.view.library.LibrarySearchAdapter;
 
@@ -29,8 +29,8 @@ public class GBookDetailsViewModel extends ViewModel {
         return gBookMutableLiveData;
     }
 
-    public void addGBookToLibrary(Book book, String imageUrl, String imagename, CallBackForAddGBook callBackForAddGBook) {
-        repository.addBook(book, LibrarySearchAdapter.getUsername(), callBackForAddGBook);
+    public void addGBookToLibrary(Book book, String imageUrl, String imagename, CallBack callBackForAddGBook) {
+        repository.addBook(book, callBackForAddGBook);
     }
 
 }

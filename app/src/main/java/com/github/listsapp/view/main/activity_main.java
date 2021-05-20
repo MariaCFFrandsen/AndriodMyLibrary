@@ -1,9 +1,10 @@
-package com.github.listsapp.view.home;
+package com.github.listsapp.view.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -16,12 +17,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.listsapp.R;
+import com.github.listsapp.repository.Repository;
 import com.github.listsapp.repository.dao.UserDAO;
-import com.github.listsapp.util.callbackinterfaces.CallBackForSignOut;
+import com.github.listsapp.util.callbackinterfaces.CallBack;
 import com.github.listsapp.view.library.LibrarySearchAdapter;
 import com.github.listsapp.view.login.LoginActivity;
 import com.github.listsapp.view.login.LoginViewModel;
+import com.github.listsapp.view.main.ActivityMainViewModel;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.core.Repo;
 
 public class activity_main extends AppCompatActivity {
 
@@ -30,12 +34,15 @@ public class activity_main extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationDrawer;
     Toolbar toolbar;
+    private ActivityMainViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initViews();
+        viewModel = new ViewModelProvider(this).get(ActivityMainViewModel.class);
+
         setupNavigation();
         toolbar.setTitle("Home Library");
         checkIfSignedIn();
@@ -63,7 +70,9 @@ public class activity_main extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationDrawer, navController);
 
         TextView viewById = navigationDrawer.getHeaderView(0).findViewById(R.id.nav_drawer_username);
-        viewById.setText(LibrarySearchAdapter.getUsername());
+        System.out.println(viewModel == null);
+
+        viewById.setText(viewModel.getUsername());
 
     }
 
@@ -82,11 +91,11 @@ public class activity_main extends AppCompatActivity {
     }
 
     public void signOut(MenuItem item) {
-        UserDAO.signOut(new CallBackForSignOut() {
+
+        viewModel.signOut(new CallBack() {
             @Override
-            public void signOut_CallBack(boolean b) {
-                Toast.makeText(getApplicationContext(), "You have signed out", Toast.LENGTH_SHORT).show();
-                startLoginActivity();
+            public void makeToast(String message) {
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -107,6 +116,7 @@ public class activity_main extends AppCompatActivity {
         startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
+
 
 
 }

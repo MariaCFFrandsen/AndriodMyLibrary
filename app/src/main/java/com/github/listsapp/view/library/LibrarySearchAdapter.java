@@ -8,7 +8,7 @@ import androidx.lifecycle.Observer;
 
 import com.github.listsapp.repository.Repository;
 import com.github.listsapp.util.Book;
-import com.github.listsapp.util.callbackinterfaces.CallBack_AddBook;
+import com.github.listsapp.util.callbackinterfaces.CallBack;
 import com.google.firebase.storage.StorageTask;
 
 import java.util.ArrayList;
@@ -18,7 +18,6 @@ public class LibrarySearchAdapter {
     private static List<Book> booklist;
     private final MutableLiveData<List<Book>> searchedBook = new MutableLiveData<>();
     private Repository repository;
-    private static String  username;
 
     private static LibrarySearchAdapter librarySearchAdapter;
 
@@ -142,22 +141,14 @@ public class LibrarySearchAdapter {
         return repository.getLibrary(user);
     }
 
-    public void addBook(Book book, String displayName, CallBack_AddBook addBook)
-    {
-        repository.addBook(book, displayName, addBook);
-    }
-
-    public static String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username)
-    {
-        LibrarySearchAdapter.username = username;
-    }
 
     public void uploadFile(String title, String imagename, Uri imageUri) {
-        repository.uploadFile(title, username, imagename, imageUri);
+        repository.uploadFile(title, imagename, imageUri);
+    }
+
+    public void addBook(Book book, CallBack addBook)
+    {
+        repository.addBook(book, addBook);
     }
 
     public StorageTask getStorageTask()

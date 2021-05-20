@@ -5,38 +5,44 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.github.listsapp.util.callbackinterfaces.CallBack;
 import com.github.listsapp.view.library.LibrarySearchAdapter;
 import com.github.listsapp.repository.dao.UserDAO;
 import com.github.listsapp.repository.Repository;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.core.Repo;
 
 public class LoginViewModel extends AndroidViewModel {
 
-    private static UserDAO currentUser = new UserDAO();
+
     private LibrarySearchAdapter librarySearchAdapter;
-    private Repository repository = Repository.getInstance();
+    private static Repository repository = Repository.getInstance();
 
     public LoginViewModel(Application app)
     {
         super(app);
         librarySearchAdapter = LibrarySearchAdapter.getInstance();
-        currentUser.setApplication(app);
-
+        setApplication(app);
     }
 
     public static LiveData<FirebaseUser> getCurrentUser() {
 
-        return currentUser;
+        return repository.getCurrentUser();
     }
 
     public String getUsername()
     {
-        return librarySearchAdapter.getUsername();
+        return Repository.getUsername();
     }
 
 
     public void setDisplayName(String displayName) {
-        librarySearchAdapter.setUsername(displayName);
+        Repository.setUsername(displayName);
+    }
+
+    public void setApplication(Application app)
+    {
+        repository.setApplication(app);
     }
 
 }

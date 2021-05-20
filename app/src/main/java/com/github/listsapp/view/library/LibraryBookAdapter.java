@@ -85,12 +85,7 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
             title = itemView.findViewById(R.id.test_title);
             bookcover = viewitem.findViewById(R.id.test_bookcover);
             author = viewitem.findViewById(R.id.test_author);
-            /*
-            name = itemView.findViewById(R.id.library_title);
-            id = itemView.findViewById(R.id.library_id);
-            image = itemView.findViewById(R.id.library_bookcover);
 
-             */
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -98,11 +93,6 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
                     Book book = bookList.get(getAdapterPosition());
                     BookDetailsViewModel.setChosenBook(book);
 
-                    /*
-                    String chosenId = name.getText().toString();
-                    SelectedBookViewModel.setChosenBook(chosenId);
-
-                     */
                 }
             });
 

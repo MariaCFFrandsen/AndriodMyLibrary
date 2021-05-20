@@ -2,7 +2,6 @@ package com.github.listsapp.view.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -12,7 +11,7 @@ import android.widget.Toast;
 import com.firebase.ui.auth.AuthUI;
 import com.github.listsapp.R;
 import com.github.listsapp.view.library.LibrarySearchAdapter;
-import com.github.listsapp.view.home.activity_main;
+import com.github.listsapp.view.main.activity_main;
 import com.google.firebase.FirebaseApp;
 
 import java.util.Arrays;

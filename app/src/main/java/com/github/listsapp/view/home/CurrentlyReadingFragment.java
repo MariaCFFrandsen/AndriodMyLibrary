@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
+import com.github.listsapp.repository.Repository;
 import com.github.listsapp.util.callbackinterfaces.CallBack;
 import com.github.listsapp.view.library.LibrarySearchAdapter;
 import com.github.listsapp.util.Book;
@@ -65,7 +66,7 @@ public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadi
         adapter = new CurrentlyReadingAdapter(getContext(), this);
         lastestBooks.setLayoutManager(new LinearLayoutManager(getContext()));
         lastestBooks.setAdapter(adapter);
-        viewModel.getCurrentlyReadingList(LibrarySearchAdapter.getUsername()).observe(getViewLifecycleOwner(), adapter::updateCurrentlyReadingBookList);
+        viewModel.getCurrentlyReadingList(Repository.getUsername()).observe(getViewLifecycleOwner(), adapter::updateCurrentlyReadingBookList);
 
         viewModel.getBookMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Book>() {
             @Override
@@ -109,6 +110,14 @@ public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadi
                 if (onPage == item.getPagecount()) {
                     item.setOnPage(0);
                     item.setReadStatus("read");
+                    editTextOnPage.setText("");
+                    editTextTotalPageCount.setText("");
+                    textViewUsername.setText("");
+                    currentReadingBookCover.setImageResource(R.drawable.coverplaceholder);
+                    adapter.getBooks().remove(index);
+                    adapter.notifyDataSetChanged();
+                    Toast.makeText(getContext(), "Congratulations on finishing " + item.getTitle(), Toast.LENGTH_SHORT).show();
+
                 } else
                     item.setOnPage(onPage);
                 viewModel.editBook(item, new CallBack() {

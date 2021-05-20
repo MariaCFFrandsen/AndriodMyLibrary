@@ -38,6 +38,6 @@ public class CurrentlyReadingViewModel extends ViewModel {
     }
 
     public void editBook(Book item, CallBack editBook) {
-        repository.editBook(item, LibrarySearchAdapter.getUsername(), editBook);
+        repository.editBook(item, editBook);
     }
 }

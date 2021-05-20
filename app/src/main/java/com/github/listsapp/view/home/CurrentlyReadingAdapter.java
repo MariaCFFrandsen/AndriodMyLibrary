@@ -46,12 +46,7 @@ public class CurrentlyReadingAdapter extends RecyclerView.Adapter<CurrentlyReadi
         //if(books.get(position).getImageUrl() != null)
         Glide.with(context).load(books.get(position).getImageUrl()).placeholder(R.drawable.coverplaceholder).into(viewHolder.bookcover);
         viewHolder.author.setText(books.get(position).getAuthor());
-        if(books.get(position).isOwned())
-        {
-           // viewHolder.bookcover.setImageResource(books.get(position).getIconId());
-         //   viewHolder.owned.setImageResource(R.drawable.owned);
-        }
-        //viewHolder.readStatus.setText(books.get(position).getReadStatus());
+
 
     }
 
@@ -70,21 +65,11 @@ public class CurrentlyReadingAdapter extends RecyclerView.Adapter<CurrentlyReadi
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        /*TextView title;
-        TextView readStatus;
-        ImageView bookcover;
-        ImageView owned;
-         title = itemView.findViewById(R.id.lastest_booktitle);
-            readStatus = itemView.findViewById(R.id.lastest_readstatus);
-            bookcover = itemView.findViewById(R.id.lastest_bookcover);
-            owned = itemView.findViewById(R.id.lastest_owned);
 
-         */
         TextView title;
         ImageView bookcover;
         TextView readStatus;
         TextView author;
-       // OnListItemClickListener listItemClickListener;
 
         ViewHolder(View viewitem)
         {

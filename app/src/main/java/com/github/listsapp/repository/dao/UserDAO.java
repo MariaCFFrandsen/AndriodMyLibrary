@@ -5,7 +5,8 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 
 import com.firebase.ui.auth.AuthUI;
-import com.github.listsapp.util.callbackinterfaces.CallBackForSignOut;
+import com.github.listsapp.util.callbackinterfaces.CallBack;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -31,11 +32,11 @@ public class UserDAO extends LiveData<FirebaseUser> {
     }
 
 
-    public static void signOut(CallBackForSignOut callBackForSignOut) {
+    public static void signOut(CallBack callBackForSignOut) {
         AuthUI.getInstance()
                 .signOut(app.getApplicationContext()).addOnCompleteListener( v -> {
 
-                    callBackForSignOut.signOut_CallBack(true);
+                    callBackForSignOut.makeToast("You have signed out");
 
         });
 

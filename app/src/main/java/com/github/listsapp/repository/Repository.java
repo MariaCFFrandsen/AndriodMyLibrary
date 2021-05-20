@@ -1,17 +1,18 @@
 package com.github.listsapp.repository;
 
+import android.app.Application;
 import android.net.Uri;
 
 import androidx.lifecycle.LiveData;
 
 import com.github.listsapp.repository.dao.CurrentlyReadingDAO;
 import com.github.listsapp.repository.dao.LibraryDAO;
+import com.github.listsapp.repository.dao.UserDAO;
 import com.github.listsapp.repository.remotedata.NetworkImpl;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.util.api.GBookList;
 import com.github.listsapp.util.callbackinterfaces.CallBack;
-import com.github.listsapp.util.callbackinterfaces.CallBackForAddGBook;
-import com.github.listsapp.util.callbackinterfaces.CallBack_AddBook;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.StorageTask;
 
 import java.util.List;
@@ -23,6 +24,9 @@ public class Repository {
     private LibraryDAO libraryDAO;
     private CurrentlyReadingDAO currentlyReadingDAO;
     private NetworkImpl network;
+    public static String username;
+    private static UserDAO currentUser = new UserDAO();
+
 
     private Repository(){
         libraryDAO = LibraryDAO.getInstance();
@@ -42,18 +46,12 @@ public class Repository {
         return libraryDAO.getLibrary(user);
     }
 
-    public void addBook(Book book, String displayName, CallBack_AddBook addBook)
+    public void addBook(Book book, CallBack addBook)
     {
-        libraryDAO.addBook(book, displayName, addBook);
+        libraryDAO.addBook(book, username, addBook);
     }
 
-    public void addBook(Book book, String displayName, CallBackForAddGBook addGBook)
-    {
-        libraryDAO.addBook(book, displayName, addGBook);
-    }
-
-
-    public void uploadFile(String title, String username, String imagename, Uri imageUri) {
+    public void uploadFile(String title, String imagename, Uri imageUri) {
         libraryDAO.uploadFile(title, username, imagename, imageUri);
     }
 
@@ -62,11 +60,11 @@ public class Repository {
         return libraryDAO.getStorageTask();
     }
 
-    public void editBook(Book book, String username, CallBack callBack) {
+    public void editBook(Book book, CallBack callBack) {
         libraryDAO.editBook(book, username, callBack);
     }
 
-    public void deleteBook(Book book, String username, CallBack callBack) {
+    public void deleteBook(Book book, CallBack callBack) {
         libraryDAO.removeBook(book, username, callBack);
     }
 
@@ -84,4 +82,23 @@ public class Repository {
         return currentlyReadingDAO.getCurrentlyReadingBooks(username);
     }
 
+    public static String getUsername() {
+        return username;
+    }
+
+    public static void setUsername(String username) {
+        Repository.username = username;
+    }
+
+    public void signOut(CallBack callBack) {
+        UserDAO.signOut(callBack);
+    }
+
+    public LiveData<FirebaseUser> getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setApplication(Application app) {
+        currentUser.setApplication(app);
+    }
 }
