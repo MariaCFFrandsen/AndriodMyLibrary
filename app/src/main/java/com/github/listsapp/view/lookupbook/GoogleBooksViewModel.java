@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel;
 
 import com.github.listsapp.repository.Repository;
 import com.github.listsapp.util.api.GBookList;
-import com.google.firebase.database.core.Repo;
 
 public class GoogleBooksViewModel extends ViewModel {
     private Repository repository = Repository.getInstance();

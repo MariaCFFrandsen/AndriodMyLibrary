@@ -1,12 +1,9 @@
 package com.github.listsapp.repository.dao;
 
 import android.app.Application;
-
 import androidx.lifecycle.LiveData;
-
 import com.firebase.ui.auth.AuthUI;
 import com.github.listsapp.util.callback.CallBack;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

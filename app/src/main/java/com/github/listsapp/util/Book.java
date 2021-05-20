@@ -1,8 +1,5 @@
 package com.github.listsapp.util;
 
-import android.net.Uri;
-import android.widget.ImageView;
-
 import com.github.listsapp.util.api.GBook;
 
 import java.util.Date;

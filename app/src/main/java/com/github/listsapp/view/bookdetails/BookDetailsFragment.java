@@ -27,8 +27,7 @@ import com.github.listsapp.view.home.CurrentlyReadingFragment;
 
 public class BookDetailsFragment extends Fragment {
 
-    //private SelectedBookViewModel selectedBookViewModel;
-    //private Book book;
+
     private BookDetailsViewModel viewModel;
     private TextView title;
     private EditText author;

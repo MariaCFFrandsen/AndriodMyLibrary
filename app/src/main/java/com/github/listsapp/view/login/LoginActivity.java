@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.firebase.ui.auth.AuthUI;
 import com.github.listsapp.R;
 import com.github.listsapp.view.library.LibrarySearchAdapter;
-import com.github.listsapp.view.main.activity_main;
+import com.github.listsapp.view.main.ActivityMain;
 import com.google.firebase.FirebaseApp;
 
 import java.util.Arrays;
@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goToMainActivity() {
-        startActivity(new Intent(this, activity_main.class));
+        startActivity(new Intent(this, ActivityMain.class));
         finish();
     }
 

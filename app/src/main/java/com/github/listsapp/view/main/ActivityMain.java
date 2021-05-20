@@ -22,7 +22,7 @@ import com.github.listsapp.view.login.LoginActivity;
 import com.github.listsapp.view.login.LoginViewModel;
 import com.google.android.material.navigation.NavigationView;
 
-public class activity_main extends AppCompatActivity {
+public class ActivityMain extends AppCompatActivity {
 
     NavController navController;
     AppBarConfiguration appBarConfiguration;

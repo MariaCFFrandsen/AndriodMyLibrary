@@ -34,10 +34,8 @@ public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadi
     TextView editTextTotalPageCount;
     AppCompatButton buttonUpdate;
     AppCompatButton buttonDelete;
-    //private LiveData<List<Book>> currentlyReadingBooks;
     private CurrentlyReadingViewModel viewModel;
     private static Book item;
-    private TextView nav_drawer_username;
     private int index = 0;
 
 

@@ -2,9 +2,7 @@ package com.github.listsapp.repository;
 
 import android.app.Application;
 import android.net.Uri;
-
 import androidx.lifecycle.LiveData;
-
 import com.github.listsapp.repository.dao.CurrentlyReadingDAO;
 import com.github.listsapp.repository.dao.LibraryDAO;
 import com.github.listsapp.repository.dao.UserDAO;

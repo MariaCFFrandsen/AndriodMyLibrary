@@ -19,19 +19,16 @@ import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
-import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
 import com.github.listsapp.repository.Repository;
-import com.github.listsapp.repository.dao.LibraryDAO;
 import com.github.listsapp.util.callback.CallBack;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.util.callback.CallBackCheckTitle;
 import com.github.listsapp.view.library.LibraryViewModel;
-import com.google.firebase.database.core.Repo;
 import com.google.firebase.storage.StorageTask;
 
 public class AddBookFragment extends Fragment {

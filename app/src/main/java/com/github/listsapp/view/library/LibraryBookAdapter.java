@@ -68,9 +68,6 @@ public class LibraryBookAdapter extends RecyclerView.Adapter<LibraryBookAdapter.
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name;
-        TextView id;
-        ImageView image;
 
         TextView title;
         ImageView bookcover;
