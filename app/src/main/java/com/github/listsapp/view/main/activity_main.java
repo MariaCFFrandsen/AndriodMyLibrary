@@ -17,15 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.listsapp.R;
-import com.github.listsapp.repository.Repository;
-import com.github.listsapp.repository.dao.UserDAO;
-import com.github.listsapp.util.callbackinterfaces.CallBack;
-import com.github.listsapp.view.library.LibrarySearchAdapter;
+import com.github.listsapp.util.callback.CallBack;
 import com.github.listsapp.view.login.LoginActivity;
 import com.github.listsapp.view.login.LoginViewModel;
-import com.github.listsapp.view.main.ActivityMainViewModel;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.core.Repo;
 
 public class activity_main extends AppCompatActivity {
 

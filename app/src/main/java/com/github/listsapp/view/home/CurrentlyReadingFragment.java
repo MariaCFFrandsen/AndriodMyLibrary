@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
 import com.github.listsapp.repository.Repository;
-import com.github.listsapp.util.callbackinterfaces.CallBack;
+import com.github.listsapp.util.callback.CallBack;
 import com.github.listsapp.util.Book;
 
 public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadingAdapter.OnListItemClickListener {

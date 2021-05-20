@@ -21,7 +21,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
 import com.github.listsapp.util.Book;
-import com.github.listsapp.util.callbackinterfaces.CallBack;
+import com.github.listsapp.util.callback.CallBack;
 import com.github.listsapp.view.home.CurrentlyReadingFragment;
 
 

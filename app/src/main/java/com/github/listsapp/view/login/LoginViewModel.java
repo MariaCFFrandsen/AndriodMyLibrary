@@ -5,12 +5,9 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.github.listsapp.util.callbackinterfaces.CallBack;
 import com.github.listsapp.view.library.LibrarySearchAdapter;
-import com.github.listsapp.repository.dao.UserDAO;
 import com.github.listsapp.repository.Repository;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.core.Repo;
 
 public class LoginViewModel extends AndroidViewModel {
 

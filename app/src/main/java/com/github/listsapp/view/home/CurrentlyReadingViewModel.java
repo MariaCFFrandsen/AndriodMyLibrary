@@ -4,8 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.github.listsapp.util.callbackinterfaces.CallBack;
-import com.github.listsapp.view.library.LibrarySearchAdapter;
+import com.github.listsapp.util.callback.CallBack;
 import com.github.listsapp.repository.Repository;
 import com.github.listsapp.util.Book;
 

@@ -22,8 +22,7 @@ import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.util.api.GBook;
-import com.github.listsapp.util.callbackinterfaces.CallBack;
-import com.github.listsapp.view.gbook_details.GBookDetailsViewModel;
+import com.github.listsapp.util.callback.CallBack;
 
 public class GBookDetailsFragment extends Fragment {
 

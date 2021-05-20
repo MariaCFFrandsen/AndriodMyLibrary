@@ -1,13 +1,9 @@
 package com.github.listsapp.view.library;
 
-import android.net.Uri;
-
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.github.listsapp.util.Book;
-import com.github.listsapp.util.callbackinterfaces.CallBack;
 import com.google.firebase.storage.StorageTask;
 
 import java.util.List;

@@ -1,9 +1,5 @@
 package com.github.listsapp.view.gbook_details;
 
-import android.content.ContentResolver;
-import android.net.Uri;
-import android.webkit.MimeTypeMap;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -11,9 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.github.listsapp.repository.Repository;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.util.api.GBook;
-import com.github.listsapp.util.callbackinterfaces.CallBack;
-import com.github.listsapp.view.library.LibraryBookAdapter;
-import com.github.listsapp.view.library.LibrarySearchAdapter;
+import com.github.listsapp.util.callback.CallBack;
 
 public class GBookDetailsViewModel extends ViewModel {
 

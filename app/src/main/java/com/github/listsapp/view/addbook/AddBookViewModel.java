@@ -7,8 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.github.listsapp.repository.Repository;
 import com.github.listsapp.util.Book;
-import com.github.listsapp.util.callbackinterfaces.CallBack;
-import com.github.listsapp.view.library.LibrarySearchAdapter;
+import com.github.listsapp.util.callback.CallBack;
 
 public class AddBookViewModel extends ViewModel {
     private Repository repository = Repository.getInstance();

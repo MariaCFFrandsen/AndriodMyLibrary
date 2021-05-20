@@ -1,4 +1,4 @@
-package com.github.listsapp.util.callbackinterfaces;
+package com.github.listsapp.util.callback;
 
 public interface CallBack {
     void makeToast(String message);

@@ -3,7 +3,7 @@ package com.github.listsapp.view.main;
 import androidx.lifecycle.ViewModel;
 
 import com.github.listsapp.repository.Repository;
-import com.github.listsapp.util.callbackinterfaces.CallBack;
+import com.github.listsapp.util.callback.CallBack;
 
 public class ActivityMainViewModel extends ViewModel {
 

@@ -11,7 +11,7 @@ import com.github.listsapp.repository.dao.UserDAO;
 import com.github.listsapp.repository.remotedata.NetworkImpl;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.util.api.GBookList;
-import com.github.listsapp.util.callbackinterfaces.CallBack;
+import com.github.listsapp.util.callback.CallBack;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.StorageTask;
 
