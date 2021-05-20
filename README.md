@@ -18,15 +18,15 @@ https://www.youtube.com/watch?v=44q2MWVbdEY
 High(Must have):
 1. | Implemented |As a user, I want to able to sign up, sign in and sign out because this allows my library to be private.                                               
 2. | Implemented |As a user, I want to be able to add, see, edit and delete a book to my library with the following information: 
-title, bookcover, author, price, read status, owned status, rating, pagecount because I want to store relevant information about my books.                | Implemented
-3. | Implemented |As a user, I want to be able to filter through my library based on the following information(title, author, read status, owned status, rating)         | Implemented
+title, bookcover, author, price, read status, owned status, rating, pagecount because I want to store relevant information about my books.                
+3. | Implemented |As a user, I want to be able to filter through my library based on the following information(title, author, read status, owned status, rating)         
 because I want to be able to find specific books.
 
 Medium(Should have): 
 1. (4.) | Implemented | As a user, I want to be able track which books I am currently reading and what page I am because that is more convenient than remembering it myself. 
 2. (5.) | Implemented | As a user, I want to be able to upload a picture from my phone as bookcover because I want identify my books by their cover.                         
 3. (6.) | Implemented | As a user, I want to be able to search after new books and read the following information(title, bookcover, author, pagecount, genre, summary, price) 
-because I want inspiration to expand my library through Google Books API.                                                                                 | Implemented
+because I want inspiration to expand my library through Google Books API.                                                                                
 
 Low(Could have): 
 1. (7.) | Implemented | As a user, I want to be able to add a book from Google Books API to my library so I want can spare some time.                         
