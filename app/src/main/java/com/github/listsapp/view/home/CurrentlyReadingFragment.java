@@ -21,7 +21,6 @@ import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
 import com.github.listsapp.repository.Repository;
 import com.github.listsapp.util.callbackinterfaces.CallBack;
-import com.github.listsapp.view.library.LibrarySearchAdapter;
 import com.github.listsapp.util.Book;
 
 public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadingAdapter.OnListItemClickListener {
@@ -46,7 +45,7 @@ public class CurrentlyReadingFragment extends Fragment implements CurrentlyReadi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_blank, container, false);
+        View view = inflater.inflate(R.layout.fragment_currentlyreading, container, false);
 
         editTextOnPage = view.findViewById(R.id.frontpage_editOnPage);
         editTextTotalPageCount = view.findViewById(R.id.frontpage_viewTotalpagecount);

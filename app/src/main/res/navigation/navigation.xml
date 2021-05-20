@@ -9,7 +9,7 @@
         android:id="@+id/nav_home"
         android:name="com.github.listsapp.view.home.CurrentlyReadingFragment"
         android:label="titel 1"
-        tools:layout="@layout/fragment_blank" />
+        tools:layout="@layout/fragment_currentlyreading" />
 
     <fragment
         android:id="@+id/nav_yourlibrary"
@@ -30,5 +30,5 @@
         android:id="@+id/nav_profile"
         android:name="com.github.listsapp.view.user.fragment_profile"
         android:label="titel 1"
-        tools:layout="@layout/fragment_test" />
+        tools:layout="@layout/fragment_profile" />
 </navigation>

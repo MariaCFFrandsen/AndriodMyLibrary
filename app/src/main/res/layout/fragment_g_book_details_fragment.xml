@@ -28,7 +28,6 @@
                 android:id="@+id/gbook_details_thumbnail"
                 android:layout_width="100dp"
                 android:layout_height="130dp"
-                android:background="@drawable/loading_shape"
                 android:scaleType="centerCrop" />
 
 
