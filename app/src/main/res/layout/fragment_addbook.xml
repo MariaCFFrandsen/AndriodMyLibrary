@@ -187,6 +187,7 @@
 
                         android:textColor="@color/black" />
 
+
                     <EditText
                         android:id="@+id/addbook_edit_read"
                         android:layout_width="262dp"
@@ -194,6 +195,7 @@
                         android:autofillHints="title"
                         android:textColor="@color/black"
                         android:textColorHint="@color/black" />
+
 
                 </LinearLayout>
 

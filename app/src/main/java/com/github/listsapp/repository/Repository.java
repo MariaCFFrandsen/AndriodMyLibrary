@@ -12,6 +12,7 @@ import com.github.listsapp.repository.remotedata.NetworkImpl;
 import com.github.listsapp.util.Book;
 import com.github.listsapp.util.api.GBookList;
 import com.github.listsapp.util.callback.CallBack;
+import com.github.listsapp.util.callback.CallBackCheckTitle;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.StorageTask;
 
@@ -100,5 +101,9 @@ public class Repository {
 
     public void setApplication(Application app) {
         currentUser.setApplication(app);
+    }
+
+    public void checkTitle(CallBackCheckTitle callBack, String title, String username) {
+        libraryDAO.checkTitle(callBack, title, username);
     }
 }

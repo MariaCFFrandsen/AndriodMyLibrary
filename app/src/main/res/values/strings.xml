@@ -22,9 +22,14 @@
         <item>All</item>
         <item>Author</item>
         <item>Title</item>
-        <item>Read</item>
-        <item>Unread</item>
+
         <item>Owned</item>
         <item>Wanted</item>
+    </string-array>
+
+    <string-array name="readstatus">
+        <item>read</item>
+        <item>unread</item>
+        <item>currently</item>
     </string-array>
 </resources>

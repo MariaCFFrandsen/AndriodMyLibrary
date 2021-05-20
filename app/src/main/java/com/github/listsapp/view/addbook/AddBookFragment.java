@@ -19,14 +19,19 @@ import android.webkit.MimeTypeMap;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.github.listsapp.R;
+import com.github.listsapp.repository.Repository;
+import com.github.listsapp.repository.dao.LibraryDAO;
 import com.github.listsapp.util.callback.CallBack;
 import com.github.listsapp.util.Book;
+import com.github.listsapp.util.callback.CallBackCheckTitle;
 import com.github.listsapp.view.library.LibraryViewModel;
+import com.google.firebase.database.core.Repo;
 import com.google.firebase.storage.StorageTask;
 
 public class AddBookFragment extends Fragment {
@@ -99,60 +104,93 @@ public class AddBookFragment extends Fragment {
         }
     }
 
-    private String getFileExtension(Uri uri)
-    {
+    private String getFileExtension(Uri uri) {
         ContentResolver cr = getActivity().getContentResolver();
         MimeTypeMap map = MimeTypeMap.getSingleton();
         return map.getExtensionFromMimeType(cr.getType(uri));
     }
 
-    private void uploadFile(String title)
-    {
-        if(imageUri != null)
-        {
+    private void uploadFile(String title) {
+        if (imageUri != null) {
             String imagename = title + System.currentTimeMillis() + "." + getFileExtension(imageUri);
             addBookViewModel.uploadFile(title, imagename, imageUri);
-        }
-        else
-        {
+        } else {
             Toast.makeText(getContext(), "No file selected", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void saveAddedBook() {
+        if (editText_title.getText() != null) {
+        }
 
+        addBookViewModel.checkTitle(new CallBackCheckTitle() {
+            @Override
+            public void checkTitle(boolean check) {
+                if (check && checkReadStatus(editText_readstatus.getText().toString()))
+                {
+                    saveAddBook();
+                    clearFields();
+                } else if(!check)
+                    Toast.makeText(getContext(), "Enter a different title", Toast.LENGTH_SHORT).show();
+                else if(!checkReadStatus(editText_readstatus.getText().toString()))
+                    Toast.makeText(getContext(), "Enter read, unread or currently for status", Toast.LENGTH_SHORT).show();
+
+            }
+        }, editText_title.getText().toString(), Repository.getUsername());
+
+    }
+
+    public boolean checkReadStatus(String s)
+    {
+        boolean b =  s.equals("currently") || s.equals("read") || s.equals("unread");
+        System.out.println(b);
+
+        return b;
+    }
+
+
+    private void clearFields()
+    {
+
+        editText_title.setText("");
+        editText_author.setText("");
+        editText_pagecount.setText("");
+        editText_price.setText("");
+        editText_readstatus.setText("");
+        switch_owned.setChecked(false);
+        imageView_bookcover.setImageResource(R.drawable.coverplaceholder);
+
+    }
+
+    private void saveAddBook()
+    {
         Book book = new Book();
-        if(editText_title.getText() != null)
         book.setTitle(editText_title.getText().toString());
-        if(editText_author.getText() != null)
-        book.setAuthor(editText_author.getText().toString());
-        if(editText_readstatus.getText() != null)
-            book.setReadStatus(editText_readstatus.getText().toString());
-            book.setOwned(switch_owned.isChecked());
-            try {
-                book.setPrice(Integer.parseInt(editText_price.getText().toString()));
-            }
-            catch (NumberFormatException e)
-            {
-                book.setPrice(0);
-            }
+
+        if (editText_author.getText() != null)
+            book.setAuthor(editText_author.getText().toString());
+        if (editText_readstatus.getText() != null) {
+            String s = editText_readstatus.getText().toString();
+            book.setReadStatus(s);
+        }
+        book.setOwned(switch_owned.isChecked());
+        try {
+            book.setPrice(Integer.parseInt(editText_price.getText().toString()));
+        } catch (NumberFormatException e) {
+            book.setPrice(0);
+        }
         try {
             book.setPagecount(Integer.parseInt(editText_pagecount.getText().toString()));
-        }
-        catch (NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             book.setPagecount(0);
         }
 
         book.setRating(ratingBar.getRating());
 
         StorageTask storageTask = libraryViewModel.getStorageTask();
-        if(storageTask != null && storageTask.isInProgress())
-        {
+        if (storageTask != null && storageTask.isInProgress()) {
             Toast.makeText(getContext(), "Upload in progress", Toast.LENGTH_SHORT).show();
-        }
-        else
-        {
+        } else {
             addBookViewModel.addBook(book, new CallBack() {
                 @Override
                 public void makeToast(String message) {
@@ -163,7 +201,5 @@ public class AddBookFragment extends Fragment {
             uploadFile(editText_title.getText().toString());
 
         }
-
-
     }
 }
